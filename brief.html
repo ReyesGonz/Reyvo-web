@@ -1,0 +1,546 @@
+<title>Reyvo Sites — Brief de tu página</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* ═══════════════ CONFIG DE ENVÍO ═══════════════
+   Cambia estos dos valores por los tuyos antes de compartir el link. */
+</style>
+<script>
+  /* ↓↓↓ EDITA AQUÍ ↓↓↓ */
+  const REYVO_WHATSAPP = "525568050041";  // tu WhatsApp con lada país, sin +, sin espacios
+  const REYVO_EMAIL    = "";              // (vacío por ahora — sin correo todavía)
+  /* ↑↑↑ EDITA AQUÍ ↑↑↑ */
+</script>
+
+<style>
+:root{
+  --bg:#070708; --bg2:#0c0c0f; --surface:#111116; --surface2:#16161c;
+  --line:rgba(255,255,255,.07); --line2:rgba(255,255,255,.13);
+  --white:#f5f5f7; --mut:rgba(245,245,247,.38); --mut2:rgba(245,245,247,.60);
+  --violet:#5b4eff; --volt:#a8ff3e;
+  --glow-v:rgba(91,78,255,.16);
+  --fd:'Syne',ui-sans-serif,-apple-system,"Segoe UI",sans-serif;
+  --fb:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --fm:ui-monospace,"SF Mono","DM Mono",Menlo,Consolas,monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --r:14px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg); color:var(--white); font-family:var(--fb);
+  font-weight:300; line-height:1.55; letter-spacing:.005em;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+body::before{
+  content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(60% 40% at 50% 0%, var(--glow-v), transparent 70%),
+    linear-gradient(rgba(255,255,255,.016) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.016) 1px,transparent 1px);
+  background-size:auto, 68px 68px, 68px 68px;
+  mask-image:radial-gradient(ellipse 100% 60% at 50% 0%,black 15%,transparent 100%);
+}
+.mono{font-family:var(--fm)}
+.wrap{position:relative; z-index:1; max-width:720px; margin:0 auto; padding:0 1.4rem 6rem}
+
+/* ── Progreso sticky ── */
+.topbar{
+  position:sticky; top:0; z-index:50;
+  background:rgba(7,7,8,.82); backdrop-filter:blur(20px) saturate(1.4);
+  border-bottom:1px solid var(--line);
+}
+.topbar-in{max-width:720px; margin:0 auto; padding:.9rem 1.4rem; display:flex; align-items:center; gap:.9rem}
+.logo{font-family:var(--fd); font-weight:800; font-size:1.05rem; letter-spacing:-.02em; display:flex; align-items:center; gap:.5rem}
+.logo .dot{width:8px; height:8px; border-radius:50%; background:var(--volt); box-shadow:0 0 12px var(--volt)}
+.logo small{font-weight:400; font-size:.62rem; letter-spacing:.22em; color:var(--mut); font-family:var(--fm); text-transform:uppercase; margin-left:.15rem}
+.prog-wrap{flex:1; height:4px; border-radius:99px; background:var(--surface2); overflow:hidden}
+.prog-bar{height:100%; width:0%; border-radius:99px; background:linear-gradient(90deg,var(--violet),var(--volt)); transition:width .5s var(--ease)}
+.prog-pct{font-family:var(--fm); font-size:.72rem; color:var(--mut2); min-width:38px; text-align:right; font-variant-numeric:tabular-nums}
+
+/* ── Hero ── */
+.hero{padding:3.4rem 0 2.4rem}
+.eyebrow{font-family:var(--fm); font-size:.7rem; letter-spacing:.28em; text-transform:uppercase; color:var(--volt); margin-bottom:1.1rem}
+.hero h1{font-family:var(--fd); font-weight:800; font-size:clamp(2.1rem,7vw,3.1rem); line-height:1.02; letter-spacing:-.03em; text-wrap:balance}
+.hero h1 em{font-style:normal; color:var(--violet)}
+.hero p{margin-top:1.1rem; color:var(--mut2); font-size:1.02rem; max-width:52ch}
+.hero .meta{margin-top:1.6rem; display:flex; flex-wrap:wrap; gap:.6rem}
+.chip{font-family:var(--fm); font-size:.72rem; color:var(--mut2); border:1px solid var(--line2); border-radius:99px; padding:.4rem .8rem; display:inline-flex; gap:.45rem; align-items:center}
+.chip::before{content:""; width:5px; height:5px; border-radius:50%; background:var(--volt)}
+
+/* ── Secciones ── */
+.sec{
+  background:linear-gradient(180deg,var(--surface),var(--bg2));
+  border:1px solid var(--line); border-radius:var(--r);
+  padding:1.7rem 1.5rem 1.9rem; margin-top:1.15rem;
+}
+.sec-head{display:flex; align-items:baseline; gap:.75rem; margin-bottom:.35rem}
+.sec-num{font-family:var(--fm); font-size:.78rem; color:var(--violet); font-weight:500}
+.sec h2{font-family:var(--fd); font-weight:700; font-size:1.28rem; letter-spacing:-.02em}
+.sec-desc{color:var(--mut); font-size:.86rem; margin-bottom:1.4rem; padding-left:1.55rem}
+
+/* ── Campos ── */
+.field{margin-top:1.15rem}
+.field:first-of-type{margin-top:0}
+label.q{display:block; font-size:.95rem; font-weight:400; color:var(--white); margin-bottom:.5rem; line-height:1.4}
+label.q .req{color:var(--volt); margin-left:.15rem}
+label.q .hint{display:block; font-size:.78rem; color:var(--mut); font-weight:300; margin-top:.2rem}
+input[type=text], input[type=email], input[type=tel], input[type=url], textarea, select{
+  width:100%; font-family:var(--fb); font-size:.95rem; font-weight:300; color:var(--white);
+  background:var(--bg); border:1px solid var(--line2); border-radius:10px;
+  padding:.78rem .9rem; transition:border-color .2s, box-shadow .2s; outline:none;
+}
+textarea{resize:vertical; min-height:88px; line-height:1.5}
+select{appearance:none; background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%23a8ff3e' stroke-width='1.6'><path d='M1 1.5 6 6.5 11 1.5'/></svg>"); background-repeat:no-repeat; background-position:right .95rem center; padding-right:2.4rem; cursor:pointer}
+input::placeholder, textarea::placeholder{color:rgba(245,245,247,.24)}
+input:focus, textarea:focus, select:focus{border-color:var(--violet); box-shadow:0 0 0 3px var(--glow-v)}
+.field.invalid input, .field.invalid textarea, .field.invalid select{border-color:#ff5b6e; box-shadow:0 0 0 3px rgba(255,91,110,.15)}
+
+/* radios / choices */
+.choices{display:flex; flex-wrap:wrap; gap:.55rem}
+.choice{position:relative}
+.choice input{position:absolute; opacity:0; pointer-events:none}
+.choice span{
+  display:inline-flex; align-items:center; gap:.45rem; cursor:pointer;
+  font-size:.88rem; color:var(--mut2); border:1px solid var(--line2); border-radius:99px;
+  padding:.55rem .95rem; transition:.2s;
+}
+.choice input:checked + span{color:var(--bg); background:var(--volt); border-color:var(--volt); font-weight:500}
+.choice input:focus-visible + span{box-shadow:0 0 0 3px var(--glow-v)}
+
+/* ── Envío ── */
+.send{margin-top:2rem; text-align:center}
+.send h2{font-family:var(--fd); font-weight:700; font-size:1.35rem; letter-spacing:-.02em}
+.send p{color:var(--mut2); font-size:.9rem; margin-top:.5rem; margin-bottom:1.5rem}
+.attach-note{
+  text-align:left; font-size:.86rem; line-height:1.5; color:var(--mut2);
+  background:rgba(91,78,255,.08); border:1px solid rgba(91,78,255,.28);
+  border-radius:12px; padding:.95rem 1.1rem; max-width:440px; margin:0 auto 1.4rem;
+}
+.attach-note strong{color:var(--white); font-weight:600}
+.attach-note b{color:var(--white); font-weight:500}
+.btns{display:flex; flex-direction:column; gap:.7rem; max-width:360px; margin:0 auto}
+.btn{
+  font-family:var(--fb); font-size:.98rem; font-weight:500; border-radius:11px;
+  padding:.95rem 1.4rem; display:inline-flex; align-items:center; justify-content:center; gap:.55rem;
+  transition:transform .15s var(--ease), filter .2s, background .2s; cursor:pointer; text-decoration:none; width:100%;
+}
+.btn:active{transform:scale(.98)}
+.btn-wa{background:var(--volt); color:#08120a; font-weight:600}
+.btn-wa:hover{filter:brightness(1.08)}
+.btn-mail{background:var(--violet); color:#fff}
+.btn-mail:hover{filter:brightness(1.12)}
+.btn-copy{background:transparent; color:var(--mut2); border:1px solid var(--line2)}
+.btn-copy:hover{color:var(--white); border-color:var(--white)}
+.save-note{font-family:var(--fm); font-size:.72rem; color:var(--mut); margin-top:1.3rem}
+.err-msg{color:#ff8b96; font-size:.85rem; margin-top:1rem; min-height:1.2em}
+
+footer{text-align:center; color:var(--mut); font-family:var(--fm); font-size:.72rem; margin-top:2.5rem; letter-spacing:.05em}
+
+@media (max-width:560px){
+  .sec{padding:1.4rem 1.15rem 1.6rem}
+  .sec-desc{padding-left:0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important; scroll-behavior:auto!important}}
+</style>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <span class="logo">Reyvo<span class="dot"></span><small>Sites</small></span>
+    <div class="prog-wrap"><div class="prog-bar" id="progBar"></div></div>
+    <span class="prog-pct" id="progPct">0%</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Brief de tu página · 10 min</div>
+    <h1>Cuéntanos de tu negocio y te <em>construimos</em> el sitio.</h1>
+    <p>Entre más completo, mejor queda tu página. Lo que no sepas, déjalo en blanco — lo resolvemos juntos. Al final envías todo con un botón.</p>
+    <div class="meta">
+      <span class="chip">Se guarda solo</span>
+      <span class="chip">Lo envías por WhatsApp</span>
+    </div>
+  </header>
+
+  <form id="brief" novalidate>
+
+    <!-- 1 -->
+    <section class="sec">
+      <div class="sec-head"><span class="sec-num">01</span><h2>Tu negocio</h2></div>
+      <p class="sec-desc">Lo básico para conocerlos.</p>
+
+      <div class="field">
+        <label class="q">Nombre del negocio<span class="req">*</span></label>
+        <input type="text" data-q="Nombre del negocio" data-req placeholder="Ej. Tacos El Güero">
+      </div>
+      <div class="field">
+        <label class="q">¿A qué se dedican? ¿Qué venden exactamente?<span class="req">*</span></label>
+        <textarea data-q="A qué se dedican" data-req placeholder="Describe tu negocio en una o dos frases."></textarea>
+      </div>
+      <div class="field">
+        <label class="q">¿Qué los hace diferentes de la competencia?
+          <span class="hint">¿Por qué alguien debería elegirte a ti?</span></label>
+        <textarea data-q="Qué los hace diferentes" placeholder="Precio, calidad, rapidez, trato, experiencia…"></textarea>
+      </div>
+      <div class="field">
+        <label class="q">¿En qué ciudad/zona operan?</label>
+        <input type="text" data-q="Ciudad / zona" placeholder="Ej. Monterrey, colonia Centro">
+      </div>
+      <div class="field">
+        <label class="q">¿Cómo atienden?</label>
+        <div class="choices" data-q="Modalidad" data-multi>
+          <label class="choice"><input type="checkbox" value="Local físico"><span>Local físico</span></label>
+          <label class="choice"><input type="checkbox" value="A domicilio"><span>A domicilio</span></label>
+          <label class="choice"><input type="checkbox" value="En línea"><span>En línea</span></label>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section class="sec">
+      <div class="sec-head"><span class="sec-num">02</span><h2>El objetivo de la página</h2></div>
+      <p class="sec-desc">Lo más importante: qué queremos que pase cuando alguien entra.</p>
+
+      <div class="field">
+        <label class="q">¿Qué quieres que haga la persona al entrar a tu página?<span class="req">*</span></label>
+        <div class="choices" data-q="Acción principal">
+          <label class="choice"><input type="radio" name="accion" value="Que me escriba por WhatsApp"><span>Escribirme por WhatsApp</span></label>
+          <label class="choice"><input type="radio" name="accion" value="Que reserve / agende cita"><span>Reservar / agendar</span></label>
+          <label class="choice"><input type="radio" name="accion" value="Que me llame"><span>Llamarme</span></label>
+          <label class="choice"><input type="radio" name="accion" value="Que compre en línea"><span>Comprar en línea</span></label>
+          <label class="choice"><input type="radio" name="accion" value="Que llene un formulario"><span>Llenar un formulario</span></label>
+        </div>
+      </div>
+      <div class="field">
+        <label class="q">¿Cuál es el problema #1 que le resuelves a tu cliente?<span class="req">*</span></label>
+        <textarea data-q="Problema que resuelve" data-req placeholder="¿Qué dolor o necesidad le quitas?"></textarea>
+      </div>
+      <div class="field">
+        <label class="q">¿Cómo se vería el éxito para ti?
+          <span class="hint">Ej. "5 citas nuevas por semana", "que suene el teléfono".</span></label>
+        <input type="text" data-q="Cómo se ve el éxito" placeholder="Tu meta con esta página">
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section class="sec">
+      <div class="sec-head"><span class="sec-num">03</span><h2>Tu cliente ideal</h2></div>
+      <p class="sec-desc">Para escribirle a la persona correcta.</p>
+
+      <div class="field">
+        <label class="q">¿Quién es tu cliente típico?<span class="req">*</span>
+          <span class="hint">Edad, situación, qué anda buscando.</span></label>
+        <textarea data-q="Cliente ideal" data-req placeholder="Ej. Mamás de 30-45 que buscan…"></textarea>
+      </div>
+      <div class="field">
+        <label class="q">¿Qué dudas o miedos tiene antes de comprarte?</label>
+        <textarea data-q="Dudas / miedos del cliente" placeholder="Ej. precio, si funciona, confianza…"></textarea>
+      </div>
+    </section>
+
+    <!-- 4 -->
+    <section class="sec">
+      <div class="sec-head"><span class="sec-num">04</span><h2>Tu oferta</h2></div>
+      <p class="sec-desc">Los servicios o productos que vamos a mostrar.</p>
+
+      <div class="field">
+        <label class="q">¿Cuáles son tus servicios o productos principales?<span class="req">*</span>
+          <span class="hint">Ponlos con nombre y una descripción corta de cada uno.</span></label>
+        <textarea data-q="Servicios / productos" data-req placeholder="1. …&#10;2. …&#10;3. …"></textarea>
+      </div>
+      <div class="field">
+        <label class="q">¿Cómo manejas los precios?<span class="req">*</span></label>
+        <div class="choices" data-q="Manejo de precios">
+          <label class="choice"><input type="radio" name="precios" value="Precios públicos"><span>Precios públicos</span></label>
+          <label class="choice"><input type="radio" name="precios" value="Desde $X"><span>"Desde $X"</span></label>
+          <label class="choice"><input type="radio" name="precios" value="Solo por cotización"><span>Solo cotización</span></label>
+        </div>
+      </div>
+      <div class="field">
+        <label class="q">¿Tienes promociones o paquetes que quieras destacar?</label>
+        <textarea data-q="Promociones / paquetes" placeholder="Opcional"></textarea>
+      </div>
+    </section>
+
+    <!-- 5 -->
+    <section class="sec">
+      <div class="sec-head"><span class="sec-num">05</span><h2>Tu imagen de marca</h2></div>
+      <p class="sec-desc">Cómo quieres que se vea y se sienta.</p>
+
+      <div class="field">
+        <label class="q">¿Tienes logo?<span class="req">*</span>
+          <span class="hint">Si sí, mándalo junto con este brief (de preferencia PNG con fondo transparente).</span></label>
+        <div class="choices" data-q="¿Tiene logo?">
+          <label class="choice"><input type="radio" name="logo" value="Sí, ya tengo logo"><span>Sí, ya tengo</span></label>
+          <label class="choice"><input type="radio" name="logo" value="No, necesito uno"><span>No, necesito uno</span></label>
+        </div>
+      </div>
+      <div class="field">
+        <label class="q">¿Tienes colores o tipografías de marca? Si no, ¿qué sensación quieres transmitir?
+          <span class="hint">Ej. elegante, confiable, moderno, cercano, divertido…</span></label>
+        <textarea data-q="Colores / sensación de marca" placeholder="Colores, o el estilo que buscas"></textarea>
+      </div>
+      <div class="field">
+        <label class="q">¿Hay páginas de otros negocios que te gusten?
+          <span class="hint">Pega 2-3 links y dinos qué te gusta de cada una.</span></label>
+        <textarea data-q="Referencias que le gustan" placeholder="Links + qué te gusta"></textarea>
+      </div>
+    </section>
+
+    <!-- 6 -->
+    <section class="sec">
+      <div class="sec-head"><span class="sec-num">06</span><h2>Contenido</h2></div>
+      <p class="sec-desc">Lo que va a llenar la página. El contenido real vende más que el relleno.</p>
+
+      <div class="field">
+        <label class="q">¿Tienes fotos reales del negocio, producto o equipo?<span class="req">*</span></label>
+        <div class="choices" data-q="¿Tiene fotos reales?">
+          <label class="choice"><input type="radio" name="fotos" value="Sí, tengo fotos buenas"><span>Sí, tengo buenas</span></label>
+          <label class="choice"><input type="radio" name="fotos" value="Tengo algunas / regulares"><span>Algunas / regulares</span></label>
+          <label class="choice"><input type="radio" name="fotos" value="No tengo, necesito ayuda"><span>No tengo</span></label>
+        </div>
+      </div>
+      <div class="field">
+        <label class="q">¿Tienes testimonios o reseñas de clientes?<span class="req">*</span>
+          <span class="hint">Google, redes, o capturas. La prueba social convence mucho.</span></label>
+        <div class="choices" data-q="¿Tiene testimonios?">
+          <label class="choice"><input type="radio" name="tests" value="Sí, tengo reseñas / testimonios"><span>Sí tengo</span></label>
+          <label class="choice"><input type="radio" name="tests" value="No tengo todavía"><span>No todavía</span></label>
+        </div>
+      </div>
+      <div class="field">
+        <label class="q">¿Los textos ya los tienes o los redactamos nosotros?</label>
+        <div class="choices" data-q="Textos">
+          <label class="choice"><input type="radio" name="textos" value="Ya tengo los textos"><span>Ya los tengo</span></label>
+          <label class="choice"><input type="radio" name="textos" value="Redáctenlos ustedes"><span>Redáctenlos ustedes</span></label>
+        </div>
+      </div>
+      <div class="field">
+        <label class="q">¿Qué redes sociales quieres enlazar?</label>
+        <input type="text" data-q="Redes sociales" placeholder="Instagram, Facebook, TikTok… (pega los @ o links)">
+      </div>
+    </section>
+
+    <!-- 7 -->
+    <section class="sec">
+      <div class="sec-head"><span class="sec-num">07</span><h2>Contacto</h2></div>
+      <p class="sec-desc">Cómo van a comunicarse contigo tus clientes.</p>
+
+      <div class="field">
+        <label class="q">WhatsApp o teléfono de contacto<span class="req">*</span></label>
+        <input type="tel" data-q="WhatsApp / teléfono" data-req placeholder="Ej. 81 1234 5678">
+      </div>
+      <div class="field">
+        <label class="q">Correo del negocio</label>
+        <input type="email" data-q="Correo del negocio" placeholder="tunegocio@correo.com">
+      </div>
+      <div class="field">
+        <label class="q">Horario de atención<span class="req">*</span></label>
+        <input type="text" data-q="Horario" data-req placeholder="Ej. Lun-Sáb 9am-7pm">
+      </div>
+      <div class="field">
+        <label class="q">¿Tienes dirección física para poner mapa?</label>
+        <input type="text" data-q="Dirección física" placeholder="Opcional">
+      </div>
+      <div class="field">
+        <label class="q">¿Necesitas algo extra?</label>
+        <div class="choices" data-q="Extras" data-multi>
+          <label class="choice"><input type="checkbox" value="Botón de reservación"><span>Reservación</span></label>
+          <label class="choice"><input type="checkbox" value="Formulario de contacto"><span>Formulario</span></label>
+          <label class="choice"><input type="checkbox" value="Catálogo / menú"><span>Catálogo / menú</span></label>
+          <label class="choice"><input type="checkbox" value="Pagos en línea"><span>Pagos en línea</span></label>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8 -->
+    <section class="sec">
+      <div class="sec-head"><span class="sec-num">08</span><h2>Dominio y detalles</h2></div>
+      <p class="sec-desc">Lo técnico, rápido.</p>
+
+      <div class="field">
+        <label class="q">¿Ya tienes un dominio? (tunegocio.com)</label>
+        <div class="choices" data-q="Dominio">
+          <label class="choice"><input type="radio" name="dom" value="Sí, ya tengo dominio"><span>Sí tengo</span></label>
+          <label class="choice"><input type="radio" name="dom" value="No, hay que registrarlo"><span>Hay que registrarlo</span></label>
+          <label class="choice"><input type="radio" name="dom" value="No sé qué es"><span>No sé qué es</span></label>
+        </div>
+      </div>
+      <div class="field">
+        <label class="q">¿Tienes página o redes actuales que quieras reemplazar/enlazar?</label>
+        <input type="text" data-q="Página / redes actuales" placeholder="Pega el link si tienes">
+      </div>
+    </section>
+
+    <!-- 9 -->
+    <section class="sec">
+      <div class="sec-head"><span class="sec-num">09</span><h2>Cierre</h2></div>
+      <p class="sec-desc">Últimos datos y ya.</p>
+
+      <div class="field">
+        <label class="q">¿Para cuándo la necesitas?</label>
+        <input type="text" data-q="Fecha que la necesita" placeholder="Ej. lo antes posible, para el mes que entra…">
+      </div>
+      <div class="field">
+        <label class="q">¿Con quién estamos hablando? (tu nombre)<span class="req">*</span></label>
+        <input type="text" data-q="Nombre de contacto" data-req placeholder="Tu nombre">
+      </div>
+    </section>
+
+    <!-- Envío -->
+    <div class="sec send">
+      <h2>Listo, envíanos tu brief</h2>
+      <p>Toca el botón y se abre WhatsApp con todo ya escrito — solo le das enviar. Si no se abre, usa "Copiar respuestas" y pégalas en nuestro chat.</p>
+      <div class="attach-note">
+        <strong>📎 Un último favor:</strong> por el mismo WhatsApp, mándanos también tu <b>logo</b> (de preferencia PNG con fondo transparente) y las <b>fotos</b> de tu negocio, productos o equipo. Eso no viaja en este formulario y es lo que le da vida a tu página.
+      </div>
+      <div class="btns">
+        <a href="#" class="btn btn-wa" id="btnWA" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+        <button type="button" class="btn btn-copy" id="btnCopy">Copiar respuestas</button>
+      </div>
+      <div class="err-msg" id="errMsg"></div>
+      <div class="save-note" id="saveNote">Tus respuestas se guardan solas en este dispositivo.</div>
+    </div>
+
+  </form>
+
+  <footer>Reyvo Sites · Sistemas de crecimiento</footer>
+</div>
+
+<script>
+(function(){
+  const form = document.getElementById('brief');
+  const STORE = 'reyvo_brief_v1';
+
+  /* ---- helpers para leer/escribir cada campo ---- */
+  function eachField(fn){
+    // inputs de texto
+    form.querySelectorAll('[data-q]:not(.choices)').forEach((el,i)=>{
+      if(el.matches('input,textarea,select')) fn('t'+i, el, el.getAttribute('data-q'), 'text');
+    });
+    // grupos de choices
+    form.querySelectorAll('.choices[data-q]').forEach((grp,i)=>{
+      fn('c'+i, grp, grp.getAttribute('data-q'), grp.hasAttribute('data-multi')?'multi':'single');
+    });
+  }
+  function grpValue(grp,type){
+    if(type==='multi'){
+      return [...grp.querySelectorAll('input:checked')].map(x=>x.value).join(', ');
+    }
+    const c = grp.querySelector('input:checked');
+    return c ? c.value : '';
+  }
+
+  /* ---- progreso ---- */
+  const bar = document.getElementById('progBar');
+  const pct = document.getElementById('progPct');
+  function updateProgress(){
+    let total=0, done=0;
+    eachField((k,el,label,type)=>{
+      total++;
+      let v = (type==='text') ? el.value.trim() : grpValue(el,type);
+      if(v) done++;
+    });
+    const p = total? Math.round(done/total*100):0;
+    bar.style.width = p+'%';
+    pct.textContent = p+'%';
+  }
+
+  /* ---- guardar / cargar ---- */
+  function save(){
+    const data={};
+    eachField((k,el,label,type)=>{
+      data[k] = (type==='text') ? el.value : (type==='multi'
+        ? [...el.querySelectorAll('input:checked')].map(x=>x.value)
+        : (el.querySelector('input:checked')||{}).value || '');
+    });
+    try{ localStorage.setItem(STORE, JSON.stringify(data)); }catch(e){}
+  }
+  function load(){
+    let data; try{ data=JSON.parse(localStorage.getItem(STORE)||'{}'); }catch(e){ return; }
+    eachField((k,el,label,type)=>{
+      if(!(k in data)) return;
+      if(type==='text'){ el.value = data[k]; }
+      else if(type==='multi'){
+        const set=new Set(data[k]||[]);
+        el.querySelectorAll('input').forEach(inp=>{ inp.checked=set.has(inp.value); });
+      } else {
+        el.querySelectorAll('input').forEach(inp=>{ inp.checked=(inp.value===data[k]); });
+      }
+    });
+  }
+
+  form.addEventListener('input', ()=>{ save(); updateProgress(); clearErr(); });
+  form.addEventListener('change', ()=>{ save(); updateProgress(); clearErr(); });
+
+  /* ---- validación + armado del mensaje ---- */
+  const errMsg = document.getElementById('errMsg');
+  function clearErr(){ errMsg.textContent=''; form.querySelectorAll('.field.invalid').forEach(f=>f.classList.remove('invalid')); }
+
+  function build(){
+    let missing = [];
+    let lines = ['*BRIEF — REYVO SITES*','────────────────────'];
+    eachField((k,el,label,type)=>{
+      let v = (type==='text') ? el.value.trim() : grpValue(el,type);
+      const req = (type==='text') ? el.hasAttribute('data-req')
+                                  : el.classList.contains('required') || el.dataset.req!==undefined;
+      // requerido si el input de texto tiene data-req; para choices, marcamos abajo
+      if(v){ lines.push('*'+label+':*'); lines.push(v); lines.push(''); }
+    });
+    // requeridos: recorremos de nuevo marcando faltantes
+    form.querySelectorAll('[data-req]').forEach(el=>{
+      const field = el.closest('.field');
+      if(!el.value.trim()){ missing.push(field); }
+    });
+    // choices requeridos (los que llevan * en su label)
+    form.querySelectorAll('.field').forEach(field=>{
+      const lbl = field.querySelector('label.q .req');
+      const grp = field.querySelector('.choices[data-q]');
+      if(lbl && grp){
+        const type = grp.hasAttribute('data-multi')?'multi':'single';
+        if(!grpValue(grp,type)) missing.push(field);
+      }
+    });
+    lines.push('────────────────────');
+    lines.push('📎 *Pendiente por enviar:* logo y fotos del negocio por este chat.');
+    return { text: lines.join('\n').trim(), missing };
+  }
+
+  function validate(){
+    clearErr();
+    const {text, missing} = build();
+    if(missing.length){
+      missing.forEach(f=>f.classList.add('invalid'));
+      errMsg.textContent = 'Faltan '+missing.length+' campo(s) obligatorio(s) (marcados con *). Revísalos arriba.';
+      missing[0].scrollIntoView({behavior:'smooth', block:'center'});
+      return null;
+    }
+    return text;
+  }
+
+  /* ---- botones ---- */
+  document.getElementById('btnWA').addEventListener('click', function(e){
+    const text = validate();
+    if(!text){ e.preventDefault(); return; }
+    // enlace nativo: fijamos el href y dejamos que el navegador abra WhatsApp
+    this.href = 'https://wa.me/'+REYVO_WHATSAPP+'?text='+encodeURIComponent(text);
+  });
+  document.getElementById('btnCopy').addEventListener('click', function(){
+    const text = validate(); if(!text) return;
+    const b=this, orig=b.textContent;
+    const done=()=>{ b.textContent='¡Copiado! Pégalo en WhatsApp'; setTimeout(()=>b.textContent=orig,2200); };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done).catch(()=>fallbackCopy(text,done));
+    } else { fallbackCopy(text,done); }
+  });
+  function fallbackCopy(text, done){
+    const ta=document.createElement('textarea');
+    ta.value=text; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.focus(); ta.select();
+    try{ document.execCommand('copy'); done(); }catch(e){}
+    document.body.removeChild(ta);
+  }
+
+  load(); updateProgress();
+})();
+</script>
