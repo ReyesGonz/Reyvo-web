@@ -15,7 +15,7 @@
   --line:rgba(255,255,255,.06);--line2:rgba(255,255,255,.11);
   --white:#f5f5f7;--mut:rgba(245,245,247,.35);--mut2:rgba(245,245,247,.55);
   --violet:#5b4eff;--volt:#a8ff3e;
-  --glow-v:rgba(91,78,255,.16);--glow-g:rgba(168,255,62,.07);
+  --glow-v:rgba(91,78,255,.10);--glow-g:rgba(168,255,62,.05);
   --fd:'Syne',sans-serif;--fb:'DM Sans',sans-serif;--fm:'DM Mono',monospace;
   --ease:cubic-bezier(.16,1,.3,1);
 }
@@ -35,8 +35,8 @@ body:hover .cursor-glow{opacity:1}
 
 /* ══════════════ GRID BG ══════════════ */
 .grid-bg{position:fixed;inset:0;pointer-events:none;z-index:0;
-  background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
-  background-size:72px 72px;
+  background-image:linear-gradient(rgba(255,255,255,.010) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.010) 1px,transparent 1px);
+  background-size:88px 88px;
   mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,black 20%,transparent 100%)}
 
 /* ══════════════ REVEAL SYSTEM ══════════════ */
@@ -75,12 +75,12 @@ body:hover .cursor-glow{opacity:1}
 
 /* ══════════════ HERO ══════════════ */
 .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
-  padding:9.5rem 2.5rem 5rem;overflow:hidden;z-index:2}
+  padding:11.5rem 2.5rem 7rem;overflow:hidden;z-index:2}
 .hero-aurora{position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:1200px;height:800px;pointer-events:none;
-  background:radial-gradient(ellipse 50% 40% at 50% 50%,rgba(91,78,255,.14),transparent 70%);
+  background:radial-gradient(ellipse 50% 40% at 50% 50%,rgba(91,78,255,.09),transparent 70%);
   animation:aurora 12s ease-in-out infinite alternate}
 @keyframes aurora{0%{transform:translateX(-54%) scale(1)}100%{transform:translateX(-46%) scale(1.06)}}
-.hero-beam{position:absolute;top:0;left:50%;width:1px;height:180px;background:linear-gradient(to bottom,transparent,rgba(168,255,62,.5),transparent);animation:beam 4s ease-in-out infinite}
+.hero-beam{position:absolute;top:0;left:50%;width:1px;height:180px;background:linear-gradient(to bottom,transparent,rgba(168,255,62,.28),transparent);animation:beam 4s ease-in-out infinite}
 @keyframes beam{0%,100%{opacity:.2;height:140px}50%{opacity:.8;height:200px}}
 
 .hero-badge{display:inline-flex;align-items:center;gap:.55rem;border:1px solid var(--line2);border-radius:100px;
@@ -97,7 +97,7 @@ body:hover .cursor-glow{opacity:1}
 .ht-line:nth-child(3) span{animation-delay:.42s}
 @keyframes lineUp{to{transform:translateY(0)}}
 .ht-ghost{color:transparent;-webkit-text-stroke:1px rgba(245,245,247,.28)}
-.ht-volt{color:var(--volt);text-shadow:0 0 60px rgba(168,255,62,.25)}
+.ht-volt{color:var(--volt);text-shadow:0 0 50px rgba(168,255,62,.14)}
 
 .hero-sub{font-size:1rem;line-height:1.7;color:var(--mut2);text-align:center;max-width:440px;margin-top:2rem;
   opacity:0;animation:fUp .8s .6s var(--ease) forwards}
@@ -114,11 +114,41 @@ body:hover .cursor-glow{opacity:1}
 .btn-line{font-size:.78rem;color:var(--mut2);display:inline-flex;align-items:center;gap:.45rem;transition:color .25s,gap .25s}
 .btn-line:hover{color:var(--white);gap:.7rem}
 
+/* Barra de confianza del hero: señales honestas que bajan el riesgo percibido */
+.hero-trust{display:flex;flex-wrap:wrap;justify-content:center;gap:.7rem 1.5rem;margin-top:2.2rem;
+  position:relative;z-index:2;opacity:0;animation:fUp .8s .9s var(--ease) forwards}
+.hero-trust span{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--fm);
+  font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mut2)}
+.hero-trust svg{width:13px;height:13px;flex-shrink:0;color:var(--volt)}
+
+/* ══════════════ HERO GLASS ORBS ══════════════
+   Esferas de vidrio ambientales: capas de degradado radial que
+   simulan vidrio 3D. Flotan (keyframes) y siguen el mouse (JS).
+   Van detrás del contenido (z-index:1) para dar profundidad sin estorbar. */
+.hero-orbs{position:absolute;inset:0;z-index:1;pointer-events:none}
+/* Luz ambiental suave (Stripe/Linear): blooms difuminados, sin brillo glossy */
+.h-orb{position:absolute;border-radius:50%;filter:blur(52px);opacity:.4;will-change:transform;
+  background:radial-gradient(circle at 50% 45%, var(--tint), transparent 68%)}
+.h-orb.o1{width:380px;height:380px;top:6%;left:-3%;  --tint:rgba(91,78,255,.55); animation:hfloat1 17s var(--ease) infinite}
+.h-orb.o2{width:440px;height:440px;top:12%;right:-5%;--tint:rgba(91,78,255,.40); animation:hfloat2 21s var(--ease) infinite}
+.h-orb.o3{width:220px;height:220px;top:42%;left:11%; --tint:rgba(168,255,62,.24); animation:hfloat1 19s var(--ease) infinite reverse}
+.h-orb.o4{display:none}
+@keyframes hfloat1{0%,100%{transform:translate(0,0)}50%{transform:translate(0,-26px)}}
+@keyframes hfloat2{0%,100%{transform:translate(0,0)}50%{transform:translate(0,22px)}}
+/* El contenido del hero se mantiene por encima de la luz ambiental */
+.hero-badge,.hero-title,.hero-sub,.hero-actions{position:relative;z-index:2}
+
+/* ══════════════ SCROLL PROGRESS ══════════════
+   Barra fina arriba que crece conforme bajas. Detalle premium sutil. */
+.scroll-prog{position:fixed;top:0;left:0;height:2px;width:0;z-index:1001;
+  background:linear-gradient(90deg,var(--violet),var(--volt));
+  box-shadow:0 0 12px rgba(168,255,62,.45);transition:width .12s linear}
+
 /* ══════════════ DASHBOARD ══════════════ */
-.dash-wrap{position:relative;margin-top:5.5rem;width:100%;max-width:1160px;opacity:0;animation:dashIn 1.2s .9s var(--ease) forwards;transform-style:preserve-3d}
+.dash-wrap{position:relative;z-index:2;margin-top:7rem;width:100%;max-width:1160px;opacity:0;animation:dashIn 1.2s .9s var(--ease) forwards;transform-style:preserve-3d}
 @keyframes dashIn{from{opacity:0;transform:translateY(60px) scale(.96)}to{opacity:1;transform:none}}
 .dash-halo{position:absolute;inset:-40px;border-radius:24px;pointer-events:none;
-  background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(91,78,255,.18),transparent 70%)}
+  background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(91,78,255,.12),transparent 70%)}
 .dash{position:relative;background:rgba(17,17,22,.92);border:1px solid var(--line2);border-radius:14px;overflow:hidden;
   box-shadow:0 60px 140px rgba(0,0,0,.65),0 0 0 1px rgba(91,78,255,.12),inset 0 1px 0 rgba(255,255,255,.05);
   backdrop-filter:blur(20px)}
@@ -232,7 +262,7 @@ body:hover .cursor-glow{opacity:1}
 .cal-row.next .cal-time{color:var(--volt)}
 
 /* ══════════════ SECTIONS ══════════════ */
-.sec{position:relative;padding:8rem 2.5rem;z-index:2}
+.sec{position:relative;padding:10.5rem 2.5rem;z-index:2}
 .sec-inner{max-width:1120px;margin:0 auto}
 .sec-line{position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(1120px,90%);height:1px;
   background:linear-gradient(90deg,transparent,var(--line2),transparent)}
@@ -433,16 +463,91 @@ body:hover .cursor-glow{opacity:1}
   .foot-btm{flex-direction:column;gap:.9rem}
   .hero-actions{flex-direction:column}
   .lic-head{flex-direction:column;align-items:flex-start;gap:1rem}
+  .h-orb.o3,.h-orb.o4{display:none}
+  .h-orb.o1{width:120px;height:120px;top:12%}
+  .h-orb.o2{width:150px;height:150px;top:15%}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+
+/* ══════════════════════════════════════════════════════════════
+   CREATIVE LAYER v3 — atmósfera viva, cursor, mapa del sistema
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Mesh de color vivo en el hero ── */
+.hero-mesh{position:absolute;inset:-15%;z-index:0;pointer-events:none;filter:blur(72px);opacity:.72;will-change:transform}
+.hero-mesh b{position:absolute;display:block;border-radius:50%;mix-blend-mode:screen}
+.hero-mesh .m1{width:44vw;height:44vw;top:-6%;left:-6%;background:radial-gradient(circle,#6a5cff,transparent 62%);animation:meshA 24s ease-in-out infinite}
+.hero-mesh .m2{width:40vw;height:40vw;top:-2%;right:-6%;background:radial-gradient(circle,#2e7bff,transparent 62%);animation:meshB 28s ease-in-out infinite}
+.hero-mesh .m3{width:34vw;height:34vw;top:32%;left:4%;background:radial-gradient(circle,#a8ff3e,transparent 60%);opacity:.5;animation:meshA 32s ease-in-out infinite reverse}
+.hero-mesh .m4{width:34vw;height:34vw;top:4%;left:40%;background:radial-gradient(circle,#c15bff,transparent 62%);opacity:.85;animation:meshB 26s ease-in-out infinite}
+@keyframes meshA{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(6%,7%) scale(1.14)}}
+@keyframes meshB{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-7%,-6%) scale(1.1)}}
+.hero-veil2{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(7,7,8,.22) 0%,rgba(7,7,8,0) 24%,rgba(7,7,8,.32) 60%,rgba(7,7,8,.86) 94%)}
+
+/* ── Grano de película global (cohesión premium) ── */
+.grain{position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ── Cursor personalizado (dot + ring, mezcla por diferencia) ── */
+.cur-dot,.cur-ring{position:fixed;top:0;left:0;z-index:9999;pointer-events:none;border-radius:50%;
+  transform:translate(-50%,-50%);mix-blend-mode:difference;will-change:transform}
+.cur-dot{width:7px;height:7px;background:#fff}
+.cur-ring{width:34px;height:34px;border:1px solid rgba(255,255,255,.55);
+  transition:width .25s var(--ease),height .25s var(--ease),background .25s,border-color .25s}
+.cur-ring.hot{width:56px;height:56px;background:rgba(168,255,62,.10);border-color:var(--volt)}
+@media(pointer:coarse){.cur-dot,.cur-ring{display:none!important}}
+@media(hover:hover) and (pointer:fine){html.has-cur,html.has-cur *{cursor:none!important}}
+
+/* ── Shimmer en la palabra clave del hero ── */
+.ht-volt{background:linear-gradient(100deg,var(--volt) 30%,#e8ffc4 50%,var(--volt) 70%);
+  background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  animation:shimmer 5s linear infinite}
+@keyframes shimmer{to{background-position:-200% center}}
+
+/* ══════════ MAPA DEL SISTEMA (sección insignia) ══════════ */
+.smap-wrap{margin-top:5rem;position:relative}
+.flowmap{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:.5rem;padding:2rem 0}
+.fwire{position:absolute;top:calc(2rem + 34px);left:9%;right:9%;height:2px;z-index:0;overflow:visible;
+  background:linear-gradient(90deg,transparent,var(--line2) 6%,var(--line2) 94%,transparent)}
+.fpulse{position:absolute;top:50%;width:9px;height:9px;border-radius:50%;background:var(--volt);
+  box-shadow:0 0 14px var(--volt),0 0 4px #fff;transform:translateY(-50%);animation:pulse 4.5s linear infinite}
+.fpulse:nth-child(2){animation-delay:1.5s;background:#7c6fff;box-shadow:0 0 14px #7c6fff}
+.fpulse:nth-child(3){animation-delay:3s}
+@keyframes pulse{0%{left:0;opacity:0}6%{opacity:1}94%{opacity:1}100%{left:100%;opacity:0}}
+.fnode{position:relative;z-index:2;text-align:center;padding:0 .3rem;cursor:default}
+.fnode-ico{width:68px;height:68px;margin:0 auto;border-radius:20px;display:grid;place-items:center;
+  background:linear-gradient(160deg,var(--surface2),var(--surface));border:1px solid var(--line2);
+  transition:transform .35s var(--ease),border-color .35s,box-shadow .35s}
+.fnode svg{width:27px;height:27px;color:var(--mut2);transition:color .35s}
+.fnode.on .fnode-ico{border-color:var(--volt);transform:translateY(-6px) scale(1.04);
+  box-shadow:0 0 0 1px var(--volt),0 16px 44px rgba(168,255,62,.20)}
+.fnode.on svg{color:var(--volt)}
+.fnode-t{font-family:var(--fd);font-weight:700;font-size:.92rem;margin-top:1.1rem;letter-spacing:-.01em}
+.fnode-s{font-size:.72rem;color:var(--mut);margin-top:.35rem;line-height:1.45}
+.fnode.on .fnode-s{color:var(--mut2)}
+.smap-cap{text-align:center;font-family:var(--fm);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--mut);margin-top:3rem}
+.smap-cap b{color:var(--volt);font-weight:500}
+@media(max-width:760px){
+  .flowmap{grid-template-columns:1fr;gap:1.6rem;padding:1rem 0}
+  .fwire{display:none}
+  .fnode{display:flex;align-items:center;gap:1.1rem;text-align:left;padding:0}
+  .fnode-ico{margin:0;width:56px;height:56px}
+  .fnode-t{margin-top:0}
 }
 </style>
 </head>
 <body>
 
+<div class="scroll-prog" id="scrollProg" aria-hidden="true"></div>
 <div class="grid-bg" aria-hidden="true"></div>
 <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="cur-ring" id="curRing" aria-hidden="true"></div>
+<div class="cur-dot" id="curDot" aria-hidden="true"></div>
 
 <!-- MOBILE NAV -->
 <nav class="mobile-nav" id="mNav" aria-label="Menú móvil">
@@ -479,6 +584,12 @@ body:hover .cursor-glow{opacity:1}
   <div class="hero-aurora" aria-hidden="true"></div>
   <div class="hero-beam" aria-hidden="true"></div>
 
+  <!-- Mesh de color vivo (atmósfera premium en movimiento) -->
+  <div class="hero-mesh" id="heroMesh" aria-hidden="true">
+    <b class="m1"></b><b class="m2"></b><b class="m3"></b><b class="m4"></b>
+  </div>
+  <div class="hero-veil2" aria-hidden="true"></div>
+
   <div class="hero-badge"><span class="badge-dot"></span>SISTEMA OPERATIVO COMERCIAL</div>
 
   <h1 class="hero-title">
@@ -492,6 +603,12 @@ body:hover .cursor-glow{opacity:1}
   <div class="hero-actions">
     <a href="https://wa.me/525568050041?text=Hola%20Alan%2C%20quiero%20construir%20mi%20sistema." class="btn-main">Construir mi sistema</a>
     <a href="#problema" class="btn-line">Ver cómo funciona →</a>
+  </div>
+
+  <div class="hero-trust">
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>Datos reales en 48 h</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Con contrato claro</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>Respuesta &lt; 24 h</span>
   </div>
 
   <!-- DASHBOARD -->
@@ -600,6 +717,44 @@ body:hover .cursor-glow{opacity:1}
         </div>
 
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ MAPA DEL SISTEMA ══════════ -->
+<section class="sec" id="mapa">
+  <div class="sec-line" aria-hidden="true"></div>
+  <div class="sec-inner">
+    <div class="rv">
+      <p class="kick">El motor</p>
+      <h2 class="h2">De extraño a cliente.<br/><span class="volt">En un solo flujo.</span></h2>
+      <p class="sub">Cada pieza le pasa la información a la siguiente — sola. Así se mueve un cliente por tu sistema.</p>
+    </div>
+    <div class="smap-wrap rv d2">
+      <div class="flowmap" id="flowmap">
+        <div class="fwire" aria-hidden="true"><span class="fpulse"></span><span class="fpulse"></span><span class="fpulse"></span></div>
+        <div class="fnode" data-i="0">
+          <div class="fnode-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a1 1 0 0 0 1 1h2l4 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M14 8.5a4 4 0 0 1 0 7"/><path d="M17.5 5.5a8 8 0 0 1 0 13"/></svg></div>
+          <p class="fnode-t">Anuncios</p><p class="fnode-s">Atraen prospectos reales</p>
+        </div>
+        <div class="fnode" data-i="1">
+          <div class="fnode-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3 21l1.9-5.6A8.5 8.5 0 1 1 21 11.5z"/></svg></div>
+          <p class="fnode-t">WhatsApp</p><p class="fnode-s">Responde en segundos</p>
+        </div>
+        <div class="fnode" data-i="2">
+          <div class="fnode-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="5.5" height="16" rx="1.2"/><rect x="9.75" y="4" width="5.5" height="10" rx="1.2"/><rect x="16.5" y="4" width="4.5" height="13" rx="1.2"/></svg></div>
+          <p class="fnode-t">CRM</p><p class="fnode-s">Ordena cada oportunidad</p>
+        </div>
+        <div class="fnode" data-i="3">
+          <div class="fnode-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><path d="M12 7.5l1.6 2.9 2.9 1.6-2.9 1.6L12 16.5l-1.6-2.9L7.5 12l2.9-1.6z"/></svg></div>
+          <p class="fnode-t">IA</p><p class="fnode-s">Prioriza a quien cierra</p>
+        </div>
+        <div class="fnode" data-i="4">
+          <div class="fnode-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 11.1V12a9.5 9.5 0 1 1-5.6-8.7"/><path d="M21.5 4 12 13.5l-2.8-2.8"/></svg></div>
+          <p class="fnode-t">Cierre</p><p class="fnode-s">Más ventas, menos fricción</p>
+        </div>
+      </div>
+      <p class="smap-cap">El sistema trabaja <b>24/7</b> — incluso mientras duermes.</p>
     </div>
   </div>
 </section>
@@ -1186,6 +1341,90 @@ document.querySelectorAll('.smod').forEach(m => {
     m.style.setProperty('--my', ((e.clientY-r.top)/r.height*100)+'%');
   });
 });
+
+/* ═══════ SCROLL PROGRESS ═══════ */
+(() => {
+  const bar = document.getElementById('scrollProg');
+  if(!bar) return;
+  let ticking = false;
+  addEventListener('scroll', () => {
+    if(ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const h = document.documentElement.scrollHeight - innerHeight;
+      bar.style.width = (h > 0 ? (scrollY / h) * 100 : 0) + '%';
+      ticking = false;
+    });
+  }, {passive:true});
+})();
+
+/* ═══════ HERO ORBS · PARALLAX AL MOUSE ═══════ */
+(() => {
+  const orbs = [...document.querySelectorAll('.h-orb')];
+  if(!orbs.length || matchMedia('(pointer:coarse)').matches) return;
+  let mx = 0, my = 0, cx = 0, cy = 0;
+  const depth = [34, 52, 20, 16]; // cada esfera a distinta "profundidad"
+  addEventListener('mousemove', e => {
+    mx = (e.clientX / innerWidth  - .5);
+    my = (e.clientY / innerHeight - .5);
+  }, {passive:true});
+  (function loop(){
+    cx += (mx - cx) * .06; cy += (my - cy) * .06; // interpolación = suave
+    orbs.forEach((o, i) => {
+      const d = depth[i] || 28;
+      o.style.translate = `${cx * d}px ${cy * d}px`; // 'translate' no pelea con el 'transform' del keyframe
+    });
+    requestAnimationFrame(loop);
+  })();
+})();
+
+/* ═══════ CURSOR PERSONALIZADO (dot + ring) ═══════ */
+(() => {
+  if(matchMedia('(pointer:coarse)').matches) return;
+  const dot = document.getElementById('curDot'), ring = document.getElementById('curRing');
+  if(!dot || !ring) return;
+  let mx = innerWidth/2, my = innerHeight/2, rx = mx, ry = my;
+  document.documentElement.classList.add('has-cur');
+  addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    dot.style.transform = `translate(${mx}px,${my}px) translate(-50%,-50%)`;
+  }, {passive:true});
+  (function loop(){
+    rx += (mx - rx) * .18; ry += (my - ry) * .18;
+    ring.style.transform = `translate(${rx}px,${ry}px) translate(-50%,-50%)`;
+    requestAnimationFrame(loop);
+  })();
+  document.querySelectorAll('a,button,.fnode,.smod,.lic,.fq-q,.kpi,.pstat').forEach(el => {
+    el.addEventListener('mouseenter', () => ring.classList.add('hot'));
+    el.addEventListener('mouseleave', () => ring.classList.remove('hot'));
+  });
+})();
+
+/* ═══════ BOTONES MAGNÉTICOS ═══════ */
+(() => {
+  if(matchMedia('(pointer:coarse)').matches) return;
+  document.querySelectorAll('.btn-main,.btn-nav,.club-btn,.rs-btn.solid,.lic-btn.solid').forEach(btn => {
+    btn.addEventListener('mousemove', e => {
+      const r = btn.getBoundingClientRect();
+      const x = e.clientX - r.left - r.width/2, y = e.clientY - r.top - r.height/2;
+      btn.style.transform = `translate(${x*.28}px,${y*.4}px)`;
+    });
+    btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+  });
+})();
+
+/* ═══════ MAPA DEL SISTEMA · pulso secuencial ═══════ */
+(() => {
+  const map = document.getElementById('flowmap');
+  if(!map) return;
+  const nodes = [...map.querySelectorAll('.fnode')];
+  let i = 0, timer;
+  function tick(){ nodes.forEach((n,j) => n.classList.toggle('on', j===i)); i = (i+1) % nodes.length; }
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if(e.isIntersecting){ tick(); timer = setInterval(tick, 1100); io.disconnect(); }
+  }), {threshold:.3});
+  io.observe(map);
+})();
 
 /* ═══════ PARALLAX GLOWS ═══════ */
 (() => {

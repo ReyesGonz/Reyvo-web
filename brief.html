@@ -1,5 +1,7 @@
 <title>Reyvo Sites — Brief de tu página</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
 /* ═══════════════ CONFIG DE ENVÍO ═══════════════
    Cambia estos dos valores por los tuyos antes de compartir el link. */
@@ -17,10 +19,10 @@
   --line:rgba(255,255,255,.07); --line2:rgba(255,255,255,.13);
   --white:#f5f5f7; --mut:rgba(245,245,247,.38); --mut2:rgba(245,245,247,.60);
   --violet:#5b4eff; --volt:#a8ff3e;
-  --glow-v:rgba(91,78,255,.16);
+  --glow-v:rgba(91,78,255,.12);
   --fd:'Syne',ui-sans-serif,-apple-system,"Segoe UI",sans-serif;
-  --fb:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-  --fm:ui-monospace,"SF Mono","DM Mono",Menlo,Consolas,monospace;
+  --fb:'DM Sans',ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --fm:'DM Mono',ui-monospace,"SF Mono",Menlo,Consolas,monospace;
   --ease:cubic-bezier(.16,1,.3,1);
   --r:14px;
 }
@@ -141,7 +143,51 @@ footer{text-align:center; color:var(--mut); font-family:var(--fm); font-size:.72
   .sec-desc{padding-left:0}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important; scroll-behavior:auto!important}}
+
+/* ══════════════ CREATIVE LAYER — brief ══════════════ */
+/* Mesh de color vivo (calmado, solo arriba para no distraer del formulario) */
+.b-mesh{position:fixed;top:0;left:0;right:0;height:66vh;z-index:0;pointer-events:none;filter:blur(70px);opacity:.5;overflow:hidden}
+.b-mesh b{position:absolute;display:block;border-radius:50%;mix-blend-mode:screen}
+.b-mesh .m1{width:44vw;height:44vw;top:-18vh;left:-8vw;background:radial-gradient(circle,#6a5cff,transparent 62%);animation:bmeshA 26s ease-in-out infinite}
+.b-mesh .m2{width:40vw;height:40vw;top:-20vh;right:-8vw;background:radial-gradient(circle,#2e7bff,transparent 62%);animation:bmeshB 30s ease-in-out infinite}
+.b-mesh .m3{width:26vw;height:26vw;top:0;left:34vw;background:radial-gradient(circle,#a8ff3e,transparent 60%);opacity:.5;animation:bmeshA 34s ease-in-out infinite reverse}
+.b-mesh::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,7,8,.35),rgba(7,7,8,.92) 88%)}
+@keyframes bmeshA{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(5%,6%) scale(1.12)}}
+@keyframes bmeshB{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-6%,-5%) scale(1.1)}}
+
+/* Grano de película global */
+.grain{position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* Cursor personalizado (dot + ring); se restaura el nativo sobre campos de texto */
+.cur-dot,.cur-ring{position:fixed;top:0;left:0;z-index:9999;pointer-events:none;border-radius:50%;
+  transform:translate(-50%,-50%);mix-blend-mode:difference;will-change:transform}
+.cur-dot{width:7px;height:7px;background:#fff}
+.cur-ring{width:34px;height:34px;border:1px solid rgba(255,255,255,.55);
+  transition:width .25s var(--ease),height .25s var(--ease),background .25s,border-color .25s}
+.cur-ring.hot{width:54px;height:54px;background:rgba(168,255,62,.10);border-color:var(--volt)}
+@media(pointer:coarse){.cur-dot,.cur-ring{display:none!important}}
+@media(hover:hover) and (pointer:fine){
+  html.has-cur,html.has-cur *{cursor:none!important}
+  html.has-cur input,html.has-cur textarea{cursor:text!important}
+  html.has-cur select,html.has-cur .choice span,html.has-cur .btn,html.has-cur a{cursor:pointer!important}
+}
+
+/* Reveal al hacer scroll (progressive enhancement: la clase la pone el JS) */
+.b-rv{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.b-rv.in{opacity:1;transform:none}
+
+/* Microinteracciones */
+.sec{transition:border-color .3s, box-shadow .3s, transform .3s}
+.sec:hover{border-color:var(--line2)}
+.choice input:not(:checked)+span:hover{border-color:var(--mut2);color:var(--white);transform:translateY(-1px)}
+.eyebrow{position:relative;z-index:1}
 </style>
+
+<div class="b-mesh" aria-hidden="true"><b class="m1"></b><b class="m2"></b><b class="m3"></b></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="cur-ring" id="curRing" aria-hidden="true"></div>
+<div class="cur-dot" id="curDot" aria-hidden="true"></div>
 
 <div class="topbar">
   <div class="topbar-in">
@@ -542,5 +588,48 @@ footer{text-align:center; color:var(--mut); font-family:var(--fm); font-size:.72
   }
 
   load(); updateProgress();
+})();
+</script>
+
+<script>
+/* ── Capa creativa: cursor, botones magnéticos, reveal ── */
+(function(){
+  var fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+  if(fine){
+    var dot=document.getElementById('curDot'), ring=document.getElementById('curRing');
+    if(dot && ring){
+      var mx=innerWidth/2, my=innerHeight/2, rx=mx, ry=my;
+      document.documentElement.classList.add('has-cur');
+      addEventListener('mousemove', function(e){
+        mx=e.clientX; my=e.clientY;
+        dot.style.transform='translate('+mx+'px,'+my+'px) translate(-50%,-50%)';
+      }, {passive:true});
+      (function loop(){
+        rx+=(mx-rx)*.18; ry+=(my-ry)*.18;
+        ring.style.transform='translate('+rx+'px,'+ry+'px) translate(-50%,-50%)';
+        requestAnimationFrame(loop);
+      })();
+      document.querySelectorAll('a,button,.btn,.choice,input,textarea,select,.sec').forEach(function(el){
+        el.addEventListener('mouseenter', function(){ ring.classList.add('hot'); });
+        el.addEventListener('mouseleave', function(){ ring.classList.remove('hot'); });
+      });
+    }
+    document.querySelectorAll('.btn-wa,.btn-mail').forEach(function(btn){
+      btn.addEventListener('mousemove', function(e){
+        var r=btn.getBoundingClientRect();
+        var x=e.clientX-r.left-r.width/2, y=e.clientY-r.top-r.height/2;
+        btn.style.transform='translate('+(x*.2)+'px,'+(y*.3)+'px)';
+      });
+      btn.addEventListener('mouseleave', function(){ btn.style.transform=''; });
+    });
+  }
+
+  var secs=document.querySelectorAll('.hero,.sec');
+  secs.forEach(function(s){ s.classList.add('b-rv'); });
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.08, rootMargin:'0px 0px -40px 0px'});
+  secs.forEach(function(s){ io.observe(s); });
 })();
 </script>
