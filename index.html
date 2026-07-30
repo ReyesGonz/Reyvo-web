@@ -552,6 +552,7 @@ body:hover .cursor-glow{opacity:1}
 <!-- MOBILE NAV -->
 <nav class="mobile-nav" id="mNav" aria-label="Menú móvil">
   <a href="#problema" onclick="closeM()">Problema</a>
+  <a href="#empezar" onclick="closeM()">Empezar</a>
   <a href="#sistema" onclick="closeM()">Sistema</a>
   <a href="#sites" onclick="closeM()">Sites</a>
   <a href="#licencias" onclick="closeM()">Licencias</a>
@@ -567,8 +568,8 @@ body:hover .cursor-glow{opacity:1}
   </a>
   <div class="nav-links">
     <a href="#problema">Problema</a>
+    <a href="#empezar">Empezar</a>
     <a href="#sistema">Sistema</a>
-    <a href="#sites">Sites</a>
     <a href="#licencias">Licencias</a>
     <a href="#faq">FAQ</a>
   </div>
@@ -721,44 +722,6 @@ body:hover .cursor-glow{opacity:1}
   </div>
 </section>
 
-<!-- ══════════ MAPA DEL SISTEMA ══════════ -->
-<section class="sec" id="mapa">
-  <div class="sec-line" aria-hidden="true"></div>
-  <div class="sec-inner">
-    <div class="rv">
-      <p class="kick">El motor</p>
-      <h2 class="h2">De extraño a cliente.<br/><span class="volt">En un solo flujo.</span></h2>
-      <p class="sub">Cada pieza le pasa la información a la siguiente — sola. Así se mueve un cliente por tu sistema.</p>
-    </div>
-    <div class="smap-wrap rv d2">
-      <div class="flowmap" id="flowmap">
-        <div class="fwire" aria-hidden="true"><span class="fpulse"></span><span class="fpulse"></span><span class="fpulse"></span></div>
-        <div class="fnode" data-i="0">
-          <div class="fnode-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a1 1 0 0 0 1 1h2l4 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M14 8.5a4 4 0 0 1 0 7"/><path d="M17.5 5.5a8 8 0 0 1 0 13"/></svg></div>
-          <p class="fnode-t">Anuncios</p><p class="fnode-s">Atraen prospectos reales</p>
-        </div>
-        <div class="fnode" data-i="1">
-          <div class="fnode-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3 21l1.9-5.6A8.5 8.5 0 1 1 21 11.5z"/></svg></div>
-          <p class="fnode-t">WhatsApp</p><p class="fnode-s">Responde en segundos</p>
-        </div>
-        <div class="fnode" data-i="2">
-          <div class="fnode-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="5.5" height="16" rx="1.2"/><rect x="9.75" y="4" width="5.5" height="10" rx="1.2"/><rect x="16.5" y="4" width="4.5" height="13" rx="1.2"/></svg></div>
-          <p class="fnode-t">CRM</p><p class="fnode-s">Ordena cada oportunidad</p>
-        </div>
-        <div class="fnode" data-i="3">
-          <div class="fnode-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><path d="M12 7.5l1.6 2.9 2.9 1.6-2.9 1.6L12 16.5l-1.6-2.9L7.5 12l2.9-1.6z"/></svg></div>
-          <p class="fnode-t">IA</p><p class="fnode-s">Prioriza a quien cierra</p>
-        </div>
-        <div class="fnode" data-i="4">
-          <div class="fnode-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 11.1V12a9.5 9.5 0 1 1-5.6-8.7"/><path d="M21.5 4 12 13.5l-2.8-2.8"/></svg></div>
-          <p class="fnode-t">Cierre</p><p class="fnode-s">Más ventas, menos fricción</p>
-        </div>
-      </div>
-      <p class="smap-cap">El sistema trabaja <b>24/7</b> — incluso mientras duermes.</p>
-    </div>
-  </div>
-</section>
-
 <!-- ══════════ PROBLEMA ══════════ -->
 <section class="sec" id="problema">
   <div class="sec-line" aria-hidden="true"></div>
@@ -794,6 +757,111 @@ body:hover .cursor-glow{opacity:1}
   </div>
 </section>
 
+<!-- ══════════ CÓMO EMPEZAR · LA ESCALERA ══════════ -->
+<style>
+.ladder3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:3.6rem;align-items:stretch}
+@media(max-width:820px){.ladder3{grid-template-columns:1fr;gap:.85rem}}
+.l3{position:relative;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:16px;background:var(--surface);padding:1.9rem 1.7rem;transition:transform .3s var(--ease),border-color .3s,box-shadow .3s}
+.l3:hover{transform:translateY(-5px);border-color:var(--line2);box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.l3.main{border-color:rgba(91,78,255,.5);background:linear-gradient(180deg,rgba(91,78,255,.09),var(--surface));box-shadow:0 0 0 1px rgba(91,78,255,.2)}
+.l3-step{font-family:var(--fm);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mut)}
+.l3.main .l3-step{color:#a49bff}
+.l3-badge{position:absolute;top:0;right:1.5rem;transform:translateY(-50%);font-family:var(--fm);font-size:.54rem;letter-spacing:.14em;text-transform:uppercase;background:var(--violet);color:#fff;padding:.28rem .7rem;border-radius:99px;white-space:nowrap}
+.l3-name{font-family:var(--fd);font-size:1.35rem;font-weight:800;margin:.75rem 0 .15rem;letter-spacing:-.01em}
+.l3-for{font-size:.74rem;line-height:1.4;color:var(--mut);min-height:2.1em;margin-bottom:1.1rem}
+.l3-price{font-family:var(--fd);font-size:1.55rem;font-weight:800;letter-spacing:-.02em}
+.l3.main .l3-price{color:var(--volt)}
+.l3-price small,.l3-sub{font-family:var(--fm);font-weight:400;color:var(--mut);letter-spacing:.03em}
+.l3-price small{font-size:.62rem}
+.l3-sub{display:block;font-size:.62rem;margin-top:.3rem}
+.l3-desc{font-size:.82rem;line-height:1.55;color:var(--mut2);margin:1.1rem 0 1.4rem;flex:1}
+.l3-link{font-family:var(--fm);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mut2);display:inline-flex;align-items:center;gap:.45rem;transition:gap .2s,color .2s}
+.l3-link:hover{gap:.75rem;color:var(--white)}
+.l3.main .l3-link{color:var(--volt)}
+</style>
+<section class="sec" id="empezar" style="background:var(--bg2)">
+  <div class="sec-line" aria-hidden="true"></div>
+  <div class="sec-inner">
+    <div class="rv" style="text-align:center;max-width:660px;margin:0 auto">
+      <p class="kick" style="justify-content:center">Cómo trabajar con Reyvo</p>
+      <h2 class="h2">Tres formas de crecer.<br/><span class="volt">Tú eliges dónde entrar.</span></h2>
+      <p class="sub" style="margin:1.1rem auto 0">El <b style="color:var(--white);font-weight:500">motor</b> es lo principal. Si aún no tienes una página que venda, empieza por ahí. Si ya la tienes, conéctale el sistema directo.</p>
+    </div>
+    <div class="ladder3 rv d2">
+
+      <div class="l3">
+        <p class="l3-step">Opcional · Punto de entrada</p>
+        <p class="l3-name">Reyvo Sites</p>
+        <p class="l3-for">Para quien aún no tiene una página que venda.</p>
+        <p class="l3-price">$1,899 <small>arranque único</small></p>
+        <span class="l3-sub">+ $449 / mes</span>
+        <p class="l3-desc">Tu página conectada a WhatsApp, diseñada para convertir visitas en clientes. El primer peldaño.</p>
+        <a href="#sites" class="l3-link">Ver Reyvo Sites →</a>
+      </div>
+
+      <div class="l3 main">
+        <span class="l3-badge">El producto principal</span>
+        <p class="l3-step">Lo recurrente · El motor</p>
+        <p class="l3-name">Las Licencias</p>
+        <p class="l3-for">Para quien quiere clientes nuevos cada mes.</p>
+        <p class="l3-price">Desde $899 <small>/ mes</small></p>
+        <span class="l3-sub">Básica · Profesional · Escala</span>
+        <p class="l3-desc">Ads, CRM, WhatsApp e IA trabajando juntos para llenar tu página de clientes. Es el corazón de Reyvo.</p>
+        <a href="#licencias" class="l3-link">Ver licencias →</a>
+      </div>
+
+      <div class="l3">
+        <p class="l3-step">Avanzado · Por aplicación</p>
+        <p class="l3-name">Programa Socio</p>
+        <p class="l3-for">Para quien ya está listo para escalar en serio.</p>
+        <p class="l3-price">$1,499 <small>/ mes base</small></p>
+        <span class="l3-sub">+ éxito compartido</span>
+        <p class="l3-desc">Reyvo como socio estratégico, con interés directo en tu crecimiento. Ganamos cuando tú ganas.</p>
+        <a href="#socio" class="l3-link">Conocer el programa →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ MAPA DEL SISTEMA ══════════ -->
+<section class="sec" id="mapa">
+  <div class="sec-line" aria-hidden="true"></div>
+  <div class="sec-inner">
+    <div class="rv">
+      <p class="kick">El motor por dentro</p>
+      <h2 class="h2">De extraño a cliente.<br/><span class="volt">En un solo flujo.</span></h2>
+      <p class="sub">Cada pieza le pasa la información a la siguiente — sola. Así se mueve un cliente por tu sistema.</p>
+    </div>
+    <div class="smap-wrap rv d2">
+      <div class="flowmap" id="flowmap">
+        <div class="fwire" aria-hidden="true"><span class="fpulse"></span><span class="fpulse"></span><span class="fpulse"></span></div>
+        <div class="fnode" data-i="0">
+          <div class="fnode-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a1 1 0 0 0 1 1h2l4 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M14 8.5a4 4 0 0 1 0 7"/><path d="M17.5 5.5a8 8 0 0 1 0 13"/></svg></div>
+          <p class="fnode-t">Anuncios</p><p class="fnode-s">Atraen prospectos reales</p>
+        </div>
+        <div class="fnode" data-i="1">
+          <div class="fnode-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3 21l1.9-5.6A8.5 8.5 0 1 1 21 11.5z"/></svg></div>
+          <p class="fnode-t">WhatsApp</p><p class="fnode-s">Responde en segundos</p>
+        </div>
+        <div class="fnode" data-i="2">
+          <div class="fnode-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="5.5" height="16" rx="1.2"/><rect x="9.75" y="4" width="5.5" height="10" rx="1.2"/><rect x="16.5" y="4" width="4.5" height="13" rx="1.2"/></svg></div>
+          <p class="fnode-t">CRM</p><p class="fnode-s">Ordena cada oportunidad</p>
+        </div>
+        <div class="fnode" data-i="3">
+          <div class="fnode-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><path d="M12 7.5l1.6 2.9 2.9 1.6-2.9 1.6L12 16.5l-1.6-2.9L7.5 12l2.9-1.6z"/></svg></div>
+          <p class="fnode-t">IA</p><p class="fnode-s">Prioriza a quien cierra</p>
+        </div>
+        <div class="fnode" data-i="4">
+          <div class="fnode-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 11.1V12a9.5 9.5 0 1 1-5.6-8.7"/><path d="M21.5 4 12 13.5l-2.8-2.8"/></svg></div>
+          <p class="fnode-t">Cierre</p><p class="fnode-s">Más ventas, menos fricción</p>
+        </div>
+      </div>
+      <p class="smap-cap">El sistema trabaja <b>24/7</b> — incluso mientras duermes.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ══════════ CÓMO FUNCIONA ══════════ -->
 <section class="sec" id="sistema" style="background:var(--bg2)">
   <div class="sec-line" aria-hidden="true"></div>
@@ -819,27 +887,8 @@ body:hover .cursor-glow{opacity:1}
   </div>
 </section>
 
-<!-- ══════════ FLUJO ══════════ -->
-<section class="sec">
-  <div class="sec-line" aria-hidden="true"></div>
-  <div class="sec-inner">
-    <div class="rv">
-      <p class="kick">El flujo</p>
-      <h2 class="h2">De extraño a cliente.<br/><span class="volt">Automático.</span></h2>
-    </div>
-    <div class="flow rv d2">
-      <div class="fcard"><p class="f-n">Atraer</p><h3>Prospectos calificados, todos los días</h3><p>Campañas diseñadas para generar demanda real, no tráfico.</p><p class="f-out">→ Flujo constante</p></div>
-      <div class="fcard"><p class="f-n">Capturar</p><h3>Ningún lead se pierde</h3><p>WhatsApp responde en segundos y activa el seguimiento.</p><p class="f-out">→ Captura automática</p></div>
-      <div class="fcard"><p class="f-n">Clasificar</p><h3>IA que prioriza por ti</h3><p>Tu equipo habla primero con quien tiene más probabilidad de cerrar.</p><p class="f-out">→ Foco en los correctos</p></div>
-      <div class="fcard"><p class="f-n">Nutrir</p><h3>Control total del proceso</h3><p>Pipeline visual, recordatorios y secuencias automáticas.</p><p class="f-out">→ Ciclo más corto</p></div>
-      <div class="fcard"><p class="f-n">Cerrar</p><h3>Más ventas, menos fricción</h3><p>Procesos y scripts que elevan la tasa de cierre del equipo.</p><p class="f-out">→ Cierre predecible</p></div>
-      <div class="fcard"><p class="f-n">Escalar</p><h3>Datos para crecer</h3><p>Sabes qué escalar, qué cortar y dónde invertir el siguiente peso.</p><p class="f-out">→ Crecimiento medible</p></div>
-    </div>
-  </div>
-</section>
-
 <!-- ══════════ SISTEMA / MÓDULOS ══════════ -->
-<section class="sec" id="construimos" style="background:var(--bg2)">
+<section class="sec" id="construimos">
   <div class="sec-line" aria-hidden="true"></div>
   <div class="sec-inner">
     <div class="sys">
@@ -862,7 +911,7 @@ body:hover .cursor-glow{opacity:1}
 </section>
 
 <!-- ══════════ COMPARATIVA ══════════ -->
-<section class="sec">
+<section class="sec" style="background:var(--bg2)">
   <div class="sec-line" aria-hidden="true"></div>
   <div class="sec-inner">
     <div class="rv">
@@ -909,29 +958,28 @@ body:hover .cursor-glow{opacity:1}
   <div class="sec-inner">
     <div class="rs-grid">
       <div class="rs-lead rv">
-        <p class="kick">Reyvo Sites</p>
-        <h2 class="h2">Empieza por tu <span class="volt">página.</span></h2>
-        <p class="sub">No una página bonita que nadie visita. Una página diseñada para <b style="color:var(--white);font-weight:500">convertir visitas en clientes por WhatsApp</b> — tu primer peldaño. Después, el sistema la llena de prospectos.</p>
+        <p class="kick">Peldaño opcional · Reyvo Sites</p>
+        <h2 class="h2">¿Aún no tienes una <span class="volt">página que venda?</span></h2>
+        <p class="sub">Empieza por aquí. No una página bonita que nadie visita: una diseñada para <b style="color:var(--white);font-weight:500">convertir visitas en clientes por WhatsApp</b>. Después le conectas el motor y el sistema la llena de prospectos.</p>
         <div class="rs-cta">
           <a href="brief.html" class="rs-btn solid">Empieza tu página →</a>
           <a href="https://wa.me/525568050041?text=Hola%20Alan%2C%20quiero%20una%20p%C3%A1gina%20con%20Reyvo%20Sites." class="rs-btn ghost">Preguntar por WhatsApp</a>
         </div>
         <p class="rs-note">Respondes unas preguntas · te la construimos · lista para vender.</p>
       </div>
-      <div class="rs-ladder rv d2" aria-label="Escalera de crecimiento Reyvo">
-        <div class="rs-step here">
-          <span class="rs-n">01</span>
-          <div><p class="rs-h">Reyvo Sites</p><p class="rs-d">Tu página que vende, conectada a WhatsApp.</p><p class="rs-price">Desde $2,500 arranque + $500 / mes</p></div>
-        </div>
-        <div class="rs-arrow" aria-hidden="true">↓</div>
-        <div class="rs-step">
-          <span class="rs-n">02</span>
-          <div><p class="rs-h">El Sistema</p><p class="rs-d">Ads, CRM, seguimiento e IA que llenan tu página de clientes.</p><p class="rs-price">Licencias desde $2,500 / mes</p></div>
-        </div>
-        <div class="rs-arrow" aria-hidden="true">↓</div>
-        <div class="rs-step">
-          <span class="rs-n">03</span>
-          <div><p class="rs-h">La Alianza</p><p class="rs-d">Reyvo como socio, con interés directo en tu crecimiento.</p><p class="rs-price">Programa Socio · por aplicación</p></div>
+      <div class="rv d2">
+        <div class="rs-step" style="display:block;padding:2rem 1.9rem">
+          <p class="rs-h" style="font-size:1.1rem">Tu página que vende</p>
+          <div class="lic-price-row" style="padding:0;margin-top:.75rem"><span class="lic-price" style="font-size:2.1rem">$1,899</span><span class="lic-per">arranque único</span></div>
+          <p class="rs-price" style="margin-top:.45rem">+ $449 MXN / mes de mantenimiento</p>
+          <div style="height:1px;background:var(--line);margin:1.35rem 0"></div>
+          <div class="lic-body" style="padding:0;gap:.55rem">
+            <p class="lic-f">Diseño enfocado 100 % en convertir</p>
+            <p class="lic-f">Botón directo a WhatsApp</p>
+            <p class="lic-f">Textos que venden, escritos por nosotros</p>
+            <p class="lic-f">Optimizada para celular</p>
+            <p class="lic-f">Lista en días, no en meses</p>
+          </div>
         </div>
       </div>
     </div>
@@ -944,17 +992,17 @@ body:hover .cursor-glow{opacity:1}
   <div class="sec-inner">
     <div class="lic-head rv">
       <div>
-        <p class="kick">Licencias</p>
-        <h2 class="h2">Activa tu <span class="volt">sistema.</span></h2>
+        <p class="kick">Peldaño principal · El motor</p>
+        <h2 class="h2">Activa el sistema que <span class="volt">llena tu página.</span></h2>
       </div>
-      <p class="sub" style="margin:0">Contrato, onboarding y soporte directo incluidos en todas las licencias.</p>
+      <p class="sub" style="margin:0">Ya tienes página. Ahora conéctale el motor —Ads, CRM, WhatsApp e IA— que la llena de clientes. Contrato, onboarding y soporte directo incluidos en todas las licencias.</p>
     </div>
     <div class="lics">
 
       <div class="lic rv d1">
         <div class="lic-top"><span class="lic-id">LIC·01 / CORE</span><div class="lic-chip"></div></div>
         <p class="lic-name">Básico</p>
-        <div class="lic-price-row"><span class="lic-price">$2,500</span><span class="lic-per">MXN / MES</span></div>
+        <div class="lic-price-row"><span class="lic-price">$899</span><span class="lic-per">MXN / MES</span></div>
         <p class="lic-desc">Captación constante y profesional para empezar.</p>
         <div class="lic-body">
           <p class="lic-f">Sistema de atracción de clientes</p>
@@ -971,7 +1019,7 @@ body:hover .cursor-glow{opacity:1}
         <span class="lic-badge">Recomendada</span>
         <div class="lic-top"><span class="lic-id">LIC·02 / PRO</span><div class="lic-chip"></div></div>
         <p class="lic-name">Profesional</p>
-        <div class="lic-price-row"><span class="lic-price">$5,000</span><span class="lic-per">MXN / MES</span></div>
+        <div class="lic-price-row"><span class="lic-price">$2,499</span><span class="lic-per">MXN / MES</span></div>
         <p class="lic-desc">El sistema completo: captar, seguir, cerrar.</p>
         <div class="lic-body">
           <p class="lic-f">Todo de Básico</p>
@@ -987,7 +1035,7 @@ body:hover .cursor-glow{opacity:1}
       <div class="lic rv d3">
         <div class="lic-top"><span class="lic-id">LIC·03 / SCALE</span><div class="lic-chip"></div></div>
         <p class="lic-name">Escala</p>
-        <div class="lic-price-row"><span class="lic-price">$8,000</span><span class="lic-per">MXN / MES</span></div>
+        <div class="lic-price-row"><span class="lic-price">$4,899</span><span class="lic-per">MXN / MES</span></div>
         <p class="lic-desc">Máquina de crecimiento completa y escalable.</p>
         <div class="lic-body">
           <p class="lic-f">Todo de Profesional</p>
@@ -1002,16 +1050,16 @@ body:hover .cursor-glow{opacity:1}
     </div>
 
     <!-- ══════════ CLUB / SOCIO ══════════ -->
-    <div class="club rv-scale">
+    <div class="club rv-scale" id="socio">
       <div class="club-glow" aria-hidden="true"></div>
-      <p class="club-kick">PROGRAMA SOCIO — POR APLICACIÓN</p>
+      <p class="club-kick">PELDAÑO AVANZADO · PROGRAMA SOCIO — POR APLICACIÓN</p>
       <h2 class="club-title">No es una licencia.<br/>Es una <em>alianza.</em></h2>
       <p class="club-sub">Reyvo como socio estratégico, con interés directo en tus resultados. Solo para empresas con potencial real de escalar.</p>
       <div class="club-divider" aria-hidden="true"></div>
       <div class="club-model">
-        <p class="club-price">$3,500</p>
+        <p class="club-price">$1,499</p>
         <p class="club-price-sub">MXN / MES BASE</p>
-        <p class="club-price-note">+ <b>modelo de éxito compartido</b> proporcional al crecimiento generado. Sin resultados, no hay éxito compartido.</p>
+        <p class="club-price-note">Base baja a propósito: lo fuerte es el <b>modelo de éxito compartido</b> proporcional al crecimiento generado. Sin resultados, no hay éxito compartido — <b>ganamos cuando tú ganas.</b></p>
       </div>
       <div class="club-feats">
         <span class="club-f">Estrategia semanal</span>
@@ -1043,7 +1091,7 @@ body:hover .cursor-glow{opacity:1}
         </div>
         <div class="fq">
           <div class="fq-q" role="button" tabindex="0" aria-expanded="false"><span class="fq-t">¿Qué es Reyvo Sites?</span><span class="fq-x"></span></div>
-          <div class="fq-a"><p class="fq-ai">Tu punto de entrada: te construimos una página diseñada para convertir visitas en clientes por WhatsApp. Respondes unas preguntas, la armamos y queda lista para vender. Es el primer peldaño antes del sistema completo.</p></div>
+          <div class="fq-a"><p class="fq-ai">Un punto de entrada opcional: te construimos una página diseñada para convertir visitas en clientes por WhatsApp. Respondes unas preguntas, la armamos y queda lista para vender. Si ya tienes una página que vende, puedes ir directo al motor (las licencias).</p></div>
         </div>
         <div class="fq">
           <div class="fq-q" role="button" tabindex="0" aria-expanded="false"><span class="fq-t">¿Qué presupuesto publicitario necesito?</span><span class="fq-x"></span></div>
@@ -1059,7 +1107,7 @@ body:hover .cursor-glow{opacity:1}
         </div>
         <div class="fq">
           <div class="fq-q" role="button" tabindex="0" aria-expanded="false"><span class="fq-t">¿Cómo funciona el Programa Socio?</span><span class="fq-x"></span></div>
-          <div class="fq-a"><p class="fq-ai">Evaluamos tu negocio. Si hay compatibilidad: $3,500 base + éxito compartido proporcional al crecimiento. Todo en contrato.</p></div>
+          <div class="fq-a"><p class="fq-ai">Evaluamos tu negocio. Si hay compatibilidad: $1,499 base + éxito compartido proporcional al crecimiento. Todo en contrato.</p></div>
         </div>
         <div class="fq">
           <div class="fq-q" role="button" tabindex="0" aria-expanded="false"><span class="fq-t">¿Cómo recibo reportes?</span><span class="fq-x"></span></div>
@@ -1107,10 +1155,11 @@ body:hover .cursor-glow{opacity:1}
     <div>
       <p class="f-col-t">Licencias</p>
       <div class="f-links">
-        <a href="#licencias">Core — $2,500</a>
-        <a href="#licencias">Pro — $5,000</a>
-        <a href="#licencias">Scale — $8,000</a>
-        <a href="#licencias">Programa Socio</a>
+        <a href="#sites">Reyvo Sites — $1,899</a>
+        <a href="#licencias">Básica — $899</a>
+        <a href="#licencias">Profesional — $2,499</a>
+        <a href="#licencias">Escala — $4,899</a>
+        <a href="#socio">Programa Socio</a>
       </div>
     </div>
     <div>
