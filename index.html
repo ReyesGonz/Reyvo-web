@@ -11,9 +11,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500;1,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#f4f1ea; --paper2:#faf8f3; --ink:#14110d; --soft:rgba(20,17,13,.6); --mut:rgba(20,17,13,.42); --line:rgba(20,17,13,.14);
+  --paper:#f0e8d6; --paper2:#f8f2e5; --band:#e9e0cb; --ink:#14110d; --soft:rgba(20,17,13,.6); --mut:rgba(20,17,13,.42); --line:rgba(20,17,13,.14);
   --violet:#5a2ce6; --violet-d:#3c1aa6; --violet-soft:rgba(90,44,230,.08);
-  --night:#0d0a12; --night-line:rgba(244,241,234,.14); --night-soft:rgba(244,241,234,.62);
+  --night:#0d0a12; --night-line:rgba(240,232,214,.14); --night-soft:rgba(240,232,214,.62);
   --d:'Playfair Display',Georgia,serif; --b:'Manrope',system-ui,sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -110,32 +110,46 @@ nav.small{background:rgba(244,241,234,.85);backdrop-filter:blur(14px);border-col
 /* servicios */
 .sv-head{max-width:640px}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:52px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
-.card{padding:36px 30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:transparent;transition:background .3s}
-.card:hover{background:var(--paper2)}
-.card .no{font-family:var(--d);font-style:italic;font-size:1rem;color:var(--violet)}
-.card h3{font-size:1.4rem;margin:16px 0 8px;font-weight:700}
-.card p{color:var(--soft);font-size:.94rem}
+.card{padding:34px 30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);position:relative;overflow:hidden;transition:color .35s}
+.card::before{content:"";position:absolute;inset:0;background:var(--violet);transform:translateY(101%);transition:transform .45s cubic-bezier(.5,0,.15,1);z-index:0}
+.card:hover::before{transform:translateY(0)}
+.card>*{position:relative;z-index:1}
+.card .ctop{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+.card .no{font-family:var(--d);font-style:italic;font-size:1.5rem;color:var(--violet);transition:color .35s}
+.card .ci{width:26px;height:26px;color:var(--ink);opacity:.45;transition:color .35s,opacity .35s}
+.card h3{font-size:1.4rem;margin-bottom:10px;font-weight:700;transition:color .35s}
+.card p{color:var(--soft);font-size:.94rem;transition:color .35s}
+.card:hover{color:#fff}
+.card:hover .no,.card:hover .ci{color:#fff;opacity:1}
+.card:hover h3{color:#fff}
+.card:hover p{color:rgba(255,255,255,.82)}
 @media(max-width:860px){.grid3{grid-template-columns:1fr}}
 
 /* trabajo */
-.work-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:52px}
-.work{border:1px solid var(--line);border-radius:4px;overflow:hidden;background:var(--paper2);transition:transform .3s,box-shadow .3s;display:block}
-.work:hover{transform:translateY(-5px);box-shadow:0 30px 60px -30px rgba(20,17,13,.3)}
-.work .top{height:200px;position:relative;display:grid;place-items:center;overflow:hidden}
-.work .top .m{font-family:var(--d);font-weight:900;font-size:2rem;z-index:1;text-align:center;padding:0 20px}
-.w-chulo .top{background:radial-gradient(120% 120% at 30% 10%,#2a1a06,#0f0705)}
-.w-chulo .top .m{color:#f3ecda}
-.w-cardio .top{background:radial-gradient(120% 120% at 70% 10%,#2a0630,#120718)}
-.w-cardio .top .m{color:#f3e9ff}
-.w-you .top{background:var(--paper);border-bottom:1px dashed var(--line)}
-.w-you .top .m{color:var(--mut);font-size:1.4rem}
-.work .body{padding:18px 22px;display:flex;justify-content:space-between;align-items:center;gap:12px}
-.work .body h3{font-size:1.2rem;font-weight:700}
-.work .body .st{font-size:.66rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--mut);margin-top:4px;display:block}
-.work .body .st.live{color:var(--violet)}
-.work .arr{font-size:1.2rem;color:var(--mut);transition:transform .2s}
-.work:hover .arr{transform:translate(3px,-3px)}
-@media(max-width:640px){.work-grid{grid-template-columns:1fr}}
+.work-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:22px;margin-top:52px}
+.work{display:block;border-radius:6px;transition:transform .35s}
+.work:hover{transform:translateY(-6px)}
+.w-shot{position:relative;height:310px;border-radius:6px;overflow:hidden;border:1px solid var(--line)}
+.w-cardio{background:radial-gradient(130% 130% at 22% 8%,#33083b,#120718)}
+.w-frame{position:absolute;inset:24px;background:#0f0a17;border-radius:8px;overflow:hidden;box-shadow:0 34px 70px -24px rgba(0,0,0,.6);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.work:hover .w-frame{transform:scale(1.03) translateY(-4px)}
+.w-bar{display:flex;gap:6px;padding:11px 13px;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)}
+.w-bar i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.2)}
+.w-inner{display:grid;place-items:center;height:calc(100% - 35px);background:radial-gradient(100% 100% at 50% 0%,#241033,#0f0a17)}
+.w-name{font-family:var(--d);font-weight:900;font-size:2rem;color:#e9ddff;letter-spacing:-.01em}
+.w-over{position:absolute;inset:0;display:grid;place-items:center;background:rgba(90,44,230,.78);opacity:0;transition:opacity .35s}
+.w-over span{font-family:var(--d);font-weight:700;font-size:1.4rem;color:#fff}
+.work:hover .w-over{opacity:1}
+.w-meta{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;padding:20px 4px 0}
+.w-tag{font-size:.64rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--violet)}
+.w-meta h3{font-size:1.45rem;font-weight:700;margin-top:8px}
+.w-st{font-size:.64rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);white-space:nowrap}
+.w-st.live{color:var(--violet)}
+.work-you .w-shot{background:var(--paper2);border:1px dashed var(--line2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
+.w-plus{width:60px;height:60px;border-radius:50%;border:1px solid var(--violet);color:var(--violet);display:grid;place-items:center;font-size:1.9rem;font-family:var(--d);transition:background .3s,color .3s}
+.work-you:hover .w-plus{background:var(--violet);color:#fff}
+.w-name2{font-family:var(--d);font-weight:700;font-size:1.5rem;color:var(--mut);text-align:center;padding:0 16px}
+@media(max-width:760px){.work-grid{grid-template-columns:1fr}.w-shot{height:250px}}
 
 /* próximamente */
 .next{border:1px solid var(--line);border-radius:4px;padding:clamp(36px,6vw,72px);text-align:center;background:var(--paper2)}
@@ -206,7 +220,7 @@ footer .copy{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform
 .seal .seal-t{font-family:var(--b);font-weight:600;font-size:13px;letter-spacing:2.5px;fill:var(--ink);text-transform:uppercase}
 .seal .mid{position:absolute;inset:0;display:grid;place-items:center;color:var(--violet);font-size:1.5rem}
 @keyframes spin{to{transform:rotate(360deg)}}
-@media(max-width:900px){.seal{width:96px;height:96px;bottom:auto;top:-46px;right:0}}
+@media(max-width:900px){.hero .idx{display:none}.seal{position:static;width:104px;height:104px;margin:44px auto 0;right:auto;bottom:auto}}
 /* animated headline */
 .hero-h{font-size:clamp(3rem,9vw,8rem);letter-spacing:-.03em;margin:26px 0 0;max-width:16ch}
 .hero-h em{color:var(--violet);font-weight:700}
@@ -225,6 +239,20 @@ footer .copy{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform
 .rrow b{color:var(--paper);font-size:.94rem}
 .rrow small{display:block;color:var(--night-soft);font-size:.78rem;margin-top:2px}
 .rrow .rw{font-size:.66rem;font-weight:700;color:#25d366;letter-spacing:.03em;white-space:nowrap}
+@keyframes scroll{to{transform:translateX(-50%)}}
+.marq2{border-block:1px solid var(--line);overflow:hidden;white-space:nowrap;padding:20px 0;background:var(--paper2)}
+.marq2-t{display:inline-block;font-family:var(--d);font-style:italic;font-weight:500;font-size:1.7rem;color:var(--ink);animation:scroll 34s linear infinite}
+.marq2-t span{padding:0 26px}
+.marq2-t .dot{color:var(--violet);font-style:normal}
+.pad{position:relative;overflow:hidden}
+.pad .wrap{position:relative;z-index:1}
+.bignum{position:absolute;top:-.14em;right:.02em;font-family:var(--d);font-weight:900;font-size:clamp(8rem,26vw,24rem);line-height:.8;color:var(--ink);opacity:.04;pointer-events:none;z-index:0;user-select:none}
+.caso .bignum{color:var(--paper);opacity:.06}
+.js .h2{clip-path:inset(-4% -4% 112% -4%);transform:translateY(12px);transition:clip-path 1s cubic-bezier(.2,.8,.2,1),transform 1s cubic-bezier(.2,.8,.2,1)}
+.h2.shown{clip-path:inset(-4% -4% -8% -4%);transform:none}
+.phone{width:266px;margin:0 auto;background:#1b1525;border-radius:40px;padding:12px;position:relative;box-shadow:0 50px 100px -30px #000,inset 0 0 0 1px rgba(255,255,255,.06)}
+.phone::before{content:"";position:absolute;top:20px;left:50%;transform:translateX(-50%);width:82px;height:6px;border-radius:6px;background:#000;z-index:3}
+.phone-in{background:linear-gradient(165deg,#1a1226,#0f0a17);border-radius:30px;overflow:hidden;min-height:460px;padding:42px 15px 22px}
 </style>
 </head>
 <body>
@@ -254,10 +282,6 @@ footer .copy{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform
       <span class="ln"><span>merece verse</span></span>
       <span class="ln"><span><em>extraordinario.</em></span></span>
     </h1>
-    <div class="seal rv d3" aria-hidden="true">
-      <svg viewBox="0 0 200 200"><defs><path id="sealpath" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"/></defs><text class="seal-t"><textPath href="#sealpath" startOffset="0">ESTUDIO DIGITAL · SITIOS A LA MEDIDA · REYVO · </textPath></text></svg>
-      <span class="mid">✦</span>
-    </div>
     <p class="lead rv d2">No hacemos páginas de plantilla. Diseñamos sitios únicos — cada uno con su propia personalidad — que generan confianza, despiertan deseo y trabajan por ti las 24 horas.</p>
     <div class="row rv d2">
       <a href="#contacto" class="btn">Quiero mi página →</a>
@@ -268,15 +292,22 @@ footer .copy{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform
       <span>Diseño <b>a la medida</b></span>
       <span>Respuesta en <b>&lt; 24 h</b></span>
     </div>
+    <div class="seal rv d3" aria-hidden="true">
+      <svg viewBox="0 0 200 200"><defs><path id="sealpath" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"/></defs><text class="seal-t"><textPath href="#sealpath" startOffset="0">ESTUDIO DIGITAL · SITIOS A LA MEDIDA · REYVO · </textPath></text></svg>
+      <span class="mid">✦</span>
+    </div>
   </div>
 </header>
 
+<div class="marq2" aria-hidden="true"><div class="marq2-t"><span>Diseño a la medida</span><span class="dot">✦</span><span>Reservas en línea</span><span class="dot">✦</span><span>Menús digitales</span><span class="dot">✦</span><span>Cotizadores</span><span class="dot">✦</span><span>WhatsApp</span><span class="dot">✦</span><span>SEO</span><span class="dot">✦</span><span>Diseño a la medida</span><span class="dot">✦</span><span>Reservas en línea</span><span class="dot">✦</span><span>Menús digitales</span><span class="dot">✦</span><span>Cotizadores</span><span class="dot">✦</span><span>WhatsApp</span><span class="dot">✦</span><span>SEO</span><span class="dot">✦</span></div></div>
+
 <!-- CASO DE ÉXITO (sección negra = impacto) -->
 <section class="caso pad" id="caso">
+  <span class="bignum" aria-hidden="true">01</span>
   <div class="wrap">
     <div>
       <div class="lab rv"><span class="n">01 —</span> Lo que nos hace distintos</div>
-      <h2 class="h2 rv d1" style="margin-top:20px">No hacemos páginas.<br><em>Hacemos sistemas.</em></h2>
+      <h2 class="h2" style="margin-top:20px">No hacemos páginas.<br><em>Hacemos sistemas.</em></h2>
       <p class="lead rv d1">La mayoría entrega una página bonita y se va. Nosotros construimos herramientas que trabajan por tu negocio — reservas, menús y paneles que te dan el control real.</p>
       <div class="stack rv d2">
         <div class="stk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><div><b>Reservas en línea</b> — el cliente aparta su lugar y queda registrado al instante.</div></div>
@@ -285,13 +316,13 @@ footer .copy{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform
       </div>
       <a href="#contacto" class="btn light rv d2">Quiero un sistema así →</a>
     </div>
-    <div class="mock rv d1">
-      <div class="bar"><i></i><i></i><i></i><span class="u">tu-negocio.com/panel</span></div>
-      <div class="scr2">
-        <div class="scr-h"><b>Reservas</b><span>· en tiempo real</span></div>
-        <div class="rrow"><span class="rd">Vie</span><div><b>María López</b><small>4 personas · 8:00 PM</small></div><span class="rw">WhatsApp ↗</span></div>
-        <div class="rrow"><span class="rd">Sáb</span><div><b>Carlos Ruiz</b><small>2 personas · 9:00 PM</small></div><span class="rw">WhatsApp ↗</span></div>
-        <div class="rrow"><span class="rd">Sáb</span><div><b>Ana Torres</b><small>6 personas · 7:00 PM</small></div><span class="rw">WhatsApp ↗</span></div>
+    <div class="phone rv d1">
+      <div class="phone-in">
+        <div class="scr-h"><b>Reservas</b><span>· en vivo</span></div>
+        <div class="rrow"><span class="rd">Vie</span><div><b>María López</b><small>4 personas · 8:00 PM</small></div><span class="rw">↗</span></div>
+        <div class="rrow"><span class="rd">Sáb</span><div><b>Carlos Ruiz</b><small>2 personas · 9:00 PM</small></div><span class="rw">↗</span></div>
+        <div class="rrow"><span class="rd">Sáb</span><div><b>Ana Torres</b><small>6 personas · 7:00 PM</small></div><span class="rw">↗</span></div>
+        <div class="rrow"><span class="rd">Sáb</span><div><b>Luis Márquez</b><small>3 personas · 10:00 PM</small></div><span class="rw">↗</span></div>
       </div>
     </div>
   </div>
@@ -299,6 +330,7 @@ footer .copy{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform
 
 <!-- SERVICIOS -->
 <section class="pad" id="servicios">
+  <span class="bignum" aria-hidden="true">02</span>
   <div class="wrap">
     <div class="sv-head rv">
       <div class="lab"><span class="n">02 —</span> Qué hacemos</div>
@@ -306,31 +338,41 @@ footer .copy{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform
       <p class="lead" style="margin-top:16px">Diseñamos sitios que funcionan como tu mejor vendedor — con las funciones que de verdad venden.</p>
     </div>
     <div class="grid3 rv d1">
-      <div class="card"><div class="no">i.</div><h3>Páginas web premium</h3><p>Diseño a la medida de tu negocio, rápido y optimizado para celular. Único, nunca de plantilla.</p></div>
-      <div class="card"><div class="no">ii.</div><h3>Sistema de reservas</h3><p>Que aparten su lugar o su cita directo desde tu página, y te lleguen solas.</p></div>
-      <div class="card"><div class="no">iii.</div><h3>Menú digital QR</h3><p>Tu menú siempre actualizado, con código QR para las mesas y foto de cada platillo.</p></div>
-      <div class="card"><div class="no">iv.</div><h3>Cotizador automático</h3><p>Tus clientes ven un estimado al instante y te llegan listos para cerrar.</p></div>
-      <div class="card"><div class="no">v.</div><h3>Botón de WhatsApp</h3><p>Que te contacten directo, sin fricción — el cliente a un toque de distancia.</p></div>
-      <div class="card"><div class="no">vi.</div><h3>SEO básico</h3><p>Para que te encuentren en Google cuando te buscan por tu zona.</p></div>
+      <div class="card"><div class="ctop"><span class="no">i</span><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M9 21h6"/></svg></div><h3>Páginas web premium</h3><p>Diseño a la medida de tu negocio, rápido y optimizado para celular. Único, nunca de plantilla.</p></div>
+      <div class="card"><div class="ctop"><span class="no">ii</span><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div><h3>Sistema de reservas</h3><p>Que aparten su lugar o su cita directo desde tu página, y te lleguen solas.</p></div>
+      <div class="card"><div class="ctop"><span class="no">iii</span><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M21 14v.01M17 21h4M21 18v3"/></svg></div><h3>Menú digital QR</h3><p>Tu menú siempre actualizado, con código QR para las mesas y foto de cada platillo.</p></div>
+      <div class="card"><div class="ctop"><span class="no">iv</span><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h2M12 10h2M16 10h0M8 14h2M12 14h2M8 18h6"/></svg></div><h3>Cotizador automático</h3><p>Tus clientes ven un estimado al instante y te llegan listos para cerrar.</p></div>
+      <div class="card"><div class="ctop"><span class="no">v</span><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3 21l1.9-5.6A8.5 8.5 0 1 1 21 11.5z"/></svg></div><h3>Botón de WhatsApp</h3><p>Que te contacten directo, sin fricción — el cliente a un toque de distancia.</p></div>
+      <div class="card"><div class="ctop"><span class="no">vi</span><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div><h3>SEO básico</h3><p>Para que te encuentren en Google cuando te buscan por tu zona.</p></div>
     </div>
   </div>
 </section>
 
 <!-- TRABAJO -->
-<section class="pad" id="trabajo" style="background:var(--paper2)">
+<section class="pad" id="trabajo" style="background:var(--band)">
+  <span class="bignum" aria-hidden="true">03</span>
   <div class="wrap">
     <div class="rv">
       <div class="lab"><span class="n">03 —</span> Nuestro trabajo</div>
       <h2 class="h2" style="margin-top:20px">Proyectos que ya están <em>en línea.</em></h2>
     </div>
     <div class="work-grid">
-      <a href="https://cardio-bonfil.vercel.app/" target="_blank" rel="noopener" class="work w-cardio rv d1">
-        <div class="top"><span class="m">Cardio Bonfil</span></div>
-        <div class="body"><div><h3>Cardio Bonfil</h3><span class="st live">● En vivo</span></div><span class="arr">↗</span></div>
+      <a href="https://cardio-bonfil.vercel.app/" target="_blank" rel="noopener" class="work rv">
+        <div class="w-shot w-cardio">
+          <div class="w-frame">
+            <div class="w-bar"><i></i><i></i><i></i></div>
+            <div class="w-inner"><span class="w-name">Cardio Bonfil</span></div>
+          </div>
+          <div class="w-over"><span>Ver sitio →</span></div>
+        </div>
+        <div class="w-meta"><div><span class="w-tag">Club deportivo · Fitness</span><h3>Cardio Bonfil</h3></div><span class="w-st live">● En vivo</span></div>
       </a>
-      <a href="#contacto" class="work w-you rv d1">
-        <div class="top"><span class="m">¿El siguiente eres tú?</span></div>
-        <div class="body"><div><h3>Tu negocio aquí</h3><span class="st">Empieza tu proyecto hoy</span></div><span class="arr">→</span></div>
+      <a href="#contacto" class="work work-you rv d1">
+        <div class="w-shot">
+          <div class="w-plus">+</div>
+          <span class="w-name2">¿El siguiente eres tú?</span>
+        </div>
+        <div class="w-meta"><div><span class="w-tag">Disponible</span><h3>Tu negocio aquí</h3></div><span class="w-st">Empezar →</span></div>
       </a>
     </div>
   </div>
@@ -338,6 +380,7 @@ footer .copy{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform
 
 <!-- PRÓXIMAMENTE -->
 <section class="pad">
+  <span class="bignum" aria-hidden="true">04</span>
   <div class="wrap">
     <div class="next rv">
       <div class="lab c"><span class="n">04 —</span> Lo que viene</div>
@@ -351,7 +394,8 @@ footer .copy{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform
 </section>
 
 <!-- PRECIOS -->
-<section class="pad" id="precios" style="background:var(--paper2)">
+<section class="pad" id="precios" style="background:var(--band)">
+  <span class="bignum" aria-hidden="true">05</span>
   <div class="wrap">
     <div class="rv" style="text-align:center;max-width:640px;margin:0 auto">
       <div class="lab c"><span class="n">05 —</span> Precios</div>
@@ -380,6 +424,7 @@ footer .copy{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform
 
 <!-- CONTACTO -->
 <section class="pad cta-sec" id="contacto">
+  <span class="bignum" aria-hidden="true">06</span>
   <div class="wrap">
     <div class="rv">
       <div class="lab c"><span class="n">06 —</span> Quiero mi página</div>
@@ -497,6 +542,14 @@ footer .copy{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform
     });
     hero.addEventListener("mouseleave",function(){spot.style.opacity="0";});
   },"spot");
+
+  safe(function(){
+    var hs=[].slice.call(document.querySelectorAll(".h2"));
+    if(!("IntersectionObserver" in window)){hs.forEach(function(e){e.classList.add("shown");});return;}
+    var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add("shown");io.unobserve(x.target);}});},{threshold:.2});
+    hs.forEach(function(e){io.observe(e);});
+    setTimeout(function(){hs.forEach(function(e){e.classList.add("shown");});},6000);
+  },"titles");
 })();
 </script>
 </body>
