@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Reyvo — Estudio Digital · Sitios web y automatización para negocios</title>
-<meta name="description" content="Reyvo es un estudio digital en el Estado de México. Diseñamos sitios web premium y automatizamos procesos comerciales para que los negocios respondan, califiquen y den seguimiento a sus prospectos.">
+<title>Reyvo — Estudio Digital · Sitios web premium para negocios que quieren destacar</title>
+<meta name="description" content="Reyvo es un estudio digital en el Estado de México. Diseñamos sitios web premium, menús digitales y sistemas de reservas hechos a la medida — cada uno único.">
 <script>document.documentElement.className+=' js';</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -159,84 +159,6 @@ nav.small{background:rgba(244,241,234,.85);backdrop-filter:blur(14px);border-col
 .chips .c{font-size:.76rem;font-weight:600;letter-spacing:.06em;color:var(--soft);border:1px solid var(--line);border-radius:40px;padding:9px 18px}
 .chips .c::before{content:'— ';color:var(--violet)}
 
-
-/* reyvo automatizaciones */
-.auto-wrap{margin-top:52px}
-.auto-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:28px;align-items:stretch}
-.auto-copy,.auto-chat{border:1px solid var(--line);background:var(--paper2);border-radius:6px}
-.auto-copy{padding:clamp(28px,4vw,48px);display:flex;flex-direction:column;justify-content:center}
-.auto-copy h3{font-size:clamp(2rem,4vw,3.25rem);margin-top:16px;max-width:13ch}
-.auto-copy h3 em{color:var(--violet)}
-.auto-copy .lead{margin-top:18px}
-.auto-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
-.auto-mini{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:30px}
-.auto-mini div{padding:13px 14px;border:1px solid var(--line);font-size:.78rem;color:var(--soft)}
-.auto-mini b{display:block;color:var(--ink);font-size:.82rem;margin-bottom:2px}
-.auto-chat{padding:22px;display:flex;flex-direction:column;min-height:470px;background:var(--night);color:#f3ecda;border-color:var(--night-line)}
-.auto-chat-head{display:flex;align-items:center;justify-content:space-between;padding-bottom:16px;border-bottom:1px solid var(--night-line)}
-.auto-chat-head b{font-family:var(--d);font-size:1.2rem}
-.auto-live{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(200,255,45,.4);color:#c8ff2d;border-radius:30px;padding:5px 9px}
-.chat-body{padding:24px 4px 8px;display:flex;flex-direction:column;gap:13px;flex:1}
-.bubble{max-width:84%;padding:13px 15px;border-radius:16px;font-size:.84rem;line-height:1.45}
-.bubble.client{align-self:flex-start;background:#f3ecda;color:#14110d;border-bottom-left-radius:4px}
-.bubble.reyvo{align-self:flex-end;background:var(--violet);color:#fff;border-bottom-right-radius:4px}
-.chat-status{margin-top:auto;border-top:1px solid var(--night-line);padding-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.chat-status span{font-size:.68rem;color:var(--night-soft);border:1px solid var(--night-line);padding:8px 10px}
-.auto-four{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line);margin-top:34px}
-.auto-four .a-card{padding:26px 22px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
-.a-card .a-no{font-family:var(--d);font-style:italic;color:var(--violet);font-size:1.25rem}
-.a-card h4{font-family:var(--d);font-size:1.25rem;margin:12px 0 7px}
-.a-card p{font-size:.84rem;color:var(--soft)}
-.auto-before{display:grid;grid-template-columns:1fr 1fr;margin-top:34px;border:1px solid var(--line);border-radius:6px;overflow:hidden}
-.auto-before>div{padding:28px}
-.auto-before>div+div{border-left:1px solid var(--line);background:var(--violet);color:#fff}
-.auto-before h4{font-family:var(--d);font-size:1.5rem;margin-bottom:16px}
-.auto-list{display:grid;gap:9px;font-size:.85rem}
-.auto-list span::before{content:"→";margin-right:8px;color:var(--violet)}
-.auto-before>div+div .auto-list span::before{color:#fff}
-.auto-offer{margin:34px auto 0;max-width:620px;border:1px solid var(--ink);background:var(--paper2);padding:34px;text-align:center;border-radius:6px}
-.auto-offer .amt{font-family:var(--d);font-size:3rem;font-weight:900;line-height:1;margin:12px 0}
-.auto-offer .small{font-size:.75rem;color:var(--mut)}
-.auto-feats{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin:20px 0}
-.auto-feats span{font-size:.72rem;color:var(--soft);border:1px solid var(--line);padding:7px 10px;border-radius:30px}
-@media(max-width:900px){
-  .auto-grid{grid-template-columns:1fr}
-  .auto-four{grid-template-columns:1fr 1fr}
-}
-@media(max-width:600px){
-  .auto-mini{grid-template-columns:1fr}
-  .auto-four{grid-template-columns:1fr}
-  .auto-before{grid-template-columns:1fr}
-  .auto-before>div+div{border-left:0;border-top:1px solid rgba(255,255,255,.2)}
-  .auto-offer{padding:26px 20px}
-}
-
-
-/* automation info cards — same interaction language as services */
-.auto-four .a-card{
-  position:relative;
-  overflow:hidden;
-  z-index:0;
-  transition:color .35s, background-color .35s;
-}
-.auto-four .a-card::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:var(--violet);
-  transform:translateY(101%);
-  transition:transform .45s cubic-bezier(.5,0,.15,1);
-  z-index:-1;
-}
-.auto-four .a-card:hover::before{transform:translateY(0)}
-.auto-four .a-card:hover{color:#fff}
-.auto-four .a-card .a-no,
-.auto-four .a-card h4,
-.auto-four .a-card p{position:relative;z-index:1;transition:color .35s}
-.auto-four .a-card:hover .a-no,
-.auto-four .a-card:hover h4{color:#fff}
-.auto-four .a-card:hover p{color:rgba(255,255,255,.82)}
-
 /* precios */
 .price{width:min(500px,100%);margin:52px auto 0;border:1px solid var(--ink);border-radius:4px;overflow:hidden;background:var(--paper2)}
 .price .ph{padding:36px 36px 26px;border-bottom:1px solid var(--line);text-align:center}
@@ -331,6 +253,43 @@ footer .copy{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform
 .phone{width:266px;margin:0 auto;background:#1b1525;border-radius:40px;padding:12px;position:relative;box-shadow:0 50px 100px -30px #000,inset 0 0 0 1px rgba(255,255,255,.06)}
 .phone::before{content:"";position:absolute;top:20px;left:50%;transform:translateX(-50%);width:82px;height:6px;border-radius:6px;background:#000;z-index:3}
 .phone-in{background:linear-gradient(165deg,#1a1226,#0f0a17);border-radius:30px;overflow:hidden;min-height:460px;padding:42px 15px 22px}
+
+/* automatización — overrides oscuros para componentes reutilizados sobre .caso */
+.caso .btn.ghost{background:transparent;color:var(--paper);border:1px solid var(--night-line)}
+.caso .btn.ghost:hover{border-color:var(--paper);background:transparent}
+.caso .chips .c{color:var(--night-soft);border-color:var(--night-line)}
+.caso .chips .c::before{color:#b79bff}
+
+/* demo de chat — reutiliza el marco .mock con burbujas de conversación */
+.chat-mock .scr{background:linear-gradient(165deg,#1a1226,#0f0a17);padding:22px;min-height:auto;justify-content:flex-start}
+.chat{display:flex;flex-direction:column;gap:9px}
+.chat .bub{max-width:85%;padding:10px 14px;border-radius:12px;font-size:.84rem;line-height:1.42}
+.chat .bub.cli{align-self:flex-start;background:rgba(240,232,214,.08);color:var(--night-soft);border-bottom-left-radius:3px}
+.chat .bub.rey{align-self:flex-end;background:var(--violet);color:#fff;border-bottom-right-radius:3px}
+.chat-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.chat-tags b{font-size:.64rem;background:rgba(183,155,255,.14);color:#b79bff;border-radius:40px;padding:6px 11px;font-weight:700}
+
+/* qué automatizamos — grid de 4 tarjetas, mismo lenguaje que .grid3 */
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:52px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+@media(max-width:900px){.grid4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.grid4{grid-template-columns:1fr}}
+
+/* antes / después */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:52px;max-width:800px}
+.cbox{background:var(--paper2);border:1px solid var(--line);border-radius:4px;padding:30px 28px;text-align:left}
+.cbox.after{border-color:var(--violet)}
+.cbox .ct{font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);margin-bottom:18px}
+.cbox.after .ct{color:var(--violet)}
+.feat.bad{color:var(--mut)}
+.feat.bad svg{color:var(--mut)}
+@media(max-width:700px){.compare{grid-template-columns:1fr}}
+
+/* checkbox de consentimiento (avisos de privacidad) */
+.field.check{display:flex;align-items:flex-start;gap:10px}
+.field.check input[type=checkbox]{width:18px;height:18px;margin-top:2px;accent-color:var(--violet);flex:none}
+.field.check label{margin:0;font-size:.82rem;font-weight:500;text-transform:none;letter-spacing:normal;color:var(--soft);cursor:pointer}
+.field.check label a{color:var(--violet);text-decoration:underline}
+.field.check.bad label{color:#d63a4e}
 </style>
 </head>
 <body>
@@ -343,9 +302,9 @@ footer .copy{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform
   <a href="#top" class="brand"><b>Reyvo</b><small>Estudio Digital</small></a>
   <div class="nlinks">
     <a href="#servicios">Servicios</a>
-    <a href="#automation">Automatizaciones</a>
     <a href="#trabajo">Trabajo</a>
     <a href="#precios">Precios</a>
+    <a href="#automatizacion">Automatización</a>
     <a href="#contacto">Contacto</a>
     <a href="#contacto" class="cta">Quiero mi página</a>
   </div>
@@ -457,99 +416,16 @@ footer .copy{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform
   </div>
 </section>
 
-<!-- REYVO AUTOMATIZACIONES -->
-<section class="pad" id="automation" style="background:var(--band)">
+<!-- PRÓXIMAMENTE -->
+<section class="pad">
   <span class="bignum" aria-hidden="true">04</span>
   <div class="wrap">
-    <div class="rv" style="text-align:center;max-width:760px;margin:0 auto">
-      <div class="lab c"><span class="n">04 —</span> Reyvo Automatizaciones</div>
-      <h2 class="h2" style="margin-top:20px">¿Cuántos clientes estás perdiendo <em>por no dar seguimiento?</em></h2>
-      <p class="lead auto-hero-lead" style="text-align:center;margin:16px auto 0;max-width:720px">
-        Convertimos conversaciones y procesos repetitivos en sistemas automáticos que ayudan a tu negocio a responder, calificar y dar seguimiento a sus prospectos.
-      </p>
-    </div>
-
-    <div class="auto-wrap">
-      <div class="auto-grid">
-        <div class="auto-copy rv">
-          <div class="lab"><span class="n">01 —</span> Lead Recovery</div>
-          <h3>De conversaciones dispersas a un <em>sistema.</em></h3>
-          <p class="lead">
-            Reyvo automatiza la atención inicial, captura de datos, calificación y seguimiento para que las oportunidades no dependan de que alguien se acuerde de contestar.
-          </p>
-          <div class="auto-actions">
-            <a href="#contacto" class="btn">Quiero automatizar mi negocio →</a>
-            <a href="#automation-demo" class="btn ghost">Ver cómo funciona</a>
-          </div>
-          <div class="auto-mini">
-            <div><b>Respuesta</b>Más rápida y consistente</div>
-            <div><b>Calificación</b>Detecta intención</div>
-            <div><b>Seguimiento</b>Recupera conversaciones</div>
-            <div><b>Orden</b>Centraliza oportunidades</div>
-          </div>
-        </div>
-
-        <div class="auto-chat rv d1" id="automation-demo">
-          <div class="auto-chat-head">
-            <b>Reyvo · Lead Recovery</b>
-            <span class="auto-live">● Demo</span>
-          </div>
-          <div class="chat-body">
-            <div class="bubble client">Hola, ¿cuánto cuesta el servicio?</div>
-            <div class="bubble reyvo">¡Hola! Claro. Para ayudarte mejor, ¿qué servicio estás buscando?</div>
-            <div class="bubble client">Quiero información sobre el servicio.</div>
-            <div class="bubble reyvo">Perfecto. ¿Es la primera vez que utilizas este servicio?</div>
-            <div class="bubble client">Sí.</div>
-            <div class="bubble reyvo">Excelente. Tenemos disponibilidad. ¿Qué día te gustaría?</div>
-          </div>
-          <div class="chat-status">
-            <span>✓ Prospecto identificado</span>
-            <span>✓ Servicio detectado</span>
-            <span>✓ Intención registrada</span>
-            <span>✓ Seguimiento preparado</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="auto-four rv d1">
-        <div class="a-card"><span class="a-no">i</span><h4>Atención</h4><p>Respuestas automáticas y asistentes de IA.</p></div>
-        <div class="a-card"><span class="a-no">ii</span><h4>Captación</h4><p>Capturamos y organizamos cada prospecto.</p></div>
-        <div class="a-card"><span class="a-no">iii</span><h4>Calificación</h4><p>Identificamos cuáles tienen mayor intención.</p></div>
-        <div class="a-card"><span class="a-no">iv</span><h4>Seguimiento</h4><p>Recuperamos conversaciones que quedaron abandonadas.</p></div>
-      </div>
-
-      <div class="auto-before rv d2">
-        <div>
-          <h4>Antes</h4>
-          <div class="auto-list">
-            <span>Mensajes perdidos</span>
-            <span>Seguimiento manual</span>
-            <span>Respuestas repetitivas</span>
-            <span>Chats desordenados</span>
-          </div>
-        </div>
-        <div>
-          <h4>Después</h4>
-          <div class="auto-list">
-            <span>Prospectos registrados</span>
-            <span>Seguimiento automático</span>
-            <span>Respuestas automatizadas</span>
-            <span>Oportunidades clasificadas</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="auto-offer rv d3">
-        <div class="lab c"><span class="n">02 —</span> Implementación</div>
-        <h3 style="font-size:2rem;margin-top:12px">Automatización personalizada</h3>
-        <div class="amt">$2,499 MXN</div>
-        <div class="small">Precio de lanzamiento · implementación</div>
-        <div class="auto-feats">
-          <span>Diagnóstico</span><span>Diseño del flujo</span><span>Automatización</span><span>Integraciones</span><span>Pruebas</span><span>Implementación</span><span>Capacitación</span>
-        </div>
-        <p class="mes">Planes de mantenimiento desde <b>$999 MXN/mes</b></p>
-        <p class="note">Los costos de plataformas, APIs y servicios de terceros pueden variar según las herramientas y el volumen de uso.</p>
-        <a href="#contacto" class="btn" style="margin-top:22px">Quiero mi diagnóstico →</a>
+    <div class="next rv">
+      <div class="lab c"><span class="n">04 —</span> Lo que viene</div>
+      <h2 class="h2">Empezamos por tu página. <em>Vamos por todo tu crecimiento.</em></h2>
+      <p class="lead" style="text-align:center">Reyvo es tu aliado digital completo. Muy pronto sumamos redes sociales, automatización, CRM y campañas — todo conectado para hacer crecer tu negocio.</p>
+      <div class="chips">
+        <span class="c">Redes sociales</span><span class="c">CRM</span><span class="c">Campañas / ADS</span>
       </div>
     </div>
   </div>
@@ -566,8 +442,8 @@ footer .copy{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform
     <div class="price rv d1">
       <div class="ph">
         <p class="pn">Landing Reyvo</p>
-        <div class="amt">$2,999 MXN<small>Precio de lanzamiento</small></div>
-        <p class="mes">+ <b>$699 / mes</b> de hosting y mantenimiento</p>
+        <div class="amt">$4,399 MXN<small>Precio de lanzamiento</small></div>
+        <p class="mes">+ <b>$1,099 / mes</b> de hosting y mantenimiento</p>
       </div>
       <div class="pb">
         <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Sitio de una página a la medida</div>
@@ -589,9 +465,9 @@ footer .copy{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform
   <span class="bignum" aria-hidden="true">06</span>
   <div class="wrap">
     <div class="rv">
-      <div class="lab c"><span class="n">06 —</span> Hablemos</div>
-      <h2 class="h2" style="margin-top:20px">¿Listo para hacer que tu negocio <em>trabaje mejor?</em></h2>
-      <p class="lead" style="text-align:center">Cuéntanos qué quieres construir o automatizar y te llega directo a nuestro WhatsApp. Te contestamos en menos de 24 h.</p>
+      <div class="lab c"><span class="n">06 —</span> Quiero mi página</div>
+      <h2 class="h2" style="margin-top:20px">¿Listo para verte <em>increíble?</em></h2>
+      <p class="lead" style="text-align:center">Cuéntanos qué haces y te llega directo a nuestro WhatsApp. Te contestamos en menos de 24 h.</p>
     </div>
     <div class="form-wrap">
       <div class="form-card rv d1">
@@ -601,12 +477,147 @@ footer .copy{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform
         <div class="field"><label>¿Qué necesitas? <span class="req">*</span></label>
           <select data-q="Qué necesita" data-req>
             <option value="">Elige una opción…</option>
-            <option>Página nueva</option><option>Menú digital</option><option>Sistema de reservas</option><option>Cotizador</option><option>Automatización / IA</option><option>No estoy seguro</option>
+            <option>Página nueva</option><option>Menú digital</option><option>Sistema de reservas</option><option>Cotizador</option><option>No estoy seguro</option>
           </select>
         </div>
         <div class="field"><label>Mensaje (opcional)</label><textarea data-q="Mensaje" placeholder="Cuéntanos lo que tengas en mente…"></textarea></div>
+        <div class="field check"><input type="checkbox" id="consent"><label for="consent">He leído y acepto el <a href="aviso-privacidad.html" target="_blank" rel="noopener">Aviso de Privacidad</a>.</label></div>
         <button type="button" class="btn" id="btnWA">Enviar por WhatsApp →</button>
         <p class="err" id="err"></p>
+        <p class="form-alt">O escríbenos directo: <a href="https://wa.me/525568050041" target="_blank" rel="noopener">wa.me/525568050041</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REYVO AUTOMATION — hero + problema + demo -->
+<section class="caso pad" id="automatizacion">
+  <span class="bignum" aria-hidden="true">07</span>
+  <div class="wrap">
+    <div>
+      <div class="lab rv"><span class="n">07 —</span> Reyvo Automation</div>
+      <h2 class="h2" style="margin-top:20px">¿Cuántos clientes estás perdiendo<br><em>por no dar seguimiento?</em></h2>
+      <p class="lead rv d1">Reyvo automatiza la atención, calificación y seguimiento de tus prospectos para que tu negocio pueda responder y convertir oportunidades sin hacerlo todo manualmente.</p>
+      <div class="chips rv d1" style="justify-content:flex-start;margin-top:24px">
+        <span class="c">Respuestas tardías</span><span class="c">Conversaciones abandonadas</span><span class="c">Falta de seguimiento</span><span class="c">Mensajes repetitivos</span><span class="c">Prospectos desorganizados</span><span class="c">Oportunidades sin prioridad</span>
+      </div>
+      <p class="lead rv d2" style="margin-top:20px"><b>Reyvo se encarga de lo repetitivo.</b></p>
+      <div class="rv d2" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:10px">
+        <a href="#automatizacion-contacto" class="btn light">Quiero automatizar mi negocio →</a>
+        <a href="#auto-como" class="btn ghost">Ver cómo funciona →</a>
+      </div>
+    </div>
+    <div class="mock chat-mock rv d1">
+      <div class="bar"><i></i><i></i><i></i><span class="u">Reyvo Automation · WhatsApp</span></div>
+      <div class="scr">
+        <div class="chat">
+          <div class="bub cli">Hola, ¿cuánto cuesta el servicio?</div>
+          <div class="bub rey">¡Hola! Claro. Para ayudarte mejor, ¿qué servicio estás buscando?</div>
+          <div class="bub cli">Quiero información sobre el servicio.</div>
+          <div class="bub rey">Perfecto. ¿Es la primera vez que utilizas este servicio?</div>
+          <div class="bub cli">Sí.</div>
+          <div class="bub rey">Excelente. Tenemos disponibilidad. ¿Qué día te gustaría?</div>
+        </div>
+        <div class="chat-tags">
+          <b>✓ Prospecto identificado</b><b>✓ Servicio detectado</b><b>✓ Intención registrada</b><b>✓ Seguimiento preparado</b><b>✓ Cita potencial</b>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUÉ AUTOMATIZAMOS -->
+<section class="pad" id="auto-como">
+  <span class="bignum" aria-hidden="true">08</span>
+  <div class="wrap">
+    <div class="sv-head rv">
+      <div class="lab"><span class="n">08 —</span> Qué automatizamos</div>
+      <h2 class="h2" style="margin-top:20px">Lo repetitivo, <em>resuelto.</em></h2>
+      <p class="lead" style="margin-top:16px">Cuatro piezas que trabajan juntas para que ningún prospecto se quede sin respuesta.</p>
+    </div>
+    <div class="grid4 rv d1">
+      <div class="card"><div class="ctop"><span class="no">i</span><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3 21l1.9-5.6A8.5 8.5 0 1 1 21 11.5z"/></svg></div><h3>Atención</h3><p>Respuestas automáticas y asistentes de IA.</p></div>
+      <div class="card"><div class="ctop"><span class="no">ii</span><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16l-6 8v6l-4 2v-8z"/></svg></div><h3>Captación</h3><p>Capturamos y organizamos cada prospecto.</p></div>
+      <div class="card"><div class="ctop"><span class="no">iii</span><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r=".6" fill="currentColor"/></svg></div><h3>Calificación</h3><p>Identificamos cuáles tienen mayor intención.</p></div>
+      <div class="card"><div class="ctop"><span class="no">iv</span><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7M21 3v6h-6"/></svg></div><h3>Seguimiento</h3><p>Recuperamos conversaciones que quedaron abandonadas.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ANTES / DESPUÉS -->
+<section class="pad" id="auto-cambio" style="background:var(--band)">
+  <span class="bignum" aria-hidden="true">09</span>
+  <div class="wrap">
+    <div class="rv" style="text-align:center;max-width:640px;margin:0 auto">
+      <div class="lab c"><span class="n">09 —</span> El cambio</div>
+      <h2 class="h2" style="margin-top:20px">De conversaciones dispersas a <em>un sistema.</em></h2>
+    </div>
+    <div class="compare rv d1" style="margin-inline:auto">
+      <div class="cbox">
+        <div class="ct">Antes</div>
+        <div class="feat bad"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>Mensajes perdidos</div>
+        <div class="feat bad"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>Seguimiento manual</div>
+        <div class="feat bad"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>Respuestas repetitivas</div>
+        <div class="feat bad" style="margin-bottom:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>Chats desordenados</div>
+      </div>
+      <div class="cbox after">
+        <div class="ct">Después</div>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Prospectos registrados</div>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Seguimiento automático</div>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Respuestas automatizadas</div>
+        <div class="feat" style="margin-bottom:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Oportunidades clasificadas</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFERTA AUTOMATIZACIÓN -->
+<section class="pad" id="auto-oferta">
+  <span class="bignum" aria-hidden="true">10</span>
+  <div class="wrap">
+    <div class="rv" style="text-align:center;max-width:640px;margin:0 auto">
+      <div class="lab c"><span class="n">10 —</span> La inversión</div>
+      <h2 class="h2" style="margin-top:20px">Automatización, <em>sin complicarte.</em></h2>
+    </div>
+    <div class="price rv d1">
+      <div class="ph">
+        <p class="pn">Automatización personalizada</p>
+        <div class="amt">Desde $3,500 MXN<small>Diagnóstico + construcción</small></div>
+        <p class="mes">+ <b>$1,500 MXN / mes</b> de mantenimiento</p>
+      </div>
+      <div class="pb">
+        <p style="color:var(--soft);font-size:.92rem;margin-bottom:20px">Construimos sistemas de automatización adaptados al proceso comercial de tu negocio.</p>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Diagnóstico</div>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Diseño del flujo</div>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Automatización</div>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Integraciones</div>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Pruebas</div>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Implementación</div>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Capacitación</div>
+        <p class="note">Los costos de plataformas, APIs y servicios de terceros pueden variar según las herramientas y el volumen de uso.</p>
+      </div>
+      <div class="pf"><a href="#automatizacion-contacto" class="btn">Quiero mi diagnóstico →</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM AUTOMATIZACIÓN -->
+<section class="pad cta-sec" id="automatizacion-contacto">
+  <span class="bignum" aria-hidden="true">11</span>
+  <div class="wrap">
+    <div class="rv">
+      <div class="lab c"><span class="n">11 —</span> Automatiza tu negocio</div>
+      <h2 class="h2" style="margin-top:20px">Cuéntanos qué quieres <em>automatizar.</em></h2>
+      <p class="lead" style="text-align:center">Te escribimos directo a tu WhatsApp para armar tu diagnóstico. Sin costo.</p>
+    </div>
+    <div class="form-wrap">
+      <div class="form-card rv d1">
+        <div class="field"><label>Nombre <span class="req">*</span></label><input type="text" data-q="Nombre" data-req placeholder="Tu nombre"></div>
+        <div class="field"><label>WhatsApp <span class="req">*</span></label><input type="tel" data-q="WhatsApp" data-req placeholder="Ej. 55 1234 5678"></div>
+        <div class="field"><label>¿Qué proceso quieres automatizar? <span class="req">*</span></label><textarea data-q="Proceso a automatizar" data-req placeholder="Ej. Seguimiento de prospectos por WhatsApp"></textarea></div>
+        <div class="field check"><input type="checkbox" id="consentAuto"><label for="consentAuto">He leído y acepto el <a href="aviso-privacidad.html" target="_blank" rel="noopener">Aviso de Privacidad</a>.</label></div>
+        <button type="button" class="btn" id="btnWAauto">Analizar mi proceso →</button>
+        <p class="err" id="errAuto"></p>
         <p class="form-alt">O escríbenos directo: <a href="https://wa.me/525568050041" target="_blank" rel="noopener">wa.me/525568050041</a></p>
       </div>
     </div>
@@ -619,14 +630,15 @@ footer .copy{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform
       <div class="big">Reyvo<em>.</em></div>
       <div style="display:flex;gap:50px;flex-wrap:wrap">
         <div class="fl"><b>Contacto</b><a href="https://wa.me/525568050041" target="_blank" rel="noopener">WhatsApp</a><a href="https://www.instagram.com/reyvo.mx" target="_blank" rel="noopener">Instagram @reyvo.mx</a></div>
-        <div class="fl"><b>Explorar</b><a href="#servicios">Servicios</a><a href="#automation">Automatizaciones</a><a href="#trabajo">Trabajo</a><a href="#precios">Precios</a></div>
+        <div class="fl"><b>Explorar</b><a href="#servicios">Servicios</a><a href="#trabajo">Trabajo</a><a href="#precios">Precios</a><a href="#automatizacion">Automatización</a></div>
+        <div class="fl"><b>Legal</b><a href="terminos.html">Términos y Condiciones</a><a href="aviso-privacidad.html">Aviso de Privacidad</a></div>
       </div>
     </div>
     <p class="copy">© 2026 Reyvo — Estudio Digital · Estado de México</p>
   </div>
 </footer>
 
-<a class="fab" href="https://wa.me/525568050041?text=Hola%20Reyvo%2C%20quiero%20automatizar%20un%20proceso%20de%20mi%20negocio." target="_blank" rel="noopener" aria-label="WhatsApp">
+<a class="fab" href="https://wa.me/525568050041?text=Hola%20Reyvo%2C%20quiero%20una%20p%C3%A1gina%20para%20mi%20negocio." target="_blank" rel="noopener" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.2-.7-2.7-1.1-4.4-3.9-4.6-4.1-.1-.2-1-1.4-1-2.6s.6-1.8.9-2.1c.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.1.2.6 1 1.3 1.6.9.8 1.6 1 1.9 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.6-.1l1.8.9c.3.1.4.2.5.3.1.3.1.7-.1 1.1z"/></svg>
 </a>
 
@@ -675,15 +687,47 @@ footer .copy{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform
       });
       return {texto:lineas.join("\n").trim(),faltan:faltan};
     }
+    var consent=document.getElementById("consent");
     btn.addEventListener("click",function(){
       form.querySelectorAll(".field.bad").forEach(function(f){f.classList.remove("bad");});
       err.textContent="";
       var r=build();
       if(r.faltan.length){r.faltan.forEach(function(f){f.classList.add("bad");});err.textContent="Faltan datos obligatorios (marcados con *).";r.faltan[0].scrollIntoView({behavior:"smooth",block:"center"});return;}
+      if(!consent.checked){consent.closest(".field").classList.add("bad");err.textContent="Debes aceptar el Aviso de Privacidad para continuar.";consent.scrollIntoView({behavior:"smooth",block:"center"});return;}
       window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(r.texto),"_blank");
     });
+    consent.addEventListener("change",function(){err.textContent="";consent.closest(".field").classList.remove("bad");});
     form.addEventListener("input",function(){err.textContent="";form.querySelectorAll(".field.bad").forEach(function(f){f.classList.remove("bad");});});
   },"form");
+
+  safe(function(){
+    var WA="525568050041";
+    var btn=document.getElementById("btnWAauto");
+    if(!btn)return;
+    var err=document.getElementById("errAuto");
+    var form=btn.closest(".form-card");
+    function build(){
+      var campos=[].slice.call(form.querySelectorAll("[data-q]"));
+      var faltan=[],lineas=["*NUEVA SOLICITUD — REYVO AUTOMATION*","────────────────"];
+      campos.forEach(function(el){
+        var v=el.value.trim();
+        if(el.hasAttribute("data-req")&&!v) faltan.push(el.closest(".field"));
+        if(v){lineas.push("*"+el.getAttribute("data-q")+":*");lineas.push(v);lineas.push("");}
+      });
+      return {texto:lineas.join("\n").trim(),faltan:faltan};
+    }
+    var consent=document.getElementById("consentAuto");
+    btn.addEventListener("click",function(){
+      form.querySelectorAll(".field.bad").forEach(function(f){f.classList.remove("bad");});
+      err.textContent="";
+      var r=build();
+      if(r.faltan.length){r.faltan.forEach(function(f){f.classList.add("bad");});err.textContent="Faltan datos obligatorios (marcados con *).";r.faltan[0].scrollIntoView({behavior:"smooth",block:"center"});return;}
+      if(!consent.checked){consent.closest(".field").classList.add("bad");err.textContent="Debes aceptar el Aviso de Privacidad para continuar.";consent.scrollIntoView({behavior:"smooth",block:"center"});return;}
+      window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(r.texto),"_blank");
+    });
+    consent.addEventListener("change",function(){err.textContent="";consent.closest(".field").classList.remove("bad");});
+    form.addEventListener("input",function(){err.textContent="";form.querySelectorAll(".field.bad").forEach(function(f){f.classList.remove("bad");});});
+  },"formAuto");
 
   safe(function(){
     var hh=document.getElementById("heroH");
