@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Panel interno · Reyvo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500;1,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f0e8d6; --paper2:#f8f2e5; --ink:#14110d; --soft:rgba(20,17,13,.6); --mut:rgba(20,17,13,.42); --line:rgba(20,17,13,.14);
+  --violet:#5a2ce6; --violet-soft:rgba(90,44,230,.08);
+  --night:#0d0a12; --night-soft:rgba(240,232,214,.62);
+  --d:'Playfair Display',Georgia,serif; --b:'Manrope',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--b);line-height:1.6}
+a{color:inherit;text-decoration:none}
+h1,h2{font-family:var(--d);font-weight:900;letter-spacing:-.02em}
+nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:16px min(5vw,44px);background:rgba(244,241,234,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.brand{display:flex;flex-direction:column;line-height:1}
+.brand b{font-family:var(--d);font-weight:900;font-size:1.4rem}
+.brand small{font-size:.5rem;font-weight:600;letter-spacing:.3em;color:var(--mut);text-transform:uppercase;margin-top:3px}
+.back{font-size:.8rem;font-weight:600;color:var(--soft)}
+.back:hover{color:var(--ink)}
+main{width:min(1000px,92vw);margin:0 auto;padding:40px 0 100px}
+.warn{background:#2a1608;color:#f4d9b0;border:1px solid #8a5a1e;border-left:4px solid #e0a83c;border-radius:4px;padding:18px 22px;font-size:.86rem;margin-bottom:36px;line-height:1.6}
+.warn b{color:#ffcf7a}
+h1{font-size:clamp(1.6rem,4vw,2.2rem);margin-bottom:6px}
+.sub{color:var(--mut);font-size:.85rem;margin-bottom:32px}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.count{font-size:.8rem;font-weight:700;color:var(--soft);text-transform:uppercase;letter-spacing:.06em}
+.btn-sm{font-family:var(--b);font-size:.76rem;font-weight:700;background:transparent;border:1px solid var(--line);color:var(--soft);padding:9px 16px;border-radius:40px;cursor:pointer;transition:.2s}
+.btn-sm:hover{border-color:#c62f43;color:#c62f43}
+.empty{text-align:center;padding:80px 20px;color:var(--mut)}
+.empty p{margin-top:10px;font-size:.9rem}
+.lead-card{background:var(--paper2);border:1px solid var(--line);border-radius:4px;margin-bottom:14px;overflow:hidden}
+.lead-top{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:14px;align-items:center;padding:18px 20px;cursor:pointer}
+.lead-top .nm{font-weight:700}
+.lead-top .sub2{font-size:.78rem;color:var(--mut)}
+.lead-top .tag{font-size:.72rem;font-weight:700;color:var(--violet);background:var(--violet-soft);border-radius:40px;padding:5px 12px;display:inline-block;white-space:nowrap}
+select.status{font-family:var(--b);font-size:.78rem;font-weight:700;border:1px solid var(--line);border-radius:40px;padding:8px 14px;background:var(--paper);color:var(--ink);cursor:pointer}
+.lead-detail{display:none;padding:0 20px 22px;font-size:.86rem;color:var(--soft);border-top:1px solid var(--line)}
+.lead-detail.open{display:block}
+.lead-detail .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;margin-top:16px}
+.lead-detail .grid div b{color:var(--ink);display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);margin-bottom:3px}
+.lead-detail .full{grid-column:1/-1}
+@media(max-width:760px){.lead-top{grid-template-columns:1fr auto}.lead-top .sub2,.lead-top .tag{grid-column:1/2}.lead-detail .grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="brand"><b>Reyvo</b><small>Panel interno</small></a>
+  <a href="index.html" class="back">← Volver al inicio</a>
+</nav>
+
+<main>
+  <div class="warn">
+    <b>Vista de prueba — no es un CRM real todavía.</b><br>
+    Esto lee los diagnósticos guardados en <code>localStorage</code> de <em>este navegador</em>, no una base de datos compartida — si abres esta página en otro dispositivo o navegador, no vas a ver estos mismos leads. Tampoco tiene autenticación: no compartas este enlace públicamente ni lo publiques en el nav del sitio todavía. Cuando conectes n8n, reemplaza la función <code>loadLeads()</code> de este archivo por una llamada a tu backend, y agrega login antes de exponerlo.
+  </div>
+
+  <h1>Diagnósticos recibidos</h1>
+  <p class="sub">Cada tarjeta es un formulario de Reyvo Automation enviado desde la landing.</p>
+
+  <div class="toolbar">
+    <span class="count" id="count">0 diagnósticos</span>
+    <button class="btn-sm" id="clearBtn">Borrar datos de prueba</button>
+  </div>
+
+  <div id="list"></div>
+  <div class="empty" id="empty" style="display:none">
+    <div style="font-size:2rem">—</div>
+    <p>Aún no hay diagnósticos. Ve a la landing, sección "Automatiza tu negocio", y completa el formulario para generar datos de prueba aquí.</p>
+  </div>
+</main>
+
+<script>
+(function(){
+  "use strict";
+  var KEY="reyvo_leads";
+  var ESTADOS=["Diagnóstico recibido","Contactado","Diagnóstico realizado","Propuesta enviada","Cerrado","No interesado"];
+
+  function loadLeads(){
+    // TODO: cuando exista backend/n8n, sustituir esto por un fetch() a tu endpoint
+    // (ej. GET /api/leads) en vez de leer localStorage.
+    try{ return JSON.parse(localStorage.getItem(KEY)||"[]"); }catch(e){ return []; }
+  }
+  function saveLeads(list){
+    try{ localStorage.setItem(KEY, JSON.stringify(list)); }catch(e){}
+  }
+  function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];}); }
+  function fmtDate(iso){
+    try{ var d=new Date(iso); return d.toLocaleDateString("es-MX",{day:"2-digit",month:"short",year:"numeric"})+" · "+d.toLocaleTimeString("es-MX",{hour:"2-digit",minute:"2-digit"}); }
+    catch(e){ return iso||"—"; }
+  }
+  function arr(v){ return Array.isArray(v)&&v.length ? v.join(", ") : "—"; }
+
+  function render(){
+    var leads=loadLeads().slice().reverse(); // más recientes primero
+    var list=document.getElementById("list");
+    var empty=document.getElementById("empty");
+    document.getElementById("count").textContent=leads.length+(leads.length===1?" diagnóstico":" diagnósticos");
+    if(!leads.length){ list.innerHTML=""; empty.style.display="block"; return; }
+    empty.style.display="none";
+
+    list.innerHTML=leads.map(function(lead,i){
+      var opts=ESTADOS.map(function(s){return '<option value="'+esc(s)+'"'+(s===lead.estado?" selected":"")+'>'+esc(s)+"</option>";}).join("");
+      return ''+
+      '<div class="lead-card" data-id="'+esc(lead.id)+'">'+
+        '<div class="lead-top" data-toggle>'+
+          '<div><div class="nm">'+esc(lead.nombre||"Sin nombre")+'</div><div class="sub2">'+esc(lead.negocio||"—")+' · '+esc(lead.giro||"—")+'</div></div>'+
+          '<div class="sub2">'+esc(lead.whatsapp||"—")+'<br>'+fmtDate(lead.fecha)+'</div>'+
+          '<div><span class="tag">'+esc((lead.problemas&&lead.problemas[0])||"—")+'</span></div>'+
+          '<select class="status" data-status>'+opts+'</select>'+
+        '</div>'+
+        '<div class="lead-detail">'+
+          '<div class="grid">'+
+            '<div><b>Email</b>'+esc(lead.email||"—")+'</div>'+
+            '<div><b>Ciudad</b>'+esc(lead.ciudad||"—")+'</div>'+
+            '<div><b>Sitio / Instagram</b>'+esc(lead.web||"—")+'</div>'+
+            '<div><b>Canales de captación</b>'+esc(arr(lead.canales))+'</div>'+
+            '<div><b>Prospectos / mes</b>'+esc(lead.volumenProspectos||"—")+'</div>'+
+            '<div><b>Responde actualmente</b>'+esc(lead.responsableAtencion||"—")+'</div>'+
+            '<div class="full"><b>Problemas reportados</b>'+esc(arr(lead.problemas))+'</div>'+
+            '<div class="full"><b>Quiere automatizar</b>'+esc(arr(lead.automatizacionDeseada))+'</div>'+
+            '<div><b>Tiempo dedicado hoy</b>'+esc(lead.tiempoEmpleado||"—")+'</div>'+
+            '<div><b>Contacto preferido</b>'+esc(lead.canalPreferido||"—")+'</div>'+
+            '<div class="full"><b>Descripción</b>'+esc(lead.descripcion||"—")+'</div>'+
+          '</div>'+
+        '</div>'+
+      '</div>';
+    }).join("");
+
+    // wire toggle + status change
+    list.querySelectorAll(".lead-card").forEach(function(card){
+      card.querySelector("[data-toggle]").addEventListener("click",function(e){
+        if(e.target.closest("select"))return;
+        card.querySelector(".lead-detail").classList.toggle("open");
+      });
+      card.querySelector("[data-status]").addEventListener("click",function(e){e.stopPropagation();});
+      card.querySelector("[data-status]").addEventListener("change",function(e){
+        var id=card.getAttribute("data-id");
+        var all=loadLeads();
+        var idx=all.findIndex(function(l){return l.id===id;});
+        if(idx>-1){ all[idx].estado=e.target.value; saveLeads(all); }
+      });
+    });
+  }
+
+  document.getElementById("clearBtn").addEventListener("click",function(){
+    if(confirm("¿Borrar todos los diagnósticos guardados en este navegador? Esto no se puede deshacer.")){
+      saveLeads([]); render();
+    }
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

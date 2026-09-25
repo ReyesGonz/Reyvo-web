@@ -17,6 +17,7 @@
   --d:'Playfair Display',Georgia,serif; --b:'Manrope',system-ui,sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
+[hidden]{display:none!important}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{background:var(--paper);color:var(--ink);font-family:var(--b);line-height:1.6;overflow-x:hidden}
 ::selection{background:var(--violet);color:#fff}
@@ -50,12 +51,25 @@ nav.small{background:rgba(244,241,234,.85);backdrop-filter:blur(14px);border-col
 .brand{display:flex;flex-direction:column;line-height:1}
 .brand b{font-family:var(--d);font-weight:900;font-size:1.5rem;letter-spacing:-.02em}
 .brand small{font-family:var(--b);font-size:.5rem;font-weight:600;letter-spacing:.34em;color:var(--mut);margin-top:4px;text-transform:uppercase}
+.nav-right{display:flex;align-items:center;gap:22px}
 .nlinks{display:flex;gap:28px;align-items:center;font-size:.82rem;font-weight:600}
 .nlinks a:not(.cta){color:var(--soft);transition:color .2s}
 .nlinks a:not(.cta):hover{color:var(--ink)}
 .cta{background:var(--violet);color:#fff;padding:10px 20px;border-radius:2px;font-weight:700;font-size:.8rem;letter-spacing:.02em;transition:background .2s}
 .cta:hover{background:var(--violet-d)}
 @media(max-width:820px){.nlinks a:not(.cta){display:none}}
+
+/* selector de idioma */
+.langsw{position:relative}
+.langbtn{display:flex;align-items:center;gap:6px;background:transparent;border:1px solid var(--line);border-radius:40px;padding:8px 12px;font-family:var(--b);font-size:.72rem;font-weight:700;letter-spacing:.06em;color:var(--ink);cursor:pointer;transition:border-color .2s}
+.langbtn:hover{border-color:var(--ink)}
+.langbtn svg{width:12px;height:12px;transition:transform .2s}
+.langsw.open .langbtn svg{transform:rotate(180deg)}
+.langmenu{position:absolute;top:calc(100% + 10px);right:0;background:var(--paper2);border:1px solid var(--line);border-radius:4px;padding:6px;min-width:140px;box-shadow:0 14px 34px rgba(20,17,13,.14);display:none;flex-direction:column;gap:2px}
+.langsw.open .langmenu{display:flex}
+.langmenu button{background:transparent;border:none;text-align:left;padding:9px 12px;font-family:var(--b);font-size:.82rem;font-weight:600;color:var(--soft);border-radius:2px;cursor:pointer;transition:background .15s,color .15s}
+.langmenu button:hover{background:var(--paper);color:var(--ink)}
+.langmenu button.active{color:var(--violet)}
 
 .btn{display:inline-flex;align-items:center;gap:9px;background:var(--violet);color:#fff;font-weight:700;
   padding:15px 30px;border-radius:2px;border:none;font-size:.92rem;letter-spacing:.01em;transition:background .25s,transform .25s}
@@ -290,6 +304,40 @@ footer .copy{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform
 .field.check label{margin:0;font-size:.82rem;font-weight:500;text-transform:none;letter-spacing:normal;color:var(--soft);cursor:pointer}
 .field.check label a{color:var(--violet);text-decoration:underline}
 .field.check.bad label{color:#d63a4e}
+
+/* cómo trabajamos — timeline de pasos */
+.steps{margin-top:52px;border-top:1px solid var(--line)}
+.step-row{display:grid;grid-template-columns:64px 1fr;gap:24px;padding:26px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.step-row .sn{font-family:var(--d);font-size:1.7rem;font-weight:900;color:var(--violet);line-height:1}
+.step-row h3{font-size:1.05rem;margin-bottom:5px}
+.step-row p{color:var(--soft);font-size:.92rem}
+@media(max-width:600px){.step-row{grid-template-columns:40px 1fr;gap:16px}.step-row .sn{font-size:1.3rem}}
+
+/* diagnóstico multi-paso */
+.diag-wrap{max-width:640px;margin:52px auto 0}
+.diag-progress{margin-bottom:22px}
+.diag-bar{height:4px;background:var(--line);border-radius:4px;overflow:hidden}
+.diag-bar-fill{height:100%;background:var(--violet);width:16.6%;transition:width .4s cubic-bezier(.2,.8,.2,1)}
+.diag-steplabel{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin-top:10px;text-align:center}
+.diag-card{background:var(--paper2);border:1px solid var(--ink);border-radius:4px;padding:clamp(26px,4vw,42px);text-align:left;overflow:hidden}
+.diag-st{font-family:var(--d);font-size:1.25rem;font-weight:900;margin-bottom:22px}
+.diag-step{animation:diagIn .35s ease}
+@keyframes diagIn{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+.opts{display:flex;flex-wrap:wrap;gap:10px}
+.opt{display:flex;align-items:center;gap:8px;font-size:.85rem;font-weight:600;color:var(--soft);background:var(--paper);border:1px solid var(--line);border-radius:40px;padding:10px 16px;cursor:pointer;transition:border-color .2s,color .2s,background .2s}
+.opt:hover{border-color:var(--ink)}
+.opt input{accent-color:var(--violet);margin:0}
+.opt:has(input:checked){border-color:var(--violet);color:var(--violet);background:var(--violet-soft)}
+.diag-nav{display:flex;align-items:center;gap:12px;margin-top:30px}
+.diag-nav #diagNext,.diag-nav #diagSubmit{margin-left:auto}
+.diag-result{background:var(--paper2);border:1px solid var(--ink);border-radius:4px;padding:clamp(30px,5vw,50px);text-align:center;animation:diagIn .4s ease}
+.diag-check{width:52px;height:52px;border-radius:50%;background:var(--violet);color:#fff;font-size:1.3rem;display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
+.diag-rt{font-family:var(--d);font-size:1.5rem;font-weight:900;margin-bottom:10px}
+.diag-rp{color:var(--soft);font-size:.95rem;margin-bottom:26px}
+.diag-summary{text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:18px 20px;margin-bottom:26px;font-size:.86rem;color:var(--soft);line-height:1.7}
+.diag-summary b{color:var(--ink)}
+.diag-result-cta{display:flex;flex-direction:column;gap:10px}
+@media(max-width:600px){.diag-nav{flex-wrap:wrap}.diag-nav #diagNext,.diag-nav #diagSubmit{margin-left:0;flex:1}}
 </style>
 </head>
 <body>
@@ -299,68 +347,80 @@ footer .copy{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform
 <div class="curd" id="curd" aria-hidden="true"></div>
 
 <nav id="nav">
-  <a href="#top" class="brand"><b>Reyvo</b><small>Estudio Digital</small></a>
-  <div class="nlinks">
-    <a href="#servicios">Servicios</a>
-    <a href="#trabajo">Trabajo</a>
-    <a href="#precios">Precios</a>
-    <a href="#automatizacion">Automatización</a>
-    <a href="#contacto">Contacto</a>
-    <a href="#contacto" class="cta">Quiero mi página</a>
+  <a href="#top" class="brand"><b>Reyvo</b><small data-i18n="nav.tag">Estudio Digital</small></a>
+  <div class="nav-right">
+    <div class="nlinks">
+      <a href="#servicios" data-i18n="nav.servicios">Servicios</a>
+      <a href="#trabajo" data-i18n="nav.trabajo">Trabajo</a>
+      <a href="#precios" data-i18n="nav.precios">Precios</a>
+      <a href="#automatizacion" data-i18n="nav.automatizacion">Automatización</a>
+      <a href="#contacto" data-i18n="nav.contacto">Contacto</a>
+      <a href="#contacto" class="cta" data-i18n="nav.cta">Quiero mi página</a>
+    </div>
+    <div class="langsw" id="langsw">
+      <button type="button" class="langbtn" id="langBtn" aria-haspopup="true" aria-expanded="false">ES <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+      <div class="langmenu" id="langMenu">
+        <button type="button" data-lang="es">Español</button>
+        <button type="button" data-lang="en">English</button>
+        <button type="button" data-lang="pt">Português</button>
+        <button type="button" data-lang="fr">Français</button>
+        <button type="button" data-lang="zh">中文</button>
+      </div>
+    </div>
   </div>
 </nav>
 
 <header class="hero" id="top">
   <div class="spot" id="spot" aria-hidden="true"></div>
   <div class="wrap">
-    <div class="idx rv">Estudio Digital<br>Estado de México<br>Est. 2026</div>
-    <span class="lab rv">Sitios web premium a la medida</span>
+    <div class="idx rv" data-i18n="hero.idx">Estudio Digital<br>Estado de México<br>Est. 2026</div>
+    <span class="lab rv" data-i18n="hero.tag">Sitios web premium a la medida</span>
     <h1 class="hero-h" id="heroH">
-      <span class="ln"><span>Tu negocio</span></span>
-      <span class="ln"><span>merece verse</span></span>
-      <span class="ln"><span><em>extraordinario.</em></span></span>
+      <span class="ln"><span data-i18n="hero.h1a">Tu negocio</span></span>
+      <span class="ln"><span data-i18n="hero.h1b">merece verse</span></span>
+      <span class="ln"><span data-i18n="hero.h1c"><em>extraordinario.</em></span></span>
     </h1>
-    <p class="lead rv d2">No hacemos páginas de plantilla. Diseñamos sitios únicos — cada uno con su propia personalidad — que generan confianza, despiertan deseo y trabajan por ti las 24 horas.</p>
+    <p class="lead rv d2" data-i18n="hero.lead">No hacemos páginas de plantilla. Diseñamos sitios únicos — cada uno con su propia personalidad — que generan confianza, despiertan deseo y trabajan por ti las 24 horas.</p>
     <div class="row rv d2">
-      <a href="#contacto" class="btn">Quiero mi página →</a>
-      <a href="#caso" class="btn ghost">Ver un proyecto real →</a>
+      <a href="#contacto" class="btn" data-i18n="hero.cta1">Quiero mi página →</a>
+      <a href="#caso" class="btn ghost" data-i18n="hero.cta2">Ver un proyecto real →</a>
     </div>
     <div class="rule rv d3">
-      <span>Entrega en <b>7–10 días</b></span>
-      <span>Diseño <b>a la medida</b></span>
-      <span>Respuesta en <b>&lt; 24 h</b></span>
+      <span data-i18n="hero.rule1">Entrega en <b>7–10 días</b></span>
+      <span data-i18n="hero.rule2">Diseño <b>a la medida</b></span>
+      <span data-i18n="hero.rule3">Respuesta en <b>&lt; 24 h</b></span>
     </div>
     <div class="seal rv d3" aria-hidden="true">
-      <svg viewBox="0 0 200 200"><defs><path id="sealpath" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"/></defs><text class="seal-t"><textPath href="#sealpath" startOffset="0">ESTUDIO DIGITAL · SITIOS A LA MEDIDA · REYVO · </textPath></text></svg>
+      <svg viewBox="0 0 200 200"><defs><path id="sealpath" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"/></defs><text class="seal-t"><textPath href="#sealpath" startOffset="0" data-i18n="hero.seal">ESTUDIO DIGITAL · SITIOS A LA MEDIDA · REYVO · </textPath></text></svg>
       <span class="mid">✦</span>
     </div>
   </div>
 </header>
 
-<div class="marq2" aria-hidden="true"><div class="marq2-t"><span>Diseño a la medida</span><span class="dot">✦</span><span>Reservas en línea</span><span class="dot">✦</span><span>Menús digitales</span><span class="dot">✦</span><span>Cotizadores</span><span class="dot">✦</span><span>WhatsApp</span><span class="dot">✦</span><span>SEO</span><span class="dot">✦</span><span>Diseño a la medida</span><span class="dot">✦</span><span>Reservas en línea</span><span class="dot">✦</span><span>Menús digitales</span><span class="dot">✦</span><span>Cotizadores</span><span class="dot">✦</span><span>WhatsApp</span><span class="dot">✦</span><span>SEO</span><span class="dot">✦</span></div></div>
+<div class="marq2" aria-hidden="true"><div class="marq2-t"><span data-i18n="marq.diseno">Diseño a la medida</span><span class="dot">✦</span><span data-i18n="marq.reservas">Reservas en línea</span><span class="dot">✦</span><span data-i18n="marq.menus">Menús digitales</span><span class="dot">✦</span><span data-i18n="marq.cotiz">Cotizadores</span><span class="dot">✦</span><span data-i18n="marq.wa">WhatsApp</span><span class="dot">✦</span><span data-i18n="marq.seo">SEO</span><span class="dot">✦</span><span data-i18n="marq.diseno">Diseño a la medida</span><span class="dot">✦</span><span data-i18n="marq.reservas">Reservas en línea</span><span class="dot">✦</span><span data-i18n="marq.menus">Menús digitales</span><span class="dot">✦</span><span data-i18n="marq.cotiz">Cotizadores</span><span class="dot">✦</span><span data-i18n="marq.wa">WhatsApp</span><span class="dot">✦</span><span data-i18n="marq.seo">SEO</span><span class="dot">✦</span></div></div>
 
 <!-- CASO DE ÉXITO (sección negra = impacto) -->
 <section class="caso pad" id="caso">
   <span class="bignum" aria-hidden="true">01</span>
   <div class="wrap">
     <div>
-      <div class="lab rv"><span class="n">01 —</span> Lo que nos hace distintos</div>
-      <h2 class="h2" style="margin-top:20px">No hacemos páginas.<br><em>Hacemos sistemas.</em></h2>
-      <p class="lead rv d1">La mayoría entrega una página bonita y se va. Nosotros construimos herramientas que trabajan por tu negocio — reservas, menús y paneles que te dan el control real.</p>
+      <div class="lab rv"><span class="n">01 —</span> <span data-i18n="caso.eyebrow">Lo que nos hace distintos</span></div>
+      <h2 class="h2" style="margin-top:20px" data-i18n="caso.h2">No hacemos páginas.<br><em>Hacemos sistemas.</em></h2>
+      <p class="lead rv d1" data-i18n="caso.lead">La mayoría entrega una página bonita y se va. Nosotros construimos herramientas que trabajan por tu negocio — reservas, menús y paneles que te dan el control real.</p>
       <div class="stack rv d2">
-        <div class="stk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><div><b>Reservas en línea</b> — el cliente aparta su lugar y queda registrado al instante.</div></div>
-        <div class="stk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><div><b>Menú digital con QR</b> — con foto de cada platillo, siempre actualizado.</div></div>
-        <div class="stk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><div><b>Tu panel privado</b> — todo en tiempo real, con WhatsApp directo a cada cliente.</div></div>
+        <div class="stk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><div data-i18n="caso.stk1"><b>Reservas en línea</b> — el cliente aparta su lugar y queda registrado al instante.</div></div>
+        <div class="stk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><div data-i18n="caso.stk2"><b>Menú digital con QR</b> — con foto de cada platillo, siempre actualizado.</div></div>
+        <div class="stk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><div data-i18n="caso.stk3"><b>Tu panel privado</b> — todo en tiempo real, con WhatsApp directo a cada cliente.</div></div>
       </div>
-      <a href="#contacto" class="btn light rv d2">Quiero un sistema así →</a>
+      <a href="#contacto" class="btn light rv d2" data-i18n="caso.cta">Quiero un sistema así →</a>
     </div>
     <div class="phone rv d1">
       <div class="phone-in">
-        <div class="scr-h"><b>Reservas</b><span>· en vivo</span></div>
-        <div class="rrow"><span class="rd">Vie</span><div><b>María López</b><small>4 personas · 8:00 PM</small></div><span class="rw">↗</span></div>
-        <div class="rrow"><span class="rd">Sáb</span><div><b>Carlos Ruiz</b><small>2 personas · 9:00 PM</small></div><span class="rw">↗</span></div>
-        <div class="rrow"><span class="rd">Sáb</span><div><b>Ana Torres</b><small>6 personas · 7:00 PM</small></div><span class="rw">↗</span></div>
-        <div class="rrow"><span class="rd">Sáb</span><div><b>Luis Márquez</b><small>3 personas · 10:00 PM</small></div><span class="rw">↗</span></div>
+        <div class="scr-h"><b data-i18n="caso.phoneTitle">Reservas</b><span data-i18n="caso.phoneLive">· en vivo</span></div>
+        <div class="rrow"><span class="rd" data-i18n="caso.dayFri">Vie</span><div><b>María López</b><small data-i18n="caso.r1">4 personas · 8:00 PM</small></div><span class="rw">↗</span></div>
+        <div class="rrow"><span class="rd" data-i18n="caso.daySat">Sáb</span><div><b>Carlos Ruiz</b><small data-i18n="caso.r2">2 personas · 9:00 PM</small></div><span class="rw">↗</span></div>
+        <div class="rrow"><span class="rd" data-i18n="caso.daySat">Sáb</span><div><b>Ana Torres</b><small data-i18n="caso.r3">6 personas · 7:00 PM</small></div><span class="rw">↗</span></div>
+        <div class="rrow"><span class="rd" data-i18n="caso.daySat">Sáb</span><div><b>Luis Márquez</b><small data-i18n="caso.r4">3 personas · 10:00 PM</small></div><span class="rw">↗</span></div>
       </div>
     </div>
   </div>
@@ -371,17 +431,17 @@ footer .copy{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform
   <span class="bignum" aria-hidden="true">02</span>
   <div class="wrap">
     <div class="sv-head rv">
-      <div class="lab"><span class="n">02 —</span> Qué hacemos</div>
-      <h2 class="h2" style="margin-top:20px">Más que una <em>página bonita.</em></h2>
-      <p class="lead" style="margin-top:16px">Diseñamos sitios que funcionan como tu mejor vendedor — con las funciones que de verdad venden.</p>
+      <div class="lab"><span class="n">02 —</span> <span data-i18n="serv.eyebrow">Qué hacemos</span></div>
+      <h2 class="h2" style="margin-top:20px" data-i18n="serv.h2">Más que una <em>página bonita.</em></h2>
+      <p class="lead" style="margin-top:16px" data-i18n="serv.lead">Diseñamos sitios que funcionan como tu mejor vendedor — con las funciones que de verdad venden.</p>
     </div>
     <div class="grid3 rv d1">
-      <div class="card"><div class="ctop"><span class="no">i</span><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M9 21h6"/></svg></div><h3>Páginas web premium</h3><p>Diseño a la medida de tu negocio, rápido y optimizado para celular. Único, nunca de plantilla.</p></div>
-      <div class="card"><div class="ctop"><span class="no">ii</span><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div><h3>Sistema de reservas</h3><p>Que aparten su lugar o su cita directo desde tu página, y te lleguen solas.</p></div>
-      <div class="card"><div class="ctop"><span class="no">iii</span><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M21 14v.01M17 21h4M21 18v3"/></svg></div><h3>Menú digital QR</h3><p>Tu menú siempre actualizado, con código QR para las mesas y foto de cada platillo.</p></div>
-      <div class="card"><div class="ctop"><span class="no">iv</span><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h2M12 10h2M16 10h0M8 14h2M12 14h2M8 18h6"/></svg></div><h3>Cotizador automático</h3><p>Tus clientes ven un estimado al instante y te llegan listos para cerrar.</p></div>
-      <div class="card"><div class="ctop"><span class="no">v</span><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3 21l1.9-5.6A8.5 8.5 0 1 1 21 11.5z"/></svg></div><h3>Botón de WhatsApp</h3><p>Que te contacten directo, sin fricción — el cliente a un toque de distancia.</p></div>
-      <div class="card"><div class="ctop"><span class="no">vi</span><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div><h3>SEO básico</h3><p>Para que te encuentren en Google cuando te buscan por tu zona.</p></div>
+      <div class="card"><div class="ctop"><span class="no">i</span><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M9 21h6"/></svg></div><h3 data-i18n="serv.c1t">Páginas web premium</h3><p data-i18n="serv.c1p">Diseño a la medida de tu negocio, rápido y optimizado para celular. Único, nunca de plantilla.</p></div>
+      <div class="card"><div class="ctop"><span class="no">ii</span><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div><h3 data-i18n="serv.c2t">Sistema de reservas</h3><p data-i18n="serv.c2p">Que aparten su lugar o su cita directo desde tu página, y te lleguen solas.</p></div>
+      <div class="card"><div class="ctop"><span class="no">iii</span><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M21 14v.01M17 21h4M21 18v3"/></svg></div><h3 data-i18n="serv.c3t">Menú digital QR</h3><p data-i18n="serv.c3p">Tu menú siempre actualizado, con código QR para las mesas y foto de cada platillo.</p></div>
+      <div class="card"><div class="ctop"><span class="no">iv</span><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h2M12 10h2M16 10h0M8 14h2M12 14h2M8 18h6"/></svg></div><h3 data-i18n="serv.c4t">Cotizador automático</h3><p data-i18n="serv.c4p">Tus clientes ven un estimado al instante y te llegan listos para cerrar.</p></div>
+      <div class="card"><div class="ctop"><span class="no">v</span><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3 21l1.9-5.6A8.5 8.5 0 1 1 21 11.5z"/></svg></div><h3 data-i18n="serv.c5t">Botón de WhatsApp</h3><p data-i18n="serv.c5p">Que te contacten directo, sin fricción — el cliente a un toque de distancia.</p></div>
+      <div class="card"><div class="ctop"><span class="no">vi</span><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div><h3 data-i18n="serv.c6t">SEO básico</h3><p data-i18n="serv.c6p">Para que te encuentren en Google cuando te buscan por tu zona.</p></div>
     </div>
   </div>
 </section>
@@ -391,8 +451,8 @@ footer .copy{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform
   <span class="bignum" aria-hidden="true">03</span>
   <div class="wrap">
     <div class="rv">
-      <div class="lab"><span class="n">03 —</span> Nuestro trabajo</div>
-      <h2 class="h2" style="margin-top:20px">Proyectos que ya están <em>en línea.</em></h2>
+      <div class="lab"><span class="n">03 —</span> <span data-i18n="trabajo.eyebrow">Nuestro trabajo</span></div>
+      <h2 class="h2" style="margin-top:20px" data-i18n="trabajo.h2">Proyectos que ya están <em>en línea.</em></h2>
     </div>
     <div class="work-grid">
       <a href="https://cardio-bonfil.vercel.app/" target="_blank" rel="noopener" class="work rv">
@@ -401,16 +461,16 @@ footer .copy{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform
             <div class="w-bar"><i></i><i></i><i></i></div>
             <div class="w-inner"><span class="w-name">Cardio Bonfil</span></div>
           </div>
-          <div class="w-over"><span>Ver sitio →</span></div>
+          <div class="w-over"><span data-i18n="trabajo.verSitio">Ver sitio →</span></div>
         </div>
-        <div class="w-meta"><div><span class="w-tag">Club deportivo · Fitness</span><h3>Cardio Bonfil</h3></div><span class="w-st live">● En vivo</span></div>
+        <div class="w-meta"><div><span class="w-tag" data-i18n="trabajo.tag1">Club deportivo · Fitness</span><h3>Cardio Bonfil</h3></div><span class="w-st live" data-i18n="trabajo.live">● En vivo</span></div>
       </a>
       <a href="#contacto" class="work work-you rv d1">
         <div class="w-shot">
           <div class="w-plus">+</div>
-          <span class="w-name2">¿El siguiente eres tú?</span>
+          <span class="w-name2" data-i18n="trabajo.next">¿El siguiente eres tú?</span>
         </div>
-        <div class="w-meta"><div><span class="w-tag">Disponible</span><h3>Tu negocio aquí</h3></div><span class="w-st">Empezar →</span></div>
+        <div class="w-meta"><div><span class="w-tag" data-i18n="trabajo.tag2">Disponible</span><h3 data-i18n="trabajo.title2">Tu negocio aquí</h3></div><span class="w-st" data-i18n="trabajo.empezar">Empezar →</span></div>
       </a>
     </div>
   </div>
@@ -421,11 +481,11 @@ footer .copy{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform
   <span class="bignum" aria-hidden="true">04</span>
   <div class="wrap">
     <div class="next rv">
-      <div class="lab c"><span class="n">04 —</span> Lo que viene</div>
-      <h2 class="h2">Empezamos por tu página. <em>Vamos por todo tu crecimiento.</em></h2>
-      <p class="lead" style="text-align:center">Reyvo es tu aliado digital completo. Muy pronto sumamos redes sociales, automatización, CRM y campañas — todo conectado para hacer crecer tu negocio.</p>
+      <div class="lab c"><span class="n">04 —</span> <span data-i18n="next.eyebrow">Lo que viene</span></div>
+      <h2 class="h2" data-i18n="next.h2">Empezamos por tu página. <em>Vamos por todo tu crecimiento.</em></h2>
+      <p class="lead" style="text-align:center" data-i18n="next.lead">Reyvo es tu aliado digital completo. Muy pronto sumamos redes sociales, automatización, CRM y campañas — todo conectado para hacer crecer tu negocio.</p>
       <div class="chips">
-        <span class="c">Redes sociales</span><span class="c">CRM</span><span class="c">Campañas / ADS</span>
+        <span class="c" data-i18n="next.chip1">Redes sociales</span><span class="c" data-i18n="next.chip2">CRM</span><span class="c" data-i18n="next.chip3">Campañas / ADS</span>
       </div>
     </div>
   </div>
@@ -436,27 +496,27 @@ footer .copy{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform
   <span class="bignum" aria-hidden="true">05</span>
   <div class="wrap">
     <div class="rv" style="text-align:center;max-width:640px;margin:0 auto">
-      <div class="lab c"><span class="n">05 —</span> Precios</div>
-      <h2 class="h2" style="margin-top:20px">Un precio claro, <em>sin sorpresas.</em></h2>
+      <div class="lab c"><span class="n">05 —</span> <span data-i18n="precios.eyebrow">Precios</span></div>
+      <h2 class="h2" style="margin-top:20px" data-i18n="precios.h2">Un precio claro, <em>sin sorpresas.</em></h2>
     </div>
     <div class="price rv d1">
       <div class="ph">
-        <p class="pn">Landing Reyvo</p>
-        <div class="amt">$4,399 MXN<small>Precio de lanzamiento</small></div>
-        <p class="mes">+ <b>$1,099 / mes</b> de hosting y mantenimiento</p>
+        <p class="pn" data-i18n="precios.pn">Landing Reyvo</p>
+        <div class="amt">$4,399 MXN<small data-i18n="precios.amtNote">Precio de lanzamiento</small></div>
+        <p class="mes" data-i18n="precios.mes">+ <b>$1,099 / mes</b> de hosting y mantenimiento</p>
       </div>
       <div class="pb">
-        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Sitio de una página a la medida</div>
-        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Diseño premium y optimizado para celular</div>
-        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Botón de WhatsApp y enlace a tus redes</div>
-        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>SEO básico + hosting configurado</div>
-        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>2 rondas de cambios</div>
-        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Entrega en 7–10 días hábiles</div>
-        <p class="note">Pago 50% para arrancar y 50% contra entrega.</p>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="precios.f1">Sitio de una página a la medida</span></div>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="precios.f2">Diseño premium y optimizado para celular</span></div>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="precios.f3">Botón de WhatsApp y enlace a tus redes</span></div>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="precios.f4">SEO básico + hosting configurado</span></div>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="precios.f5">2 rondas de cambios</span></div>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="precios.f6">Entrega en 7–10 días hábiles</span></div>
+        <p class="note" data-i18n="precios.note">Pago 50% para arrancar y 50% contra entrega.</p>
       </div>
-      <div class="pf"><a href="#contacto" class="btn">Quiero mi página →</a></div>
+      <div class="pf"><a href="#contacto" class="btn" data-i18n="precios.cta">Quiero mi página →</a></div>
     </div>
-    <p class="price-extra rv d2">¿Necesitas menú digital, reservas o algo totalmente a la medida? Cuéntanos tu proyecto y te pasamos una propuesta.</p>
+    <p class="price-extra rv d2" data-i18n="precios.extra">¿Necesitas menú digital, reservas o algo totalmente a la medida? Cuéntanos tu proyecto y te pasamos una propuesta.</p>
   </div>
 </section>
 
@@ -465,26 +525,26 @@ footer .copy{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform
   <span class="bignum" aria-hidden="true">06</span>
   <div class="wrap">
     <div class="rv">
-      <div class="lab c"><span class="n">06 —</span> Quiero mi página</div>
-      <h2 class="h2" style="margin-top:20px">¿Listo para verte <em>increíble?</em></h2>
-      <p class="lead" style="text-align:center">Cuéntanos qué haces y te llega directo a nuestro WhatsApp. Te contestamos en menos de 24 h.</p>
+      <div class="lab c"><span class="n">06 —</span> <span data-i18n="contacto.eyebrow">Quiero mi página</span></div>
+      <h2 class="h2" style="margin-top:20px" data-i18n="contacto.h2">¿Listo para verte <em>increíble?</em></h2>
+      <p class="lead" style="text-align:center" data-i18n="contacto.lead">Cuéntanos qué haces y te llega directo a nuestro WhatsApp. Te contestamos en menos de 24 h.</p>
     </div>
     <div class="form-wrap">
       <div class="form-card rv d1">
-        <div class="field"><label>Nombre <span class="req">*</span></label><input type="text" data-q="Nombre" data-req placeholder="Tu nombre"></div>
-        <div class="field"><label>Negocio / giro <span class="req">*</span></label><input type="text" data-q="Negocio / giro" data-req placeholder="Ej. Tacos El Güero — comida"></div>
-        <div class="field"><label>WhatsApp <span class="req">*</span></label><input type="tel" data-q="WhatsApp" data-req placeholder="Ej. 55 1234 5678"></div>
-        <div class="field"><label>¿Qué necesitas? <span class="req">*</span></label>
+        <div class="field"><label data-i18n="contacto.lNombre">Nombre <span class="req">*</span></label><input type="text" data-q="Nombre" data-req data-i18n-ph="contacto.pNombre" placeholder="Tu nombre"></div>
+        <div class="field"><label data-i18n="contacto.lNegocio">Negocio / giro <span class="req">*</span></label><input type="text" data-q="Negocio / giro" data-req data-i18n-ph="contacto.pNegocio" placeholder="Ej. Tacos El Güero — comida"></div>
+        <div class="field"><label data-i18n="contacto.lWa">WhatsApp <span class="req">*</span></label><input type="tel" data-q="WhatsApp" data-req data-i18n-ph="contacto.pWa" placeholder="Ej. 55 1234 5678"></div>
+        <div class="field"><label data-i18n="contacto.lNecesita">¿Qué necesitas? <span class="req">*</span></label>
           <select data-q="Qué necesita" data-req>
-            <option value="">Elige una opción…</option>
-            <option>Página nueva</option><option>Menú digital</option><option>Sistema de reservas</option><option>Cotizador</option><option>No estoy seguro</option>
+            <option value="" data-i18n="contacto.oElige">Elige una opción…</option>
+            <option value="Página nueva" data-i18n="contacto.o1">Página nueva</option><option value="Menú digital" data-i18n="contacto.o2">Menú digital</option><option value="Sistema de reservas" data-i18n="contacto.o3">Sistema de reservas</option><option value="Cotizador" data-i18n="contacto.o4">Cotizador</option><option value="No estoy seguro" data-i18n="contacto.o5">No estoy seguro</option>
           </select>
         </div>
-        <div class="field"><label>Mensaje (opcional)</label><textarea data-q="Mensaje" placeholder="Cuéntanos lo que tengas en mente…"></textarea></div>
-        <div class="field check"><input type="checkbox" id="consent"><label for="consent">He leído y acepto el <a href="aviso-privacidad.html" target="_blank" rel="noopener">Aviso de Privacidad</a>.</label></div>
-        <button type="button" class="btn" id="btnWA">Enviar por WhatsApp →</button>
+        <div class="field"><label data-i18n="contacto.lMsg">Mensaje (opcional)</label><textarea data-q="Mensaje" data-i18n-ph="contacto.pMsg" placeholder="Cuéntanos lo que tengas en mente…"></textarea></div>
+        <div class="field check"><input type="checkbox" id="consent"><label for="consent" data-i18n="contacto.consent">He leído y acepto el <a href="aviso-privacidad.html" target="_blank" rel="noopener">Aviso de Privacidad</a>.</label></div>
+        <button type="button" class="btn" id="btnWA" data-i18n="contacto.btn">Enviar por WhatsApp →</button>
         <p class="err" id="err"></p>
-        <p class="form-alt">O escríbenos directo: <a href="https://wa.me/525568050041" target="_blank" rel="noopener">wa.me/525568050041</a></p>
+        <p class="form-alt" data-i18n="contacto.alt">O escríbenos directo: <a href="https://wa.me/525568050041" target="_blank" rel="noopener">wa.me/525568050041</a></p>
       </div>
     </div>
   </div>
@@ -496,30 +556,30 @@ footer .copy{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform
   <div class="wrap">
     <div>
       <div class="lab rv"><span class="n">07 —</span> Reyvo Automation</div>
-      <h2 class="h2" style="margin-top:20px">¿Cuántos clientes estás perdiendo<br><em>por no dar seguimiento?</em></h2>
-      <p class="lead rv d1">Reyvo automatiza la atención, calificación y seguimiento de tus prospectos para que tu negocio pueda responder y convertir oportunidades sin hacerlo todo manualmente.</p>
+      <h2 class="h2" style="margin-top:20px" data-i18n="auto.h2">¿Cuántos clientes estás perdiendo<br><em>por no dar seguimiento?</em></h2>
+      <p class="lead rv d1" data-i18n="auto.lead">Reyvo automatiza la atención, calificación y seguimiento de tus prospectos para que tu negocio pueda responder y convertir oportunidades sin hacerlo todo manualmente.</p>
       <div class="chips rv d1" style="justify-content:flex-start;margin-top:24px">
-        <span class="c">Respuestas tardías</span><span class="c">Conversaciones abandonadas</span><span class="c">Falta de seguimiento</span><span class="c">Mensajes repetitivos</span><span class="c">Prospectos desorganizados</span><span class="c">Oportunidades sin prioridad</span>
+        <span class="c" data-i18n="auto.p1">Respuestas tardías</span><span class="c" data-i18n="auto.p2">Conversaciones abandonadas</span><span class="c" data-i18n="auto.p3">Falta de seguimiento</span><span class="c" data-i18n="auto.p4">Mensajes repetitivos</span><span class="c" data-i18n="auto.p5">Prospectos desorganizados</span><span class="c" data-i18n="auto.p6">Oportunidades sin prioridad</span>
       </div>
-      <p class="lead rv d2" style="margin-top:20px"><b>Reyvo se encarga de lo repetitivo.</b></p>
+      <p class="lead rv d2" style="margin-top:20px" data-i18n="auto.closing"><b>Reyvo se encarga de lo repetitivo.</b></p>
       <div class="rv d2" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:10px">
-        <a href="#automatizacion-contacto" class="btn light">Quiero automatizar mi negocio →</a>
-        <a href="#auto-como" class="btn ghost">Ver cómo funciona →</a>
+        <a href="#automatizacion-contacto" class="btn light" data-i18n="auto.cta1">Quiero automatizar mi negocio →</a>
+        <a href="#auto-como" class="btn ghost" data-i18n="auto.cta2">Ver cómo funciona →</a>
       </div>
     </div>
     <div class="mock chat-mock rv d1">
       <div class="bar"><i></i><i></i><i></i><span class="u">Reyvo Automation · WhatsApp</span></div>
       <div class="scr">
         <div class="chat">
-          <div class="bub cli">Hola, ¿cuánto cuesta el servicio?</div>
-          <div class="bub rey">¡Hola! Claro. Para ayudarte mejor, ¿qué servicio estás buscando?</div>
-          <div class="bub cli">Quiero información sobre el servicio.</div>
-          <div class="bub rey">Perfecto. ¿Es la primera vez que utilizas este servicio?</div>
-          <div class="bub cli">Sí.</div>
-          <div class="bub rey">Excelente. Tenemos disponibilidad. ¿Qué día te gustaría?</div>
+          <div class="bub cli" data-i18n="auto.chat1">Hola, ¿cuánto cuesta el servicio?</div>
+          <div class="bub rey" data-i18n="auto.chat2">¡Hola! Claro. Para ayudarte mejor, ¿qué servicio estás buscando?</div>
+          <div class="bub cli" data-i18n="auto.chat3">Quiero información sobre el servicio.</div>
+          <div class="bub rey" data-i18n="auto.chat4">Perfecto. ¿Es la primera vez que utilizas este servicio?</div>
+          <div class="bub cli" data-i18n="auto.chat5">Sí.</div>
+          <div class="bub rey" data-i18n="auto.chat6">Excelente. Tenemos disponibilidad. ¿Qué día te gustaría?</div>
         </div>
         <div class="chat-tags">
-          <b>✓ Prospecto identificado</b><b>✓ Servicio detectado</b><b>✓ Intención registrada</b><b>✓ Seguimiento preparado</b><b>✓ Cita potencial</b>
+          <b data-i18n="auto.tag1">✓ Prospecto identificado</b><b data-i18n="auto.tag2">✓ Servicio detectado</b><b data-i18n="auto.tag3">✓ Intención registrada</b><b data-i18n="auto.tag4">✓ Seguimiento preparado</b><b data-i18n="auto.tag5">✓ Cita potencial</b>
         </div>
       </div>
     </div>
@@ -531,15 +591,19 @@ footer .copy{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform
   <span class="bignum" aria-hidden="true">08</span>
   <div class="wrap">
     <div class="sv-head rv">
-      <div class="lab"><span class="n">08 —</span> Qué automatizamos</div>
-      <h2 class="h2" style="margin-top:20px">Lo repetitivo, <em>resuelto.</em></h2>
-      <p class="lead" style="margin-top:16px">Cuatro piezas que trabajan juntas para que ningún prospecto se quede sin respuesta.</p>
+      <div class="lab"><span class="n">08 —</span> <span data-i18n="autoComo.eyebrow">Qué automatizamos</span></div>
+      <h2 class="h2" style="margin-top:20px" data-i18n="autoComo.h2">Lo repetitivo, <em>resuelto.</em></h2>
+      <p class="lead" style="margin-top:16px" data-i18n="autoComo.lead">Combina las piezas que tu negocio necesita — no tienes que automatizarlo todo de una vez.</p>
     </div>
     <div class="grid4 rv d1">
-      <div class="card"><div class="ctop"><span class="no">i</span><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3 21l1.9-5.6A8.5 8.5 0 1 1 21 11.5z"/></svg></div><h3>Atención</h3><p>Respuestas automáticas y asistentes de IA.</p></div>
-      <div class="card"><div class="ctop"><span class="no">ii</span><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16l-6 8v6l-4 2v-8z"/></svg></div><h3>Captación</h3><p>Capturamos y organizamos cada prospecto.</p></div>
-      <div class="card"><div class="ctop"><span class="no">iii</span><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r=".6" fill="currentColor"/></svg></div><h3>Calificación</h3><p>Identificamos cuáles tienen mayor intención.</p></div>
-      <div class="card"><div class="ctop"><span class="no">iv</span><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7M21 3v6h-6"/></svg></div><h3>Seguimiento</h3><p>Recuperamos conversaciones que quedaron abandonadas.</p></div>
+      <div class="card"><div class="ctop"><span class="no">i</span><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3 21l1.9-5.6A8.5 8.5 0 1 1 21 11.5z"/></svg></div><h3 data-i18n="autoComo.c1t">Atención inicial</h3><p data-i18n="autoComo.c1p">Responde al instante, sin que el prospecto espere.</p></div>
+      <div class="card"><div class="ctop"><span class="no">ii</span><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r=".6" fill="currentColor"/></svg></div><h3 data-i18n="autoComo.c2t">Calificación de prospectos</h3><p data-i18n="autoComo.c2p">Detecta quién tiene mayor intención de compra.</p></div>
+      <div class="card"><div class="ctop"><span class="no">iii</span><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7M21 3v6h-6"/></svg></div><h3 data-i18n="autoComo.c3t">Seguimiento</h3><p data-i18n="autoComo.c3p">Recupera conversaciones que se quedaron sin respuesta.</p></div>
+      <div class="card"><div class="ctop"><span class="no">iv</span><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div><h3 data-i18n="autoComo.c4t">Agendamiento</h3><p data-i18n="autoComo.c4p">Aparta citas y horarios sin ida y vuelta de mensajes.</p></div>
+      <div class="card"><div class="ctop"><span class="no">v</span><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 2h6v3H9zM8 10h8M8 14h8M8 18h5"/></svg></div><h3 data-i18n="autoComo.c5t">Registro de leads</h3><p data-i18n="autoComo.c5p">Guarda cada prospecto organizado, sin hojas sueltas.</p></div>
+      <div class="card"><div class="ctop"><span class="no">vi</span><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 5 2 6 2 6H4s2-1 2-6"/><path d="M10 21a2 2 0 0 0 4 0"/></svg></div><h3 data-i18n="autoComo.c6t">Notificaciones</h3><p data-i18n="autoComo.c6p">Avisa a tu equipo cuando hay una oportunidad caliente.</p></div>
+      <div class="card"><div class="ctop"><span class="no">vii</span><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></div><h3 data-i18n="autoComo.c7t">Procesos internos</h3><p data-i18n="autoComo.c7p">Automatiza tareas repetitivas dentro de tu operación.</p></div>
+      <div class="card"><div class="ctop"><span class="no">viii</span><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 15 15 9M8 13l-2 2a3 3 0 1 0 4 4l2-2M16 11l2-2a3 3 0 1 0-4-4l-2 2"/></svg></div><h3 data-i18n="autoComo.c8t">Integración de herramientas</h3><p data-i18n="autoComo.c8p">Conecta WhatsApp, Sheets, CRM y más en un solo flujo.</p></div>
     </div>
   </div>
 </section>
@@ -549,76 +613,216 @@ footer .copy{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform
   <span class="bignum" aria-hidden="true">09</span>
   <div class="wrap">
     <div class="rv" style="text-align:center;max-width:640px;margin:0 auto">
-      <div class="lab c"><span class="n">09 —</span> El cambio</div>
-      <h2 class="h2" style="margin-top:20px">De conversaciones dispersas a <em>un sistema.</em></h2>
+      <div class="lab c"><span class="n">09 —</span> <span data-i18n="autoCambio.eyebrow">El cambio</span></div>
+      <h2 class="h2" style="margin-top:20px" data-i18n="autoCambio.h2">De conversaciones dispersas a <em>un sistema.</em></h2>
     </div>
     <div class="compare rv d1" style="margin-inline:auto">
       <div class="cbox">
-        <div class="ct">Antes</div>
-        <div class="feat bad"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>Mensajes perdidos</div>
-        <div class="feat bad"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>Seguimiento manual</div>
-        <div class="feat bad"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>Respuestas repetitivas</div>
-        <div class="feat bad" style="margin-bottom:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>Chats desordenados</div>
+        <div class="ct" data-i18n="autoCambio.antes">Antes</div>
+        <div class="feat bad"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg><span data-i18n="autoCambio.a1">Mensajes perdidos</span></div>
+        <div class="feat bad"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg><span data-i18n="autoCambio.a2">Seguimiento manual</span></div>
+        <div class="feat bad"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg><span data-i18n="autoCambio.a3">Respuestas repetitivas</span></div>
+        <div class="feat bad" style="margin-bottom:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg><span data-i18n="autoCambio.a4">Chats desordenados</span></div>
       </div>
       <div class="cbox after">
-        <div class="ct">Después</div>
-        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Prospectos registrados</div>
-        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Seguimiento automático</div>
-        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Respuestas automatizadas</div>
-        <div class="feat" style="margin-bottom:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Oportunidades clasificadas</div>
+        <div class="ct" data-i18n="autoCambio.despues">Después</div>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="autoCambio.d1">Prospectos registrados</span></div>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="autoCambio.d2">Seguimiento automático</span></div>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="autoCambio.d3">Respuestas automatizadas</span></div>
+        <div class="feat" style="margin-bottom:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="autoCambio.d4">Oportunidades clasificadas</span></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- CÓMO TRABAJAMOS -->
+<section class="pad" id="auto-proceso" style="background:var(--band)">
+  <span class="bignum" aria-hidden="true">10</span>
+  <div class="wrap">
+    <div class="rv">
+      <div class="lab c"><span class="n">10 —</span> <span data-i18n="comoT.eyebrow">Cómo trabajamos</span></div>
+      <h2 class="h2" style="margin-top:20px" data-i18n="comoT.h2">Un proceso claro, <em>de principio a fin.</em></h2>
+      <p class="lead" style="text-align:center" data-i18n="comoT.lead">Nada de improvisar sobre la marcha — así se construye tu automatización, paso por paso.</p>
+    </div>
+    <div class="steps rv d1">
+      <div class="step-row"><span class="sn">01</span><div><h3 data-i18n="comoT.s1t">Diagnóstico</h3><p data-i18n="comoT.s1p">Entendemos cómo funciona actualmente tu proceso.</p></div></div>
+      <div class="step-row"><span class="sn">02</span><div><h3 data-i18n="comoT.s2t">Diseño</h3><p data-i18n="comoT.s2p">Diseñamos el flujo que mejor se adapta a tu negocio.</p></div></div>
+      <div class="step-row"><span class="sn">03</span><div><h3 data-i18n="comoT.s3t">Automatización</h3><p data-i18n="comoT.s3p">Construimos y conectamos el sistema.</p></div></div>
+      <div class="step-row"><span class="sn">04</span><div><h3 data-i18n="comoT.s4t">Pruebas</h3><p data-i18n="comoT.s4p">Verificamos que el flujo funcione correctamente.</p></div></div>
+      <div class="step-row"><span class="sn">05</span><div><h3 data-i18n="comoT.s5t">Implementación</h3><p data-i18n="comoT.s5p">Ponemos la automatización en operación.</p></div></div>
+      <div class="step-row"><span class="sn">06</span><div><h3 data-i18n="comoT.s6t">Capacitación</h3><p data-i18n="comoT.s6p">Te explicamos cómo utilizarla.</p></div></div>
+      <div class="step-row"><span class="sn">07</span><div><h3 data-i18n="comoT.s7t">Operación</h3><p data-i18n="comoT.s7p">Mantenemos y ajustamos el sistema según el alcance acordado.</p></div></div>
     </div>
   </div>
 </section>
 
 <!-- OFERTA AUTOMATIZACIÓN -->
 <section class="pad" id="auto-oferta">
-  <span class="bignum" aria-hidden="true">10</span>
+  <span class="bignum" aria-hidden="true">11</span>
   <div class="wrap">
     <div class="rv" style="text-align:center;max-width:640px;margin:0 auto">
-      <div class="lab c"><span class="n">10 —</span> La inversión</div>
-      <h2 class="h2" style="margin-top:20px">Automatización, <em>sin complicarte.</em></h2>
+      <div class="lab c"><span class="n">11 —</span> <span data-i18n="autoOferta.eyebrow">La inversión</span></div>
+      <h2 class="h2" style="margin-top:20px" data-i18n="autoOferta.h2">Automatización, <em>sin complicarte.</em></h2>
     </div>
     <div class="price rv d1">
       <div class="ph">
-        <p class="pn">Automatización personalizada</p>
-        <div class="amt">Desde $3,500 MXN<small>Diagnóstico + construcción</small></div>
-        <p class="mes">+ <b>$1,500 MXN / mes</b> de mantenimiento</p>
+        <p class="pn" data-i18n="autoOferta.pn">Reyvo Automation</p>
+        <div class="amt">$1,999 MXN<small data-i18n="autoOferta.amtNote">Implementación inicial</small></div>
+        <p class="mes" data-i18n="autoOferta.mes">+ <b>$799 MXN / mes</b> de operación y mantenimiento</p>
       </div>
       <div class="pb">
-        <p style="color:var(--soft);font-size:.92rem;margin-bottom:20px">Construimos sistemas de automatización adaptados al proceso comercial de tu negocio.</p>
-        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Diagnóstico</div>
-        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Diseño del flujo</div>
-        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Automatización</div>
-        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Integraciones</div>
-        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Pruebas</div>
-        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Implementación</div>
-        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Capacitación</div>
-        <p class="note">Los costos de plataformas, APIs y servicios de terceros pueden variar según las herramientas y el volumen de uso.</p>
+        <p style="color:var(--soft);font-size:.92rem;margin-bottom:20px" data-i18n="autoOferta.desc">Precio de lanzamiento para nuestros primeros clientes.</p>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="autoOferta.f1">Diagnóstico</span></div>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="autoOferta.f2">Diseño del flujo</span></div>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="autoOferta.f3">Automatización</span></div>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="autoOferta.f4">Integraciones</span></div>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="autoOferta.f5">Pruebas</span></div>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="autoOferta.f6">Implementación</span></div>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="autoOferta.f7">Capacitación</span></div>
+        <div class="feat" style="margin-bottom:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="autoOferta.f8">Operación y ajustes</span></div>
+        <p class="note" data-i18n="autoOferta.note">Los costos de plataformas, APIs y servicios de terceros pueden variar según las herramientas y el volumen de uso.</p>
       </div>
-      <div class="pf"><a href="#automatizacion-contacto" class="btn">Quiero mi diagnóstico →</a></div>
+      <div class="pf"><a href="#automatizacion-contacto" class="btn" data-i18n="autoOferta.cta">Quiero mi diagnóstico →</a></div>
     </div>
   </div>
 </section>
 
-<!-- FORM AUTOMATIZACIÓN -->
+<!-- DIAGNÓSTICO AUTOMATIZACIÓN -->
 <section class="pad cta-sec" id="automatizacion-contacto">
-  <span class="bignum" aria-hidden="true">11</span>
+  <span class="bignum" aria-hidden="true">12</span>
   <div class="wrap">
-    <div class="rv">
-      <div class="lab c"><span class="n">11 —</span> Automatiza tu negocio</div>
-      <h2 class="h2" style="margin-top:20px">Cuéntanos qué quieres <em>automatizar.</em></h2>
-      <p class="lead" style="text-align:center">Te escribimos directo a tu WhatsApp para armar tu diagnóstico. Sin costo.</p>
+    <div class="rv" id="diagIntro">
+      <div class="lab c"><span class="n">12 —</span> <span data-i18n="diag.eyebrow">Automatiza tu negocio</span></div>
+      <h2 class="h2" style="margin-top:20px" data-i18n="diag.h2">Tu diagnóstico <em>gratuito.</em></h2>
+      <p class="lead" style="text-align:center" data-i18n="diag.lead">6 pasos rápidos. Al final sabremos exactamente qué puedes automatizar primero.</p>
     </div>
-    <div class="form-wrap">
-      <div class="form-card rv d1">
-        <div class="field"><label>Nombre <span class="req">*</span></label><input type="text" data-q="Nombre" data-req placeholder="Tu nombre"></div>
-        <div class="field"><label>WhatsApp <span class="req">*</span></label><input type="tel" data-q="WhatsApp" data-req placeholder="Ej. 55 1234 5678"></div>
-        <div class="field"><label>¿Qué proceso quieres automatizar? <span class="req">*</span></label><textarea data-q="Proceso a automatizar" data-req placeholder="Ej. Seguimiento de prospectos por WhatsApp"></textarea></div>
-        <div class="field check"><input type="checkbox" id="consentAuto"><label for="consentAuto">He leído y acepto el <a href="aviso-privacidad.html" target="_blank" rel="noopener">Aviso de Privacidad</a>.</label></div>
-        <button type="button" class="btn" id="btnWAauto">Analizar mi proceso →</button>
-        <p class="err" id="errAuto"></p>
-        <p class="form-alt">O escríbenos directo: <a href="https://wa.me/525568050041" target="_blank" rel="noopener">wa.me/525568050041</a></p>
+
+    <div class="diag-wrap rv d1">
+      <div class="diag-progress" id="diagProgress">
+        <div class="diag-bar"><div class="diag-bar-fill" id="diagBarFill"></div></div>
+        <div class="diag-steplabel" id="diagStepLabel" data-i18n="diag.step1of6">Paso 1 de 6</div>
+      </div>
+
+      <form id="diagForm" class="diag-card" novalidate>
+        <div class="diag-step" data-step="1">
+          <h3 class="diag-st" data-i18n="diag.st1">Información del negocio</h3>
+          <div class="field"><label data-i18n="diag.lNombre">Nombre <span class="req">*</span></label><input type="text" data-f="nombre" data-req data-i18n-ph="diag.pNombre" placeholder="Tu nombre"></div>
+          <div class="field"><label data-i18n="diag.lNegocio">Nombre del negocio <span class="req">*</span></label><input type="text" data-f="negocio" data-req data-i18n-ph="diag.pNegocio" placeholder="Ej. Tacos El Güero"></div>
+          <div class="field"><label data-i18n="diag.lWa">WhatsApp <span class="req">*</span></label><input type="tel" data-f="whatsapp" data-req data-i18n-ph="diag.pWa" placeholder="Ej. 55 1234 5678"></div>
+          <div class="field"><label data-i18n="diag.lEmail">Correo electrónico <span class="req">*</span></label><input type="email" data-f="email" data-req data-i18n-ph="diag.pEmail" placeholder="tu@correo.com"></div>
+          <div class="field"><label data-i18n="diag.lCiudad">Ciudad <span class="req">*</span></label><input type="text" data-f="ciudad" data-req data-i18n-ph="diag.pCiudad" placeholder="Ej. Toluca"></div>
+          <div class="field"><label data-i18n="diag.lGiro">Giro del negocio <span class="req">*</span></label><input type="text" data-f="giro" data-req data-i18n-ph="diag.pGiro" placeholder="Ej. Restaurante, clínica, tienda…"></div>
+          <div class="field"><label data-i18n="diag.lWeb">Sitio web / Instagram (opcional)</label><input type="text" data-f="web" data-i18n-ph="diag.pWeb" placeholder="Ej. @tunegocio"></div>
+        </div>
+
+        <div class="diag-step" data-step="2" hidden>
+          <h3 class="diag-st" data-i18n="diag.st2">Proceso comercial</h3>
+          <div class="field"><label data-i18n="diag.qCanales">¿Cómo llegan actualmente tus clientes? <span class="req">*</span></label>
+            <div class="opts" data-f="canales" data-req data-multi>
+              <label class="opt"><input type="checkbox" value="WhatsApp"><span data-i18n="diag.oWa">WhatsApp</span></label>
+              <label class="opt"><input type="checkbox" value="Instagram"><span data-i18n="diag.oIg">Instagram</span></label>
+              <label class="opt"><input type="checkbox" value="Facebook"><span data-i18n="diag.oFb">Facebook</span></label>
+              <label class="opt"><input type="checkbox" value="Página web"><span data-i18n="diag.oWeb">Página web</span></label>
+              <label class="opt"><input type="checkbox" value="Llamadas"><span data-i18n="diag.oLlamadas">Llamadas</span></label>
+              <label class="opt"><input type="checkbox" value="Referidos"><span data-i18n="diag.oReferidos">Referidos</span></label>
+              <label class="opt"><input type="checkbox" value="Otro"><span data-i18n="diag.oOtro">Otro</span></label>
+            </div>
+          </div>
+          <div class="field"><label data-i18n="diag.qVolumen">¿Cuántos prospectos reciben aproximadamente al mes? <span class="req">*</span></label>
+            <div class="opts" data-f="volumen" data-req>
+              <label class="opt"><input type="radio" name="volumen" value="1–20"><span>1–20</span></label>
+              <label class="opt"><input type="radio" name="volumen" value="21–50"><span>21–50</span></label>
+              <label class="opt"><input type="radio" name="volumen" value="51–100"><span>51–100</span></label>
+              <label class="opt"><input type="radio" name="volumen" value="101–300"><span>101–300</span></label>
+              <label class="opt"><input type="radio" name="volumen" value="300+"><span>300+</span></label>
+            </div>
+          </div>
+          <div class="field"><label data-i18n="diag.qResponsable">¿Quién responde actualmente a los prospectos? <span class="req">*</span></label>
+            <div class="opts" data-f="responsable" data-req>
+              <label class="opt"><input type="radio" name="responsable" value="Yo"><span data-i18n="diag.oYo">Yo</span></label>
+              <label class="opt"><input type="radio" name="responsable" value="Un vendedor"><span data-i18n="diag.oVendedor">Un vendedor</span></label>
+              <label class="opt"><input type="radio" name="responsable" value="Un equipo de ventas"><span data-i18n="diag.oEquipo">Un equipo de ventas</span></label>
+              <label class="opt"><input type="radio" name="responsable" value="Recepción / administración"><span data-i18n="diag.oRecepcion">Recepción / administración</span></label>
+              <label class="opt"><input type="radio" name="responsable" value="Otro"><span data-i18n="diag.oOtro">Otro</span></label>
+            </div>
+          </div>
+        </div>
+
+        <div class="diag-step" data-step="3" hidden>
+          <h3 class="diag-st" data-i18n="diag.st3">Problemas actuales</h3>
+          <div class="field"><label data-i18n="diag.qProblemas">¿Cuáles de estos problemas tienes actualmente? <span class="req">*</span></label>
+            <div class="opts" data-f="problemas" data-req data-multi>
+              <label class="opt"><input type="checkbox" value="Tardamos demasiado en responder"><span data-i18n="diag.pr1">Tardamos demasiado en responder</span></label>
+              <label class="opt"><input type="checkbox" value="Perdemos conversaciones"><span data-i18n="diag.pr2">Perdemos conversaciones</span></label>
+              <label class="opt"><input type="checkbox" value="No damos seguimiento"><span data-i18n="diag.pr3">No damos seguimiento</span></label>
+              <label class="opt"><input type="checkbox" value="Repetimos las mismas respuestas"><span data-i18n="diag.pr4">Repetimos las mismas respuestas</span></label>
+              <label class="opt"><input type="checkbox" value="No sabemos qué prospectos tienen mayor intención"><span data-i18n="diag.pr5">No sabemos qué prospectos tienen mayor intención</span></label>
+              <label class="opt"><input type="checkbox" value="Información desorganizada"><span data-i18n="diag.pr6">Tenemos información desorganizada</span></label>
+              <label class="opt"><input type="checkbox" value="Dependemos de una persona"><span data-i18n="diag.pr7">Dependemos demasiado de una persona</span></label>
+              <label class="opt"><input type="checkbox" value="Perdemos oportunidades fuera de horario"><span data-i18n="diag.pr8">Perdemos oportunidades fuera de horario</span></label>
+              <label class="opt"><input type="checkbox" value="Otro"><span data-i18n="diag.oOtro">Otro</span></label>
+            </div>
+          </div>
+        </div>
+
+        <div class="diag-step" data-step="4" hidden>
+          <h3 class="diag-st" data-i18n="diag.st4">Tu objetivo</h3>
+          <div class="field"><label data-i18n="diag.qObjetivo">¿Qué te gustaría automatizar primero? <span class="req">*</span></label>
+            <div class="opts" data-f="objetivo" data-req data-multi>
+              <label class="opt"><input type="checkbox" value="Atención inicial"><span data-i18n="diag.ob1">Atención inicial</span></label>
+              <label class="opt"><input type="checkbox" value="Calificación de prospectos"><span data-i18n="diag.ob2">Calificación de prospectos</span></label>
+              <label class="opt"><input type="checkbox" value="Seguimiento"><span data-i18n="diag.ob3">Seguimiento</span></label>
+              <label class="opt"><input type="checkbox" value="Agendamiento de citas"><span data-i18n="diag.ob4">Agendamiento de citas</span></label>
+              <label class="opt"><input type="checkbox" value="Registro de prospectos"><span data-i18n="diag.ob5">Registro de prospectos</span></label>
+              <label class="opt"><input type="checkbox" value="Notificaciones al equipo"><span data-i18n="diag.ob6">Notificaciones al equipo</span></label>
+              <label class="opt"><input type="checkbox" value="Otro"><span data-i18n="diag.oOtro">Otro</span></label>
+            </div>
+          </div>
+          <div class="field"><label data-i18n="diag.qTiempo">¿Cuánto tiempo aproximadamente dedica tu equipo a estas tareas? <span class="req">*</span></label>
+            <div class="opts" data-f="tiempo" data-req>
+              <label class="opt"><input type="radio" name="tiempo" value="Menos de 1 hora al día"><span data-i18n="diag.t1">Menos de 1 hora al día</span></label>
+              <label class="opt"><input type="radio" name="tiempo" value="1–2 horas"><span>1–2 horas</span></label>
+              <label class="opt"><input type="radio" name="tiempo" value="2–4 horas"><span>2–4 horas</span></label>
+              <label class="opt"><input type="radio" name="tiempo" value="4+ horas"><span>4+ horas</span></label>
+            </div>
+          </div>
+        </div>
+
+        <div class="diag-step" data-step="5" hidden>
+          <h3 class="diag-st" data-i18n="diag.st5">Cuéntanos más</h3>
+          <div class="field"><label data-i18n="diag.lDesc">Cuéntanos brevemente qué proceso te gustaría automatizar (opcional)</label><textarea data-f="descripcion" data-i18n-ph="diag.pDesc" placeholder="Lo que tengas en mente…"></textarea></div>
+        </div>
+
+        <div class="diag-step" data-step="6" hidden>
+          <h3 class="diag-st" data-i18n="diag.st6">¿Cómo prefieres que te contactemos?</h3>
+          <div class="field">
+            <div class="opts" data-f="canalPref" data-req>
+              <label class="opt"><input type="radio" name="canalPref" value="WhatsApp"><span data-i18n="diag.oWa">WhatsApp</span></label>
+              <label class="opt"><input type="radio" name="canalPref" value="Llamada"><span data-i18n="diag.oLlamada">Llamada</span></label>
+              <label class="opt"><input type="radio" name="canalPref" value="Correo"><span data-i18n="diag.oCorreo">Correo</span></label>
+            </div>
+          </div>
+          <div class="field check"><input type="checkbox" id="consentDiag"><label for="consentDiag" data-i18n="diag.consent">He leído y acepto el <a href="aviso-privacidad.html" target="_blank" rel="noopener">Aviso de Privacidad</a>.</label></div>
+        </div>
+
+        <p class="err" id="diagErr"></p>
+
+        <div class="diag-nav">
+          <button type="button" class="btn ghost" id="diagBack" hidden data-i18n="diag.back">← Atrás</button>
+          <button type="button" class="btn" id="diagNext" data-i18n="diag.next">Siguiente →</button>
+          <button type="button" class="btn" id="diagSubmit" hidden data-i18n="diag.submit">Enviar diagnóstico →</button>
+        </div>
+      </form>
+
+      <div class="diag-result" id="diagResult" hidden>
+        <div class="diag-check">✓</div>
+        <h3 class="diag-rt" data-i18n="diag.rt">Recibimos tu diagnóstico.</h3>
+        <p class="diag-rp" data-i18n="diag.rp">Ahora podemos analizar tu proceso y detectar oportunidades de automatización.</p>
+        <div class="diag-summary" id="diagSummary"></div>
+        <div class="diag-result-cta">
+          <a href="#" id="diagWaBtn" class="btn" target="_blank" rel="noopener" data-i18n="diag.waBtn">Hablar con Reyvo por WhatsApp →</a>
+          <button type="button" class="btn ghost" id="diagRestart" data-i18n="diag.restart">Volver al sitio</button>
+        </div>
       </div>
     </div>
   </div>
@@ -629,18 +833,135 @@ footer .copy{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform
     <div class="top">
       <div class="big">Reyvo<em>.</em></div>
       <div style="display:flex;gap:50px;flex-wrap:wrap">
-        <div class="fl"><b>Contacto</b><a href="https://wa.me/525568050041" target="_blank" rel="noopener">WhatsApp</a><a href="https://www.instagram.com/reyvo.mx" target="_blank" rel="noopener">Instagram @reyvo.mx</a></div>
-        <div class="fl"><b>Explorar</b><a href="#servicios">Servicios</a><a href="#trabajo">Trabajo</a><a href="#precios">Precios</a><a href="#automatizacion">Automatización</a></div>
-        <div class="fl"><b>Legal</b><a href="terminos.html">Términos y Condiciones</a><a href="aviso-privacidad.html">Aviso de Privacidad</a></div>
+        <div class="fl"><b data-i18n="footer.contacto">Contacto</b><a href="https://wa.me/525568050041" target="_blank" rel="noopener">WhatsApp</a><a href="https://www.instagram.com/reyvo.mx" target="_blank" rel="noopener">Instagram @reyvo.mx</a></div>
+        <div class="fl"><b data-i18n="footer.explorar">Explorar</b><a href="#servicios" data-i18n="nav.servicios">Servicios</a><a href="#trabajo" data-i18n="nav.trabajo">Trabajo</a><a href="#precios" data-i18n="nav.precios">Precios</a><a href="#automatizacion" data-i18n="nav.automatizacion">Automatización</a></div>
+        <div class="fl"><b data-i18n="footer.legal">Legal</b><a href="terminos.html" data-i18n="footer.terminos">Términos y Condiciones</a><a href="aviso-privacidad.html" data-i18n="footer.privacidad">Aviso de Privacidad</a></div>
       </div>
     </div>
-    <p class="copy">© 2026 Reyvo — Estudio Digital · Estado de México</p>
+    <p class="copy" data-i18n="footer.copy">© 2026 Reyvo — Estudio Digital · Estado de México</p>
   </div>
 </footer>
 
 <a class="fab" href="https://wa.me/525568050041?text=Hola%20Reyvo%2C%20quiero%20una%20p%C3%A1gina%20para%20mi%20negocio." target="_blank" rel="noopener" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.2-.7-2.7-1.1-4.4-3.9-4.6-4.1-.1-.2-1-1.4-1-2.6s.6-1.8.9-2.1c.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.1.2.6 1 1.3 1.6.9.8 1.6 1 1.9 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.6-.1l1.8.9c.3.1.4.2.5.3.1.3.1.7-.1 1.1z"/></svg>
 </a>
+
+<script>
+window.I18N = {
+es:{
+"nav.tag":`Estudio Digital`,"nav.servicios":`Servicios`,"nav.trabajo":`Trabajo`,"nav.precios":`Precios`,"nav.automatizacion":`Automatización`,"nav.contacto":`Contacto`,"nav.cta":`Quiero mi página`,
+"hero.idx":`Estudio Digital<br>Estado de México<br>Est. 2026`,"hero.tag":`Sitios web premium a la medida`,"hero.h1a":`Tu negocio`,"hero.h1b":`merece verse`,"hero.h1c":`<em>extraordinario.</em>`,"hero.lead":`No hacemos páginas de plantilla. Diseñamos sitios únicos — cada uno con su propia personalidad — que generan confianza, despiertan deseo y trabajan por ti las 24 horas.`,"hero.cta1":`Quiero mi página →`,"hero.cta2":`Ver un proyecto real →`,"hero.rule1":`Entrega en <b>7–10 días</b>`,"hero.rule2":`Diseño <b>a la medida</b>`,"hero.rule3":`Respuesta en <b>&lt; 24 h</b>`,"hero.seal":`ESTUDIO DIGITAL · SITIOS A LA MEDIDA · REYVO · `,
+"marq.diseno":`Diseño a la medida`,"marq.reservas":`Reservas en línea`,"marq.menus":`Menús digitales`,"marq.cotiz":`Cotizadores`,"marq.wa":`WhatsApp`,"marq.seo":`SEO`,
+"caso.eyebrow":`Lo que nos hace distintos`,"caso.h2":`No hacemos páginas.<br><em>Hacemos sistemas.</em>`,"caso.lead":`La mayoría entrega una página bonita y se va. Nosotros construimos herramientas que trabajan por tu negocio — reservas, menús y paneles que te dan el control real.`,"caso.stk1":`<b>Reservas en línea</b> — el cliente aparta su lugar y queda registrado al instante.`,"caso.stk2":`<b>Menú digital con QR</b> — con foto de cada platillo, siempre actualizado.`,"caso.stk3":`<b>Tu panel privado</b> — todo en tiempo real, con WhatsApp directo a cada cliente.`,"caso.cta":`Quiero un sistema así →`,"caso.phoneTitle":`Reservas`,"caso.phoneLive":`· en vivo`,"caso.dayFri":`Vie`,"caso.daySat":`Sáb`,"caso.r1":`4 personas · 8:00 PM`,"caso.r2":`2 personas · 9:00 PM`,"caso.r3":`6 personas · 7:00 PM`,"caso.r4":`3 personas · 10:00 PM`,
+"serv.eyebrow":`Qué hacemos`,"serv.h2":`Más que una <em>página bonita.</em>`,"serv.lead":`Diseñamos sitios que funcionan como tu mejor vendedor — con las funciones que de verdad venden.`,"serv.c1t":`Páginas web premium`,"serv.c1p":`Diseño a la medida de tu negocio, rápido y optimizado para celular. Único, nunca de plantilla.`,"serv.c2t":`Sistema de reservas`,"serv.c2p":`Que aparten su lugar o su cita directo desde tu página, y te lleguen solas.`,"serv.c3t":`Menú digital QR`,"serv.c3p":`Tu menú siempre actualizado, con código QR para las mesas y foto de cada platillo.`,"serv.c4t":`Cotizador automático`,"serv.c4p":`Tus clientes ven un estimado al instante y te llegan listos para cerrar.`,"serv.c5t":`Botón de WhatsApp`,"serv.c5p":`Que te contacten directo, sin fricción — el cliente a un toque de distancia.`,"serv.c6t":`SEO básico`,"serv.c6p":`Para que te encuentren en Google cuando te buscan por tu zona.`,
+"trabajo.eyebrow":`Nuestro trabajo`,"trabajo.h2":`Proyectos que ya están <em>en línea.</em>`,"trabajo.verSitio":`Ver sitio →`,"trabajo.tag1":`Club deportivo · Fitness`,"trabajo.live":`● En vivo`,"trabajo.next":`¿El siguiente eres tú?`,"trabajo.tag2":`Disponible`,"trabajo.title2":`Tu negocio aquí`,"trabajo.empezar":`Empezar →`,
+"next.eyebrow":`Lo que viene`,"next.h2":`Empezamos por tu página. <em>Vamos por todo tu crecimiento.</em>`,"next.lead":`Reyvo es tu aliado digital completo. Muy pronto sumamos redes sociales, automatización, CRM y campañas — todo conectado para hacer crecer tu negocio.`,"next.chip1":`Redes sociales`,"next.chip2":`CRM`,"next.chip3":`Campañas / ADS`,
+"precios.eyebrow":`Precios`,"precios.h2":`Un precio claro, <em>sin sorpresas.</em>`,"precios.pn":`Landing Reyvo`,"precios.amtNote":`Precio de lanzamiento`,"precios.mes":`+ <b>$1,099 / mes</b> de hosting y mantenimiento`,"precios.f1":`Sitio de una página a la medida`,"precios.f2":`Diseño premium y optimizado para celular`,"precios.f3":`Botón de WhatsApp y enlace a tus redes`,"precios.f4":`SEO básico + hosting configurado`,"precios.f5":`2 rondas de cambios`,"precios.f6":`Entrega en 7–10 días hábiles`,"precios.note":`Pago 50% para arrancar y 50% contra entrega.`,"precios.cta":`Quiero mi página →`,"precios.extra":`¿Necesitas menú digital, reservas o algo totalmente a la medida? Cuéntanos tu proyecto y te pasamos una propuesta.`,
+"contacto.eyebrow":`Quiero mi página`,"contacto.h2":`¿Listo para verte <em>increíble?</em>`,"contacto.lead":`Cuéntanos qué haces y te llega directo a nuestro WhatsApp. Te contestamos en menos de 24 h.`,"contacto.lNombre":`Nombre <span class="req">*</span>`,"contacto.pNombre":`Tu nombre`,"contacto.lNegocio":`Negocio / giro <span class="req">*</span>`,"contacto.pNegocio":`Ej. Tacos El Güero — comida`,"contacto.lWa":`WhatsApp <span class="req">*</span>`,"contacto.pWa":`Ej. 55 1234 5678`,"contacto.lNecesita":`¿Qué necesitas? <span class="req">*</span>`,"contacto.oElige":`Elige una opción…`,"contacto.o1":`Página nueva`,"contacto.o2":`Menú digital`,"contacto.o3":`Sistema de reservas`,"contacto.o4":`Cotizador`,"contacto.o5":`No estoy seguro`,"contacto.lMsg":`Mensaje (opcional)`,"contacto.pMsg":`Cuéntanos lo que tengas en mente…`,"contacto.consent":`He leído y acepto el <a href="aviso-privacidad.html" target="_blank" rel="noopener">Aviso de Privacidad</a>.`,"contacto.btn":`Enviar por WhatsApp →`,"contacto.alt":`O escríbenos directo: <a href="https://wa.me/525568050041" target="_blank" rel="noopener">wa.me/525568050041</a>`,
+"auto.h2":`¿Cuántos clientes estás perdiendo<br><em>por no dar seguimiento?</em>`,"auto.lead":`Reyvo automatiza la atención, calificación y seguimiento de tus prospectos para que tu negocio pueda responder y convertir oportunidades sin hacerlo todo manualmente.`,"auto.p1":`Respuestas tardías`,"auto.p2":`Conversaciones abandonadas`,"auto.p3":`Falta de seguimiento`,"auto.p4":`Mensajes repetitivos`,"auto.p5":`Prospectos desorganizados`,"auto.p6":`Oportunidades sin prioridad`,"auto.closing":`<b>Reyvo se encarga de lo repetitivo.</b>`,"auto.cta1":`Quiero automatizar mi negocio →`,"auto.cta2":`Ver cómo funciona →`,"auto.chat1":`Hola, ¿cuánto cuesta el servicio?`,"auto.chat2":`¡Hola! Claro. Para ayudarte mejor, ¿qué servicio estás buscando?`,"auto.chat3":`Quiero información sobre el servicio.`,"auto.chat4":`Perfecto. ¿Es la primera vez que utilizas este servicio?`,"auto.chat5":`Sí.`,"auto.chat6":`Excelente. Tenemos disponibilidad. ¿Qué día te gustaría?`,"auto.tag1":`✓ Prospecto identificado`,"auto.tag2":`✓ Servicio detectado`,"auto.tag3":`✓ Intención registrada`,"auto.tag4":`✓ Seguimiento preparado`,"auto.tag5":`✓ Cita potencial`,
+"autoComo.eyebrow":`Qué automatizamos`,"autoComo.h2":`Lo repetitivo, <em>resuelto.</em>`,"autoComo.lead":`Cuatro piezas que trabajan juntas para que ningún prospecto se quede sin respuesta.`,"autoComo.c1t":`Atención`,"autoComo.c1p":`Respuestas automáticas y asistentes de IA.`,"autoComo.c2t":`Captación`,"autoComo.c2p":`Capturamos y organizamos cada prospecto.`,"autoComo.c3t":`Calificación`,"autoComo.c3p":`Identificamos cuáles tienen mayor intención.`,"autoComo.c4t":`Seguimiento`,"autoComo.c4p":`Recuperamos conversaciones que quedaron abandonadas.`,
+"autoCambio.eyebrow":`El cambio`,"autoCambio.h2":`De conversaciones dispersas a <em>un sistema.</em>`,"autoCambio.antes":`Antes`,"autoCambio.a1":`Mensajes perdidos`,"autoCambio.a2":`Seguimiento manual`,"autoCambio.a3":`Respuestas repetitivas`,"autoCambio.a4":`Chats desordenados`,"autoCambio.despues":`Después`,"autoCambio.d1":`Prospectos registrados`,"autoCambio.d2":`Seguimiento automático`,"autoCambio.d3":`Respuestas automatizadas`,"autoCambio.d4":`Oportunidades clasificadas`,
+"autoOferta.eyebrow":`La inversión`,"autoOferta.h2":`Automatización, <em>sin complicarte.</em>`,"autoOferta.pn":`Automatización personalizada`,"autoOferta.amtNote":`Diagnóstico + construcción`,"autoOferta.mes":`+ <b>$1,500 MXN / mes</b> de mantenimiento`,"autoOferta.desc":`Construimos sistemas de automatización adaptados al proceso comercial de tu negocio.`,"autoOferta.f1":`Diagnóstico`,"autoOferta.f2":`Diseño del flujo`,"autoOferta.f3":`Automatización`,"autoOferta.f4":`Integraciones`,"autoOferta.f5":`Pruebas`,"autoOferta.f6":`Implementación`,"autoOferta.f7":`Capacitación`,"autoOferta.note":`Los costos de plataformas, APIs y servicios de terceros pueden variar según las herramientas y el volumen de uso.`,"autoOferta.cta":`Quiero mi diagnóstico →`,
+"autoContacto.eyebrow":`Automatiza tu negocio`,"autoContacto.h2":`Cuéntanos qué quieres <em>automatizar.</em>`,"autoContacto.lead":`Te escribimos directo a tu WhatsApp para armar tu diagnóstico. Sin costo.`,"autoContacto.lNombre":`Nombre <span class="req">*</span>`,"autoContacto.pNombre":`Tu nombre`,"autoContacto.lWa":`WhatsApp <span class="req">*</span>`,"autoContacto.pWa":`Ej. 55 1234 5678`,"autoContacto.lProceso":`¿Qué proceso quieres automatizar? <span class="req">*</span>`,"autoContacto.pProceso":`Ej. Seguimiento de prospectos por WhatsApp`,"autoContacto.consent":`He leído y acepto el <a href="aviso-privacidad.html" target="_blank" rel="noopener">Aviso de Privacidad</a>.`,"autoContacto.btn":`Analizar mi proceso →`,"autoContacto.alt":`O escríbenos directo: <a href="https://wa.me/525568050041" target="_blank" rel="noopener">wa.me/525568050041</a>`,
+"footer.contacto":`Contacto`,"footer.explorar":`Explorar`,"footer.legal":`Legal`,"footer.terminos":`Términos y Condiciones`,"footer.privacidad":`Aviso de Privacidad`,"footer.copy":`© 2026 Reyvo — Estudio Digital · Estado de México`,
+"autoComo.lead":`Combina las piezas que tu negocio necesita — no tienes que automatizarlo todo de una vez.`,
+"autoComo.c1t":`Atención inicial`,"autoComo.c1p":`Responde al instante, sin que el prospecto espere.`,
+"autoComo.c2t":`Calificación de prospectos`,"autoComo.c2p":`Detecta quién tiene mayor intención de compra.`,
+"autoComo.c3t":`Seguimiento`,"autoComo.c3p":`Recupera conversaciones que se quedaron sin respuesta.`,
+"autoComo.c4t":`Agendamiento`,"autoComo.c4p":`Aparta citas y horarios sin ida y vuelta de mensajes.`,
+"autoComo.c5t":`Registro de leads`,"autoComo.c5p":`Guarda cada prospecto organizado, sin hojas sueltas.`,
+"autoComo.c6t":`Notificaciones`,"autoComo.c6p":`Avisa a tu equipo cuando hay una oportunidad caliente.`,
+"autoComo.c7t":`Procesos internos`,"autoComo.c7p":`Automatiza tareas repetitivas dentro de tu operación.`,
+"autoComo.c8t":`Integración de herramientas`,"autoComo.c8p":`Conecta WhatsApp, Sheets, CRM y más en un solo flujo.`,
+"comoT.eyebrow":`Cómo trabajamos`,"comoT.h2":`Un proceso claro, <em>de principio a fin.</em>`,"comoT.lead":`Nada de improvisar sobre la marcha — así se construye tu automatización, paso por paso.`,
+"comoT.s1t":`Diagnóstico`,"comoT.s1p":`Entendemos cómo funciona actualmente tu proceso.`,
+"comoT.s2t":`Diseño`,"comoT.s2p":`Diseñamos el flujo que mejor se adapta a tu negocio.`,
+"comoT.s3t":`Automatización`,"comoT.s3p":`Construimos y conectamos el sistema.`,
+"comoT.s4t":`Pruebas`,"comoT.s4p":`Verificamos que el flujo funcione correctamente.`,
+"comoT.s5t":`Implementación`,"comoT.s5p":`Ponemos la automatización en operación.`,
+"comoT.s6t":`Capacitación`,"comoT.s6p":`Te explicamos cómo utilizarla.`,
+"comoT.s7t":`Operación`,"comoT.s7p":`Mantenemos y ajustamos el sistema según el alcance acordado.`,
+"autoOferta.pn":`Reyvo Automation`,"autoOferta.amtNote":`Implementación inicial`,"autoOferta.mes":`+ <b>$799 MXN / mes</b> de operación y mantenimiento`,"autoOferta.desc":`Precio de lanzamiento para nuestros primeros clientes.`,"autoOferta.f8":`Operación y ajustes`,
+"diag.eyebrow":`Automatiza tu negocio`,"diag.h2":`Tu diagnóstico <em>gratuito.</em>`,"diag.lead":`6 pasos rápidos. Al final sabremos exactamente qué puedes automatizar primero.`,"diag.step1of6":`Paso 1 de 6`,
+"diag.st1":`Información del negocio`,"diag.lNombre":`Nombre <span class="req">*</span>`,"diag.pNombre":`Tu nombre`,"diag.lNegocio":`Nombre del negocio <span class="req">*</span>`,"diag.pNegocio":`Ej. Tacos El Güero`,"diag.lWa":`WhatsApp <span class="req">*</span>`,"diag.pWa":`Ej. 55 1234 5678`,"diag.lEmail":`Correo electrónico <span class="req">*</span>`,"diag.pEmail":`tu@correo.com`,"diag.lCiudad":`Ciudad <span class="req">*</span>`,"diag.pCiudad":`Ej. Toluca`,"diag.lGiro":`Giro del negocio <span class="req">*</span>`,"diag.pGiro":`Ej. Restaurante, clínica, tienda…`,"diag.lWeb":`Sitio web / Instagram (opcional)`,"diag.pWeb":`Ej. @tunegocio`,
+"diag.st2":`Proceso comercial`,"diag.qCanales":`¿Cómo llegan actualmente tus clientes? <span class="req">*</span>`,"diag.oWa":`WhatsApp`,"diag.oIg":`Instagram`,"diag.oFb":`Facebook`,"diag.oWeb":`Página web`,"diag.oLlamadas":`Llamadas`,"diag.oReferidos":`Referidos`,"diag.oOtro":`Otro`,"diag.qVolumen":`¿Cuántos prospectos reciben aproximadamente al mes? <span class="req">*</span>`,"diag.qResponsable":`¿Quién responde actualmente a los prospectos? <span class="req">*</span>`,"diag.oYo":`Yo`,"diag.oVendedor":`Un vendedor`,"diag.oEquipo":`Un equipo de ventas`,"diag.oRecepcion":`Recepción / administración`,
+"diag.st3":`Problemas actuales`,"diag.qProblemas":`¿Cuáles de estos problemas tienes actualmente? <span class="req">*</span>`,"diag.pr1":`Tardamos demasiado en responder`,"diag.pr2":`Perdemos conversaciones`,"diag.pr3":`No damos seguimiento`,"diag.pr4":`Repetimos las mismas respuestas`,"diag.pr5":`No sabemos qué prospectos tienen mayor intención`,"diag.pr6":`Tenemos información desorganizada`,"diag.pr7":`Dependemos demasiado de una persona`,"diag.pr8":`Perdemos oportunidades fuera de horario`,
+"diag.st4":`Tu objetivo`,"diag.qObjetivo":`¿Qué te gustaría automatizar primero? <span class="req">*</span>`,"diag.ob1":`Atención inicial`,"diag.ob2":`Calificación de prospectos`,"diag.ob3":`Seguimiento`,"diag.ob4":`Agendamiento de citas`,"diag.ob5":`Registro de prospectos`,"diag.ob6":`Notificaciones al equipo`,"diag.qTiempo":`¿Cuánto tiempo aproximadamente dedica tu equipo a estas tareas? <span class="req">*</span>`,"diag.t1":`Menos de 1 hora al día`,
+"diag.st5":`Cuéntanos más`,"diag.lDesc":`Cuéntanos brevemente qué proceso te gustaría automatizar (opcional)`,"diag.pDesc":`Lo que tengas en mente…`,
+"diag.st6":`¿Cómo prefieres que te contactemos?`,"diag.oLlamada":`Llamada`,"diag.oCorreo":`Correo`,"diag.consent":`He leído y acepto el <a href="aviso-privacidad.html" target="_blank" rel="noopener">Aviso de Privacidad</a>.`,
+"diag.back":`← Atrás`,"diag.next":`Siguiente →`,"diag.submit":`Enviar diagnóstico →`,
+"diag.rt":`Recibimos tu diagnóstico.`,"diag.rp":`Ahora podemos analizar tu proceso y detectar oportunidades de automatización.`,"diag.waBtn":`Hablar con Reyvo por WhatsApp →`,"diag.restart":`Volver al sitio`
+},
+en:{
+"nav.tag":`Digital Studio`,"nav.servicios":`Services`,"nav.trabajo":`Work`,"nav.precios":`Pricing`,"nav.automatizacion":`Automation`,"nav.contacto":`Contact`,"nav.cta":`I want my site`,
+"hero.idx":`Digital Studio<br>State of Mexico<br>Est. 2026`,"hero.tag":`Premium websites, built to order`,"hero.h1a":`Your business`,"hero.h1b":`deserves to look`,"hero.h1c":`<em>extraordinary.</em>`,"hero.lead":`We don't build template pages. We design one-of-a-kind sites — each with its own personality — that build trust, spark desire, and work for you around the clock.`,"hero.cta1":`I want my site →`,"hero.cta2":`See a real project →`,"hero.rule1":`Delivered in <b>7–10 days</b>`,"hero.rule2":`Design <b>built to order</b>`,"hero.rule3":`Reply in <b>&lt; 24 h</b>`,"hero.seal":`DIGITAL STUDIO · SITES BUILT TO ORDER · REYVO · `,
+"marq.diseno":`Custom design`,"marq.reservas":`Online booking`,"marq.menus":`Digital menus`,"marq.cotiz":`Quote tools`,"marq.wa":`WhatsApp`,"marq.seo":`SEO`,
+"caso.eyebrow":`What sets us apart`,"caso.h2":`We don't build pages.<br><em>We build systems.</em>`,"caso.lead":`Most agencies hand you a pretty page and disappear. We build tools that actually work for your business — bookings, menus, and dashboards that give you real control.`,"caso.stk1":`<b>Online bookings</b> — customers reserve their spot and get registered instantly.`,"caso.stk2":`<b>QR digital menu</b> — with a photo of every dish, always up to date.`,"caso.stk3":`<b>Your private dashboard</b> — everything in real time, with direct WhatsApp to every customer.`,"caso.cta":`I want a system like this →`,"caso.phoneTitle":`Bookings`,"caso.phoneLive":`· live`,"caso.dayFri":`Fri`,"caso.daySat":`Sat`,"caso.r1":`4 people · 8:00 PM`,"caso.r2":`2 people · 9:00 PM`,"caso.r3":`6 people · 7:00 PM`,"caso.r4":`3 people · 10:00 PM`,
+"serv.eyebrow":`What we do`,"serv.h2":`More than a <em>pretty page.</em>`,"serv.lead":`We design sites that work like your best salesperson — with the features that actually sell.`,"serv.c1t":`Premium web pages`,"serv.c1p":`Custom-built for your business, fast, and optimized for mobile. Unique, never templated.`,"serv.c2t":`Booking system`,"serv.c2p":`Let customers reserve their spot or appointment straight from your site — no extra work for you.`,"serv.c3t":`QR digital menu`,"serv.c3p":`Your menu always up to date, with a QR code for tables and a photo of every dish.`,"serv.c4t":`Automatic quote tool`,"serv.c4p":`Your customers see an instant estimate and reach out ready to close.`,"serv.c5t":`WhatsApp button`,"serv.c5p":`Let people reach you directly, with zero friction — one tap away.`,"serv.c6t":`Basic SEO`,"serv.c6p":`So you show up on Google when people search for your area.`,
+"trabajo.eyebrow":`Our work`,"trabajo.h2":`Projects already <em>live.</em>`,"trabajo.verSitio":`View site →`,"trabajo.tag1":`Sports club · Fitness`,"trabajo.live":`● Live`,"trabajo.next":`Are you next?`,"trabajo.tag2":`Available`,"trabajo.title2":`Your business here`,"trabajo.empezar":`Get started →`,
+"next.eyebrow":`What's coming`,"next.h2":`We start with your site. <em>Then we grow your whole business.</em>`,"next.lead":`Reyvo is your complete digital partner. Coming soon: social media, CRM, and ad campaigns — all connected to grow your business.`,"next.chip1":`Social media`,"next.chip2":`CRM`,"next.chip3":`Campaigns / Ads`,
+"precios.eyebrow":`Pricing`,"precios.h2":`One clear price, <em>no surprises.</em>`,"precios.pn":`Reyvo Landing Page`,"precios.amtNote":`Launch price`,"precios.mes":`+ <b>$1,099 MXN/mo</b> hosting & maintenance`,"precios.f1":`Custom one-page site`,"precios.f2":`Premium design, optimized for mobile`,"precios.f3":`WhatsApp button and links to your socials`,"precios.f4":`Basic SEO + hosting set up`,"precios.f5":`2 rounds of revisions`,"precios.f6":`Delivered in 7–10 business days`,"precios.note":`50% down to start, 50% on delivery.`,"precios.cta":`I want my site →`,"precios.extra":`Need a digital menu, bookings, or something fully custom? Tell us about your project and we'll send you a proposal.`,
+"contacto.eyebrow":`I want my site`,"contacto.h2":`Ready to look <em>incredible?</em>`,"contacto.lead":`Tell us what you do and it goes straight to our WhatsApp. We reply in under 24 h.`,"contacto.lNombre":`Name <span class="req">*</span>`,"contacto.pNombre":`Your name`,"contacto.lNegocio":`Business / industry <span class="req">*</span>`,"contacto.pNegocio":`E.g. Tacos El Güero — food`,"contacto.lWa":`WhatsApp <span class="req">*</span>`,"contacto.pWa":`E.g. 55 1234 5678`,"contacto.lNecesita":`What do you need? <span class="req">*</span>`,"contacto.oElige":`Choose an option…`,"contacto.o1":`New site`,"contacto.o2":`Digital menu`,"contacto.o3":`Booking system`,"contacto.o4":`Quote tool`,"contacto.o5":`Not sure`,"contacto.lMsg":`Message (optional)`,"contacto.pMsg":`Tell us what you have in mind…`,"contacto.consent":`I have read and accept the <a href="aviso-privacidad.html" target="_blank" rel="noopener">Privacy Notice</a>.`,"contacto.btn":`Send via WhatsApp →`,"contacto.alt":`Or write to us directly: <a href="https://wa.me/525568050041" target="_blank" rel="noopener">wa.me/525568050041</a>`,
+"auto.h2":`How many customers are you losing<br><em>from not following up?</em>`,"auto.lead":`Reyvo automates the attention, qualification, and follow-up of your prospects so your business can respond and convert opportunities without doing it all by hand.`,"auto.p1":`Late replies`,"auto.p2":`Abandoned conversations`,"auto.p3":`Lack of follow-up`,"auto.p4":`Repetitive messages`,"auto.p5":`Disorganized prospects`,"auto.p6":`Unprioritized opportunities`,"auto.closing":`<b>Reyvo handles the repetitive stuff.</b>`,"auto.cta1":`I want to automate my business →`,"auto.cta2":`See how it works →`,"auto.chat1":`Hi, how much does the service cost?`,"auto.chat2":`Hi there! Sure. To help you better, which service are you looking for?`,"auto.chat3":`I want information about the service.`,"auto.chat4":`Got it. Is this your first time using this service?`,"auto.chat5":`Yes.`,"auto.chat6":`Great. We have availability. What day works for you?`,"auto.tag1":`✓ Prospect identified`,"auto.tag2":`✓ Service detected`,"auto.tag3":`✓ Intent logged`,"auto.tag4":`✓ Follow-up ready`,"auto.tag5":`✓ Potential booking`,
+"autoComo.eyebrow":`What we automate`,"autoComo.h2":`The repetitive stuff, <em>solved.</em>`,"autoComo.lead":`Four pieces that work together so no prospect ever goes unanswered.`,"autoComo.c1t":`Response`,"autoComo.c1p":`Automatic replies and AI assistants.`,"autoComo.c2t":`Capture`,"autoComo.c2p":`We capture and organize every prospect.`,"autoComo.c3t":`Qualification`,"autoComo.c3p":`We identify which ones have the highest intent.`,"autoComo.c4t":`Follow-up`,"autoComo.c4p":`We recover conversations that were left abandoned.`,
+"autoCambio.eyebrow":`The shift`,"autoCambio.h2":`From scattered conversations to <em>one system.</em>`,"autoCambio.antes":`Before`,"autoCambio.a1":`Lost messages`,"autoCambio.a2":`Manual follow-up`,"autoCambio.a3":`Repetitive replies`,"autoCambio.a4":`Messy chats`,"autoCambio.despues":`After`,"autoCambio.d1":`Registered prospects`,"autoCambio.d2":`Automatic follow-up`,"autoCambio.d3":`Automated replies`,"autoCambio.d4":`Classified opportunities`,
+"autoOferta.eyebrow":`The investment`,"autoOferta.h2":`Automation, <em>without the hassle.</em>`,"autoOferta.pn":`Custom automation`,"autoOferta.amtNote":`Diagnosis + build`,"autoOferta.mes":`+ <b>$1,500 MXN/mo</b> maintenance`,"autoOferta.desc":`We build automation systems tailored to your business's sales process.`,"autoOferta.f1":`Diagnosis`,"autoOferta.f2":`Flow design`,"autoOferta.f3":`Automation`,"autoOferta.f4":`Integrations`,"autoOferta.f5":`Testing`,"autoOferta.f6":`Implementation`,"autoOferta.f7":`Training`,"autoOferta.note":`Costs for third-party platforms, APIs and services may vary depending on the tools and usage volume.`,"autoOferta.cta":`I want my diagnosis →`,
+"autoContacto.eyebrow":`Automate your business`,"autoContacto.h2":`Tell us what you want to <em>automate.</em>`,"autoContacto.lead":`We'll message you directly on WhatsApp to put together your diagnosis. No cost.`,"autoContacto.lNombre":`Name <span class="req">*</span>`,"autoContacto.pNombre":`Your name`,"autoContacto.lWa":`WhatsApp <span class="req">*</span>`,"autoContacto.pWa":`E.g. 55 1234 5678`,"autoContacto.lProceso":`What process do you want to automate? <span class="req">*</span>`,"autoContacto.pProceso":`E.g. Following up with prospects on WhatsApp`,"autoContacto.consent":`I have read and accept the <a href="aviso-privacidad.html" target="_blank" rel="noopener">Privacy Notice</a>.`,"autoContacto.btn":`Analyze my process →`,"autoContacto.alt":`Or write to us directly: <a href="https://wa.me/525568050041" target="_blank" rel="noopener">wa.me/525568050041</a>`,
+"footer.contacto":`Contact`,"footer.explorar":`Explore`,"footer.legal":`Legal`,"footer.terminos":`Terms & Conditions`,"footer.privacidad":`Privacy Notice`,"footer.copy":`© 2026 Reyvo — Digital Studio · State of Mexico`
+},
+pt:{
+"nav.tag":`Estúdio Digital`,"nav.servicios":`Serviços`,"nav.trabajo":`Trabalhos`,"nav.precios":`Preços`,"nav.automatizacion":`Automação`,"nav.contacto":`Contato`,"nav.cta":`Quero meu site`,
+"hero.idx":`Estúdio Digital<br>Estado do México<br>Fundado em 2026`,"hero.tag":`Sites premium sob medida`,"hero.h1a":`Seu negócio`,"hero.h1b":`merece parecer`,"hero.h1c":`<em>extraordinário.</em>`,"hero.lead":`Não fazemos páginas de modelo pronto. Criamos sites únicos — cada um com sua própria personalidade — que geram confiança, despertam desejo e trabalham por você 24 horas.`,"hero.cta1":`Quero meu site →`,"hero.cta2":`Ver um projeto real →`,"hero.rule1":`Entrega em <b>7–10 dias</b>`,"hero.rule2":`Design <b>sob medida</b>`,"hero.rule3":`Resposta em <b>&lt; 24 h</b>`,"hero.seal":`ESTÚDIO DIGITAL · SITES SOB MEDIDA · REYVO · `,
+"marq.diseno":`Design sob medida`,"marq.reservas":`Reservas online`,"marq.menus":`Cardápios digitais`,"marq.cotiz":`Cotadores`,"marq.wa":`WhatsApp`,"marq.seo":`SEO`,
+"caso.eyebrow":`O que nos diferencia`,"caso.h2":`Não fazemos páginas.<br><em>Fazemos sistemas.</em>`,"caso.lead":`A maioria entrega uma página bonita e some. Nós construímos ferramentas que trabalham pelo seu negócio — reservas, cardápios e painéis que te dão controle de verdade.`,"caso.stk1":`<b>Reservas online</b> — o cliente garante o lugar e fica registrado na hora.`,"caso.stk2":`<b>Cardápio digital com QR</b> — com foto de cada prato, sempre atualizado.`,"caso.stk3":`<b>Seu painel privado</b> — tudo em tempo real, com WhatsApp direto para cada cliente.`,"caso.cta":`Quero um sistema assim →`,"caso.phoneTitle":`Reservas`,"caso.phoneLive":`· ao vivo`,"caso.dayFri":`Sex`,"caso.daySat":`Sáb`,"caso.r1":`4 pessoas · 20h`,"caso.r2":`2 pessoas · 21h`,"caso.r3":`6 pessoas · 19h`,"caso.r4":`3 pessoas · 22h`,
+"serv.eyebrow":`O que fazemos`,"serv.h2":`Mais que uma <em>página bonita.</em>`,"serv.lead":`Criamos sites que funcionam como seu melhor vendedor — com os recursos que realmente vendem.`,"serv.c1t":`Páginas web premium`,"serv.c1p":`Design sob medida para o seu negócio, rápido e otimizado para celular. Único, nunca de modelo pronto.`,"serv.c2t":`Sistema de reservas`,"serv.c2p":`Para que reservem o lugar ou horário direto pelo seu site, sem esforço nenhum da sua parte.`,"serv.c3t":`Cardápio digital QR`,"serv.c3p":`Seu cardápio sempre atualizado, com QR code nas mesas e foto de cada prato.`,"serv.c4t":`Cotador automático`,"serv.c4p":`Seus clientes veem uma estimativa na hora e já chegam prontos para fechar.`,"serv.c5t":`Botão de WhatsApp`,"serv.c5p":`Para falarem com você direto, sem fricção — a um toque de distância.`,"serv.c6t":`SEO básico`,"serv.c6p":`Para te encontrarem no Google quando pesquisarem pela sua região.`,
+"trabajo.eyebrow":`Nosso trabalho`,"trabajo.h2":`Projetos que já estão <em>no ar.</em>`,"trabajo.verSitio":`Ver site →`,"trabajo.tag1":`Clube esportivo · Fitness`,"trabajo.live":`● Ao vivo`,"trabajo.next":`O próximo é você?`,"trabajo.tag2":`Disponível`,"trabajo.title2":`Seu negócio aqui`,"trabajo.empezar":`Começar →`,
+"next.eyebrow":`O que vem por aí`,"next.h2":`Começamos pelo seu site. <em>Vamos até o crescimento completo.</em>`,"next.lead":`A Reyvo é sua parceira digital completa. Em breve chegam redes sociais, CRM e campanhas — tudo conectado para fazer seu negócio crescer.`,"next.chip1":`Redes sociais`,"next.chip2":`CRM`,"next.chip3":`Campanhas / Ads`,
+"precios.eyebrow":`Preços`,"precios.h2":`Um preço claro, <em>sem surpresas.</em>`,"precios.pn":`Landing Page Reyvo`,"precios.amtNote":`Preço de lançamento`,"precios.mes":`+ <b>$1.099 MXN/mês</b> de hospedagem e manutenção`,"precios.f1":`Site de uma página sob medida`,"precios.f2":`Design premium e otimizado para celular`,"precios.f3":`Botão de WhatsApp e links para suas redes`,"precios.f4":`SEO básico + hospedagem configurada`,"precios.f5":`2 rodadas de ajustes`,"precios.f6":`Entrega em 7–10 dias úteis`,"precios.note":`50% de entrada para começar e 50% na entrega.`,"precios.cta":`Quero meu site →`,"precios.extra":`Precisa de cardápio digital, reservas ou algo totalmente sob medida? Conte-nos sobre seu projeto e te enviamos uma proposta.`,
+"contacto.eyebrow":`Quero meu site`,"contacto.h2":`Pronto para ficar <em>incrível?</em>`,"contacto.lead":`Conte-nos o que você faz e a mensagem chega direto no nosso WhatsApp. Respondemos em menos de 24 h.`,"contacto.lNombre":`Nome <span class="req">*</span>`,"contacto.pNombre":`Seu nome`,"contacto.lNegocio":`Negócio / ramo <span class="req">*</span>`,"contacto.pNegocio":`Ex. Tacos El Güero — comida`,"contacto.lWa":`WhatsApp <span class="req">*</span>`,"contacto.pWa":`Ex. 55 1234 5678`,"contacto.lNecesita":`O que você precisa? <span class="req">*</span>`,"contacto.oElige":`Escolha uma opção…`,"contacto.o1":`Site novo`,"contacto.o2":`Cardápio digital`,"contacto.o3":`Sistema de reservas`,"contacto.o4":`Cotador`,"contacto.o5":`Não tenho certeza`,"contacto.lMsg":`Mensagem (opcional)`,"contacto.pMsg":`Conte-nos o que você tem em mente…`,"contacto.consent":`Li e aceito o <a href="aviso-privacidad.html" target="_blank" rel="noopener">Aviso de Privacidade</a>.`,"contacto.btn":`Enviar pelo WhatsApp →`,"contacto.alt":`Ou fale direto conosco: <a href="https://wa.me/525568050041" target="_blank" rel="noopener">wa.me/525568050041</a>`,
+"auto.h2":`Quantos clientes você está perdendo<br><em>por falta de follow-up?</em>`,"auto.lead":`A Reyvo automatiza o atendimento, a qualificação e o follow-up dos seus prospects para que seu negócio responda e converta oportunidades sem fazer tudo manualmente.`,"auto.p1":`Respostas atrasadas`,"auto.p2":`Conversas abandonadas`,"auto.p3":`Falta de follow-up`,"auto.p4":`Mensagens repetitivas`,"auto.p5":`Prospects desorganizados`,"auto.p6":`Oportunidades sem prioridade`,"auto.closing":`<b>A Reyvo cuida do que é repetitivo.</b>`,"auto.cta1":`Quero automatizar meu negócio →`,"auto.cta2":`Ver como funciona →`,"auto.chat1":`Olá, quanto custa o serviço?`,"auto.chat2":`Olá! Claro. Para te ajudar melhor, qual serviço você está buscando?`,"auto.chat3":`Quero informações sobre o serviço.`,"auto.chat4":`Perfeito. É a primeira vez que você usa esse serviço?`,"auto.chat5":`Sim.`,"auto.chat6":`Ótimo. Temos disponibilidade. Qual dia funciona melhor para você?`,"auto.tag1":`✓ Prospect identificado`,"auto.tag2":`✓ Serviço detectado`,"auto.tag3":`✓ Intenção registrada`,"auto.tag4":`✓ Follow-up preparado`,"auto.tag5":`✓ Agendamento em potencial`,
+"autoComo.eyebrow":`O que automatizamos`,"autoComo.h2":`O repetitivo, <em>resolvido.</em>`,"autoComo.lead":`Quatro peças que trabalham juntas para que nenhum prospect fique sem resposta.`,"autoComo.c1t":`Atendimento`,"autoComo.c1p":`Respostas automáticas e assistentes de IA.`,"autoComo.c2t":`Captação`,"autoComo.c2p":`Capturamos e organizamos cada prospect.`,"autoComo.c3t":`Qualificação`,"autoComo.c3p":`Identificamos quais têm maior intenção de compra.`,"autoComo.c4t":`Follow-up`,"autoComo.c4p":`Recuperamos conversas que ficaram abandonadas.`,
+"autoCambio.eyebrow":`A mudança`,"autoCambio.h2":`De conversas dispersas para <em>um sistema.</em>`,"autoCambio.antes":`Antes`,"autoCambio.a1":`Mensagens perdidas`,"autoCambio.a2":`Follow-up manual`,"autoCambio.a3":`Respostas repetitivas`,"autoCambio.a4":`Conversas bagunçadas`,"autoCambio.despues":`Depois`,"autoCambio.d1":`Prospects registrados`,"autoCambio.d2":`Follow-up automático`,"autoCambio.d3":`Respostas automatizadas`,"autoCambio.d4":`Oportunidades classificadas`,
+"autoOferta.eyebrow":`O investimento`,"autoOferta.h2":`Automação, <em>sem complicação.</em>`,"autoOferta.pn":`Automação personalizada`,"autoOferta.amtNote":`Diagnóstico + construção`,"autoOferta.mes":`+ <b>$1.500 MXN/mês</b> de manutenção`,"autoOferta.desc":`Construímos sistemas de automação adaptados ao processo comercial do seu negócio.`,"autoOferta.f1":`Diagnóstico`,"autoOferta.f2":`Desenho do fluxo`,"autoOferta.f3":`Automação`,"autoOferta.f4":`Integrações`,"autoOferta.f5":`Testes`,"autoOferta.f6":`Implementação`,"autoOferta.f7":`Treinamento`,"autoOferta.note":`Os custos de plataformas, APIs e serviços de terceiros podem variar conforme as ferramentas e o volume de uso.`,"autoOferta.cta":`Quero meu diagnóstico →`,
+"autoContacto.eyebrow":`Automatize seu negócio`,"autoContacto.h2":`Conte-nos o que você quer <em>automatizar.</em>`,"autoContacto.lead":`Vamos te chamar direto no WhatsApp para montar seu diagnóstico. Sem custo.`,"autoContacto.lNombre":`Nome <span class="req">*</span>`,"autoContacto.pNombre":`Seu nome`,"autoContacto.lWa":`WhatsApp <span class="req">*</span>`,"autoContacto.pWa":`Ex. 55 1234 5678`,"autoContacto.lProceso":`Qual processo você quer automatizar? <span class="req">*</span>`,"autoContacto.pProceso":`Ex. Follow-up de prospects pelo WhatsApp`,"autoContacto.consent":`Li e aceito o <a href="aviso-privacidad.html" target="_blank" rel="noopener">Aviso de Privacidade</a>.`,"autoContacto.btn":`Analisar meu processo →`,"autoContacto.alt":`Ou fale direto conosco: <a href="https://wa.me/525568050041" target="_blank" rel="noopener">wa.me/525568050041</a>`,
+"footer.contacto":`Contato`,"footer.explorar":`Explorar`,"footer.legal":`Legal`,"footer.terminos":`Termos e Condições`,"footer.privacidad":`Aviso de Privacidade`,"footer.copy":`© 2026 Reyvo — Estúdio Digital · Estado do México`
+},
+fr:{
+"nav.tag":`Studio Digital`,"nav.servicios":`Services`,"nav.trabajo":`Réalisations`,"nav.precios":`Tarifs`,"nav.automatizacion":`Automatisation`,"nav.contacto":`Contact`,"nav.cta":`Je veux mon site`,
+"hero.idx":`Studio Digital<br>État de Mexico<br>Fondé en 2026`,"hero.tag":`Sites web premium sur mesure`,"hero.h1a":`Votre entreprise`,"hero.h1b":`mérite d'avoir l'air`,"hero.h1c":`<em>extraordinaire.</em>`,"hero.lead":`Nous ne créons pas de pages modèles. Nous concevons des sites uniques — chacun avec sa propre personnalité — qui inspirent confiance, suscitent l'envie et travaillent pour vous 24 heures sur 24.`,"hero.cta1":`Je veux mon site →`,"hero.cta2":`Voir un vrai projet →`,"hero.rule1":`Livré en <b>7–10 jours</b>`,"hero.rule2":`Design <b>sur mesure</b>`,"hero.rule3":`Réponse en <b>&lt; 24 h</b>`,"hero.seal":`STUDIO DIGITAL · SITES SUR MESURE · REYVO · `,
+"marq.diseno":`Design sur mesure`,"marq.reservas":`Réservations en ligne`,"marq.menus":`Menus numériques`,"marq.cotiz":`Devis automatiques`,"marq.wa":`WhatsApp`,"marq.seo":`SEO`,
+"caso.eyebrow":`Ce qui nous distingue`,"caso.h2":`Nous ne faisons pas des pages.<br><em>Nous créons des systèmes.</em>`,"caso.lead":`La plupart livrent une jolie page et disparaissent. Nous construisons des outils qui travaillent pour votre entreprise — réservations, menus et tableaux de bord qui vous donnent un vrai contrôle.`,"caso.stk1":`<b>Réservations en ligne</b> — le client réserve sa place et est enregistré instantanément.`,"caso.stk2":`<b>Menu numérique avec QR</b> — avec une photo de chaque plat, toujours à jour.`,"caso.stk3":`<b>Votre tableau de bord privé</b> — tout en temps réel, avec WhatsApp direct vers chaque client.`,"caso.cta":`Je veux un système comme ça →`,"caso.phoneTitle":`Réservations`,"caso.phoneLive":`· en direct`,"caso.dayFri":`Ven`,"caso.daySat":`Sam`,"caso.r1":`4 personnes · 20h`,"caso.r2":`2 personnes · 21h`,"caso.r3":`6 personnes · 19h`,"caso.r4":`3 personnes · 22h`,
+"serv.eyebrow":`Ce que nous faisons`,"serv.h2":`Plus qu'une <em>jolie page.</em>`,"serv.lead":`Nous concevons des sites qui agissent comme votre meilleur vendeur — avec les fonctionnalités qui vendent vraiment.`,"serv.c1t":`Sites web premium`,"serv.c1p":`Conçus sur mesure pour votre entreprise, rapides et optimisés pour mobile. Uniques, jamais de modèle.`,"serv.c2t":`Système de réservation`,"serv.c2p":`Pour que vos clients réservent leur place ou leur rendez-vous directement depuis votre site, sans effort de votre part.`,"serv.c3t":`Menu numérique QR`,"serv.c3p":`Votre menu toujours à jour, avec un QR code sur les tables et une photo de chaque plat.`,"serv.c4t":`Devis automatique`,"serv.c4p":`Vos clients voient une estimation instantanée et vous contactent prêts à conclure.`,"serv.c5t":`Bouton WhatsApp`,"serv.c5p":`Pour qu'on vous contacte directement, sans friction — à portée d'un clic.`,"serv.c6t":`SEO de base`,"serv.c6p":`Pour qu'on vous trouve sur Google quand on vous cherche dans votre zone.`,
+"trabajo.eyebrow":`Nos réalisations`,"trabajo.h2":`Des projets déjà <em>en ligne.</em>`,"trabajo.verSitio":`Voir le site →`,"trabajo.tag1":`Club sportif · Fitness`,"trabajo.live":`● En ligne`,"trabajo.next":`Le prochain, c'est vous ?`,"trabajo.tag2":`Disponible`,"trabajo.title2":`Votre entreprise ici`,"trabajo.empezar":`Commencer →`,
+"next.eyebrow":`Ce qui arrive`,"next.h2":`On commence par votre site. <em>On continue avec toute votre croissance.</em>`,"next.lead":`Reyvo est votre partenaire digital complet. Bientôt : réseaux sociaux, CRM et campagnes — tout connecté pour faire grandir votre entreprise.`,"next.chip1":`Réseaux sociaux`,"next.chip2":`CRM`,"next.chip3":`Campagnes / Ads`,
+"precios.eyebrow":`Tarifs`,"precios.h2":`Un prix clair, <em>sans surprises.</em>`,"precios.pn":`Landing Page Reyvo`,"precios.amtNote":`Prix de lancement`,"precios.mes":`+ <b>1 099 MXN/mois</b> d'hébergement et maintenance`,"precios.f1":`Site d'une page sur mesure`,"precios.f2":`Design premium, optimisé pour mobile`,"precios.f3":`Bouton WhatsApp et liens vers vos réseaux`,"precios.f4":`SEO de base + hébergement configuré`,"precios.f5":`2 tours de modifications`,"precios.f6":`Livré en 7–10 jours ouvrables`,"precios.note":`50 % à la commande et 50 % à la livraison.`,"precios.cta":`Je veux mon site →`,"precios.extra":`Besoin d'un menu numérique, de réservations ou de quelque chose d'entièrement sur mesure ? Parlez-nous de votre projet, on vous envoie une proposition.`,
+"contacto.eyebrow":`Je veux mon site`,"contacto.h2":`Prêt à avoir l'air <em>incroyable ?</em>`,"contacto.lead":`Dites-nous ce que vous faites et le message arrive directement sur notre WhatsApp. On répond en moins de 24 h.`,"contacto.lNombre":`Nom <span class="req">*</span>`,"contacto.pNombre":`Votre nom`,"contacto.lNegocio":`Entreprise / secteur <span class="req">*</span>`,"contacto.pNegocio":`Ex. Tacos El Güero — restauration`,"contacto.lWa":`WhatsApp <span class="req">*</span>`,"contacto.pWa":`Ex. 55 1234 5678`,"contacto.lNecesita":`De quoi avez-vous besoin ? <span class="req">*</span>`,"contacto.oElige":`Choisissez une option…`,"contacto.o1":`Nouveau site`,"contacto.o2":`Menu numérique`,"contacto.o3":`Système de réservation`,"contacto.o4":`Devis automatique`,"contacto.o5":`Je ne sais pas encore`,"contacto.lMsg":`Message (facultatif)`,"contacto.pMsg":`Dites-nous ce que vous avez en tête…`,"contacto.consent":`J'ai lu et j'accepte l'<a href="aviso-privacidad.html" target="_blank" rel="noopener">Avis de confidentialité</a>.`,"contacto.btn":`Envoyer via WhatsApp →`,"contacto.alt":`Ou écrivez-nous directement : <a href="https://wa.me/525568050041" target="_blank" rel="noopener">wa.me/525568050041</a>`,
+"auto.h2":`Combien de clients perdez-vous<br><em>faute de relance ?</em>`,"auto.lead":`Reyvo automatise l'accueil, la qualification et le suivi de vos prospects pour que votre entreprise puisse répondre et convertir les opportunités sans tout faire manuellement.`,"auto.p1":`Réponses tardives`,"auto.p2":`Conversations abandonnées`,"auto.p3":`Manque de suivi`,"auto.p4":`Messages répétitifs`,"auto.p5":`Prospects désorganisés`,"auto.p6":`Opportunités sans priorité`,"auto.closing":`<b>Reyvo s'occupe de ce qui est répétitif.</b>`,"auto.cta1":`Je veux automatiser mon entreprise →`,"auto.cta2":`Voir comment ça marche →`,"auto.chat1":`Bonjour, combien coûte le service ?`,"auto.chat2":`Bonjour ! Bien sûr. Pour mieux vous aider, quel service recherchez-vous ?`,"auto.chat3":`Je veux des informations sur le service.`,"auto.chat4":`Parfait. Est-ce la première fois que vous utilisez ce service ?`,"auto.chat5":`Oui.`,"auto.chat6":`Excellent. Nous avons de la disponibilité. Quel jour vous conviendrait ?`,"auto.tag1":`✓ Prospect identifié`,"auto.tag2":`✓ Service détecté`,"auto.tag3":`✓ Intention enregistrée`,"auto.tag4":`✓ Suivi préparé`,"auto.tag5":`✓ Rendez-vous potentiel`,
+"autoComo.eyebrow":`Ce que nous automatisons`,"autoComo.h2":`Le répétitif, <em>résolu.</em>`,"autoComo.lead":`Quatre éléments qui travaillent ensemble pour qu'aucun prospect ne reste sans réponse.`,"autoComo.c1t":`Accueil`,"autoComo.c1p":`Réponses automatiques et assistants IA.`,"autoComo.c2t":`Captation`,"autoComo.c2p":`Nous capturons et organisons chaque prospect.`,"autoComo.c3t":`Qualification`,"autoComo.c3p":`Nous identifions ceux qui ont le plus fort potentiel.`,"autoComo.c4t":`Suivi`,"autoComo.c4p":`Nous récupérons les conversations abandonnées.`,
+"autoCambio.eyebrow":`Le changement`,"autoCambio.h2":`De conversations éparpillées à <em>un système.</em>`,"autoCambio.antes":`Avant`,"autoCambio.a1":`Messages perdus`,"autoCambio.a2":`Suivi manuel`,"autoCambio.a3":`Réponses répétitives`,"autoCambio.a4":`Conversations désordonnées`,"autoCambio.despues":`Après`,"autoCambio.d1":`Prospects enregistrés`,"autoCambio.d2":`Suivi automatique`,"autoCambio.d3":`Réponses automatisées`,"autoCambio.d4":`Opportunités classées`,
+"autoOferta.eyebrow":`L'investissement`,"autoOferta.h2":`L'automatisation, <em>sans complications.</em>`,"autoOferta.pn":`Automatisation personnalisée`,"autoOferta.amtNote":`Diagnostic + construction`,"autoOferta.mes":`+ <b>1 500 MXN/mois</b> de maintenance`,"autoOferta.desc":`Nous construisons des systèmes d'automatisation adaptés au processus commercial de votre entreprise.`,"autoOferta.f1":`Diagnostic`,"autoOferta.f2":`Conception du flux`,"autoOferta.f3":`Automatisation`,"autoOferta.f4":`Intégrations`,"autoOferta.f5":`Tests`,"autoOferta.f6":`Mise en œuvre`,"autoOferta.f7":`Formation`,"autoOferta.note":`Les coûts des plateformes, API et services tiers peuvent varier selon les outils et le volume d'utilisation.`,"autoOferta.cta":`Je veux mon diagnostic →`,
+"autoContacto.eyebrow":`Automatisez votre entreprise`,"autoContacto.h2":`Dites-nous ce que vous voulez <em>automatiser.</em>`,"autoContacto.lead":`Nous vous écrivons directement sur WhatsApp pour préparer votre diagnostic. Gratuit.`,"autoContacto.lNombre":`Nom <span class="req">*</span>`,"autoContacto.pNombre":`Votre nom`,"autoContacto.lWa":`WhatsApp <span class="req">*</span>`,"autoContacto.pWa":`Ex. 55 1234 5678`,"autoContacto.lProceso":`Quel processus voulez-vous automatiser ? <span class="req">*</span>`,"autoContacto.pProceso":`Ex. Suivi des prospects sur WhatsApp`,"autoContacto.consent":`J'ai lu et j'accepte l'<a href="aviso-privacidad.html" target="_blank" rel="noopener">Avis de confidentialité</a>.`,"autoContacto.btn":`Analyser mon processus →`,"autoContacto.alt":`Ou écrivez-nous directement : <a href="https://wa.me/525568050041" target="_blank" rel="noopener">wa.me/525568050041</a>`,
+"footer.contacto":`Contact`,"footer.explorar":`Explorer`,"footer.legal":`Légal`,"footer.terminos":`Conditions générales`,"footer.privacidad":`Avis de confidentialité`,"footer.copy":`© 2026 Reyvo — Studio Digital · État de Mexico`
+},
+zh:{
+"nav.tag":`数字工作室`,"nav.servicios":`服务`,"nav.trabajo":`作品`,"nav.precios":`价格`,"nav.automatizacion":`自动化`,"nav.contacto":`联系我们`,"nav.cta":`我要建站`,
+"hero.idx":`数字工作室<br>墨西哥州<br>成立于2026年`,"hero.tag":`高端定制网站`,"hero.h1a":`您的业务`,"hero.h1b":`值得拥有`,"hero.h1c":`<em>非凡的外观。</em>`,"hero.lead":`我们不做模板页面。我们为每个客户设计独一无二的网站——各有特色——建立信任、激发购买欲望，并且24小时为您工作。`,"hero.cta1":`我要建站 →`,"hero.cta2":`查看真实案例 →`,"hero.rule1":`<b>7–10天</b>交付`,"hero.rule2":`<b>量身定制</b>设计`,"hero.rule3":`<b>&lt; 24小时</b>回复`,"hero.seal":`数字工作室 · 定制网站 · REYVO · `,
+"marq.diseno":`定制设计`,"marq.reservas":`在线预订`,"marq.menus":`数字菜单`,"marq.cotiz":`自动报价`,"marq.wa":`WhatsApp`,"marq.seo":`SEO优化`,
+"caso.eyebrow":`我们的与众不同之处`,"caso.h2":`我们不只做网页。<br><em>我们打造系统。</em>`,"caso.lead":`大多数公司只交付一个好看的页面就消失了。我们打造真正为您业务服务的工具——预订、菜单和让您掌握全局的管理面板。`,"caso.stk1":`<b>在线预订</b> — 顾客即时预留座位并自动登记。`,"caso.stk2":`<b>二维码数字菜单</b> — 每道菜都配图，随时更新。`,"caso.stk3":`<b>您的专属管理面板</b> — 实时掌握一切，可直接通过WhatsApp联系每位顾客。`,"caso.cta":`我也想要这样的系统 →`,"caso.phoneTitle":`预订`,"caso.phoneLive":`· 实时`,"caso.dayFri":`周五`,"caso.daySat":`周六`,"caso.r1":`4人 · 晚上8点`,"caso.r2":`2人 · 晚上9点`,"caso.r3":`6人 · 晚上7点`,"caso.r4":`3人 · 晚上10点`,
+"serv.eyebrow":`我们提供的服务`,"serv.h2":`不止是一个<em>好看的页面。</em>`,"serv.lead":`我们设计的网站就像您最好的销售员——配备真正能带来转化的功能。`,"serv.c1t":`高端网页`,"serv.c1p":`为您的业务量身定制，加载迅速，针对手机优化。独一无二，绝非模板。`,"serv.c2t":`预订系统`,"serv.c2p":`让顾客直接在您的网站上预订座位或预约，订单自动送达，无需您费心。`,"serv.c3t":`二维码数字菜单`,"serv.c3p":`菜单始终保持最新，桌上配二维码，每道菜都有配图。`,"serv.c4t":`自动报价工具`,"serv.c4p":`顾客立即看到预估价格，联系您时已准备好成交。`,"serv.c5t":`WhatsApp按钮`,"serv.c5p":`让顾客直接联系您，毫无阻碍——只需轻轻一点。`,"serv.c6t":`基础SEO优化`,"serv.c6p":`让顾客在Google搜索您所在地区时能找到您。`,
+"trabajo.eyebrow":`我们的作品`,"trabajo.h2":`已经<em>上线</em>的项目。`,"trabajo.verSitio":`查看网站 →`,"trabajo.tag1":`体育俱乐部 · 健身`,"trabajo.live":`● 已上线`,"trabajo.next":`下一个是您吗？`,"trabajo.tag2":`空位待定`,"trabajo.title2":`您的业务在这里`,"trabajo.empezar":`立即开始 →`,
+"next.eyebrow":`即将推出`,"next.h2":`从您的网站开始。<em>助力您的整体增长。</em>`,"next.lead":`Reyvo是您完整的数字合作伙伴。我们即将推出社交媒体管理、CRM和广告推广——全部互联，助力您的业务增长。`,"next.chip1":`社交媒体`,"next.chip2":`CRM客户管理`,"next.chip3":`广告推广`,
+"precios.eyebrow":`价格`,"precios.h2":`价格透明，<em>没有意外。</em>`,"precios.pn":`Reyvo落地页`,"precios.amtNote":`上线优惠价`,"precios.mes":`+ 每月<b>1,099墨西哥比索</b>托管与维护费`,"precios.f1":`定制单页网站`,"precios.f2":`高端设计，针对手机优化`,"precios.f3":`WhatsApp按钮及社交媒体链接`,"precios.f4":`基础SEO优化 + 托管配置`,"precios.f5":`2轮修改`,"precios.f6":`7–10个工作日交付`,"precios.note":`启动时支付50%，交付时支付余下50%。`,"precios.cta":`我要建站 →`,"precios.extra":`需要数字菜单、预订系统或完全定制的方案？告诉我们您的项目，我们会为您提供方案。`,
+"contacto.eyebrow":`我要建站`,"contacto.h2":`准备好让自己<em>脱颖而出</em>了吗？`,"contacto.lead":`告诉我们您从事什么行业，消息将直接发送到我们的WhatsApp。我们会在24小时内回复。`,"contacto.lNombre":`姓名 <span class="req">*</span>`,"contacto.pNombre":`您的姓名`,"contacto.lNegocio":`行业 / 业务类型 <span class="req">*</span>`,"contacto.pNegocio":`例如：塔可店 El Güero — 餐饮`,"contacto.lWa":`WhatsApp <span class="req">*</span>`,"contacto.pWa":`例如：55 1234 5678`,"contacto.lNecesita":`您需要什么？ <span class="req">*</span>`,"contacto.oElige":`请选择一个选项…`,"contacto.o1":`全新网站`,"contacto.o2":`数字菜单`,"contacto.o3":`预订系统`,"contacto.o4":`报价工具`,"contacto.o5":`还不确定`,"contacto.lMsg":`留言（可选）`,"contacto.pMsg":`告诉我们您的想法…`,"contacto.consent":`我已阅读并同意<a href="aviso-privacidad.html" target="_blank" rel="noopener">隐私声明</a>。`,"contacto.btn":`通过WhatsApp发送 →`,"contacto.alt":`或直接联系我们：<a href="https://wa.me/525568050041" target="_blank" rel="noopener">wa.me/525568050041</a>`,
+"auto.h2":`因为没有及时跟进<br><em>您正在流失多少客户？</em>`,"auto.lead":`Reyvo自动完成潜在客户的接待、筛选和跟进，让您的业务无需手动操作即可响应并转化商机。`,"auto.p1":`回复延迟`,"auto.p2":`对话中断`,"auto.p3":`缺乏跟进`,"auto.p4":`重复性消息`,"auto.p5":`客户信息混乱`,"auto.p6":`商机缺乏优先级`,"auto.closing":`<b>重复性的工作交给Reyvo处理。</b>`,"auto.cta1":`我要实现业务自动化 →`,"auto.cta2":`查看运作方式 →`,"auto.chat1":`您好，这项服务多少钱？`,"auto.chat2":`您好！当然可以。为了更好地帮助您，请问您在找哪种服务呢？`,"auto.chat3":`我想了解一下这项服务的信息。`,"auto.chat4":`好的。这是您第一次使用这项服务吗？`,"auto.chat5":`是的。`,"auto.chat6":`太好了。我们现在有空位，您方便哪天过来呢？`,"auto.tag1":`✓ 已识别客户`,"auto.tag2":`✓ 已识别服务需求`,"auto.tag3":`✓ 已记录意向`,"auto.tag4":`✓ 已准备跟进`,"auto.tag5":`✓ 潜在预约`,
+"autoComo.eyebrow":`我们自动化的内容`,"autoComo.h2":`重复性工作，<em>迎刃而解。</em>`,"autoComo.lead":`四个协同运作的环节，确保没有一个客户被遗漏。`,"autoComo.c1t":`接待`,"autoComo.c1p":`自动回复与AI助手。`,"autoComo.c2t":`获客`,"autoComo.c2p":`我们捕获并整理每一位潜在客户。`,"autoComo.c3t":`筛选`,"autoComo.c3p":`识别出意向最强的客户。`,"autoComo.c4t":`跟进`,"autoComo.c4p":`找回那些被中断的对话。`,
+"autoCambio.eyebrow":`转变`,"autoCambio.h2":`从零散的对话到<em>一个完整系统。</em>`,"autoCambio.antes":`之前`,"autoCambio.a1":`消息丢失`,"autoCambio.a2":`人工跟进`,"autoCambio.a3":`重复性回复`,"autoCambio.a4":`对话混乱`,"autoCambio.despues":`之后`,"autoCambio.d1":`客户信息已登记`,"autoCambio.d2":`自动跟进`,"autoCambio.d3":`自动化回复`,"autoCambio.d4":`商机已分类`,
+"autoOferta.eyebrow":`投资费用`,"autoOferta.h2":`自动化，<em>省心省力。</em>`,"autoOferta.pn":`定制自动化方案`,"autoOferta.amtNote":`诊断 + 搭建`,"autoOferta.mes":`+ 每月<b>1,500墨西哥比索</b>维护费`,"autoOferta.desc":`我们根据您业务的销售流程，打造量身定制的自动化系统。`,"autoOferta.f1":`诊断评估`,"autoOferta.f2":`流程设计`,"autoOferta.f3":`自动化搭建`,"autoOferta.f4":`系统集成`,"autoOferta.f5":`测试`,"autoOferta.f6":`上线实施`,"autoOferta.f7":`培训指导`,"autoOferta.note":`第三方平台、API及服务的费用可能因所用工具及使用量而有所不同。`,"autoOferta.cta":`我要预约诊断 →`,
+"autoContacto.eyebrow":`让您的业务自动化`,"autoContacto.h2":`告诉我们您想<em>自动化</em>的内容。`,"autoContacto.lead":`我们会直接通过WhatsApp联系您，为您制定诊断方案。完全免费。`,"autoContacto.lNombre":`姓名 <span class="req">*</span>`,"autoContacto.pNombre":`您的姓名`,"autoContacto.lWa":`WhatsApp <span class="req">*</span>`,"autoContacto.pWa":`例如：55 1234 5678`,"autoContacto.lProceso":`您想自动化哪个流程？ <span class="req">*</span>`,"autoContacto.pProceso":`例如：通过WhatsApp跟进潜在客户`,"autoContacto.consent":`我已阅读并同意<a href="aviso-privacidad.html" target="_blank" rel="noopener">隐私声明</a>。`,"autoContacto.btn":`分析我的流程 →`,"autoContacto.alt":`或直接联系我们：<a href="https://wa.me/525568050041" target="_blank" rel="noopener">wa.me/525568050041</a>`,
+"footer.contacto":`联系我们`,"footer.explorar":`探索`,"footer.legal":`法律信息`,"footer.terminos":`条款与条件`,"footer.privacidad":`隐私声明`,"footer.copy":`© 2026 Reyvo — 数字工作室 · 墨西哥州`
+}
+};
+</script>
 
 <script>
 (function(){
@@ -652,6 +973,34 @@ footer .copy{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform
     var nav=document.getElementById("nav");
     addEventListener("scroll",function(){nav.classList.toggle("small",scrollY>40);},{passive:true});
   },"nav");
+
+  safe(function(){
+    var sw=document.getElementById("langsw"),btn=document.getElementById("langBtn"),menu=document.getElementById("langMenu");
+    var LABEL={es:"ES",en:"EN",pt:"PT",fr:"FR",zh:"中文"};
+    function applyLang(lang){
+      var dict=(window.I18N&&window.I18N[lang])||window.I18N.es;
+      document.querySelectorAll("[data-i18n]").forEach(function(el){
+        var v=dict[el.getAttribute("data-i18n")];
+        if(v!=null) el.innerHTML=v;
+      });
+      document.querySelectorAll("[data-i18n-ph]").forEach(function(el){
+        var v=dict[el.getAttribute("data-i18n-ph")];
+        if(v!=null) el.setAttribute("placeholder",v);
+      });
+      document.documentElement.setAttribute("lang",lang);
+      btn.childNodes[0].nodeValue=(LABEL[lang]||"ES")+" ";
+      menu.querySelectorAll("button").forEach(function(b){b.classList.toggle("active",b.getAttribute("data-lang")===lang);});
+      try{localStorage.setItem("reyvo_lang",lang);}catch(e){}
+    }
+    btn.addEventListener("click",function(e){e.stopPropagation();sw.classList.toggle("open");btn.setAttribute("aria-expanded",sw.classList.contains("open"));});
+    menu.querySelectorAll("button").forEach(function(b){
+      b.addEventListener("click",function(){applyLang(b.getAttribute("data-lang"));sw.classList.remove("open");btn.setAttribute("aria-expanded","false");});
+    });
+    document.addEventListener("click",function(e){if(!sw.contains(e.target))sw.classList.remove("open");});
+    var saved="es";
+    try{saved=localStorage.getItem("reyvo_lang")||"es";}catch(e){}
+    if(window.I18N&&window.I18N[saved]) applyLang(saved);
+  },"lang");
 
   safe(function(){
     if(!pf)return;
@@ -701,33 +1050,131 @@ footer .copy{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform
   },"form");
 
   safe(function(){
+    var form=document.getElementById("diagForm");
+    if(!form)return;
     var WA="525568050041";
-    var btn=document.getElementById("btnWAauto");
-    if(!btn)return;
-    var err=document.getElementById("errAuto");
-    var form=btn.closest(".form-card");
-    function build(){
-      var campos=[].slice.call(form.querySelectorAll("[data-q]"));
-      var faltan=[],lineas=["*NUEVA SOLICITUD — REYVO AUTOMATION*","────────────────"];
-      campos.forEach(function(el){
-        var v=el.value.trim();
-        if(el.hasAttribute("data-req")&&!v) faltan.push(el.closest(".field"));
-        if(v){lineas.push("*"+el.getAttribute("data-q")+":*");lineas.push(v);lineas.push("");}
-      });
-      return {texto:lineas.join("\n").trim(),faltan:faltan};
+    var TOTAL=6,cur=1;
+    var steps=[].slice.call(form.querySelectorAll(".diag-step"));
+    var barFill=document.getElementById("diagBarFill");
+    var stepLabel=document.getElementById("diagStepLabel");
+    var backBtn=document.getElementById("diagBack");
+    var nextBtn=document.getElementById("diagNext");
+    var submitBtn=document.getElementById("diagSubmit");
+    var errEl=document.getElementById("diagErr");
+    var progressEl=document.getElementById("diagProgress");
+    var resultEl=document.getElementById("diagResult");
+
+    function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+
+    function render(){
+      steps.forEach(function(s){s.hidden=(parseInt(s.getAttribute("data-step"),10)!==cur);});
+      barFill.style.width=(cur/TOTAL*100)+"%";
+      stepLabel.textContent="Paso "+cur+" de "+TOTAL;
+      backBtn.hidden=cur===1;
+      nextBtn.hidden=cur===TOTAL;
+      submitBtn.hidden=cur!==TOTAL;
+      errEl.textContent="";
     }
-    var consent=document.getElementById("consentAuto");
-    btn.addEventListener("click",function(){
-      form.querySelectorAll(".field.bad").forEach(function(f){f.classList.remove("bad");});
-      err.textContent="";
-      var r=build();
-      if(r.faltan.length){r.faltan.forEach(function(f){f.classList.add("bad");});err.textContent="Faltan datos obligatorios (marcados con *).";r.faltan[0].scrollIntoView({behavior:"smooth",block:"center"});return;}
-      if(!consent.checked){consent.closest(".field").classList.add("bad");err.textContent="Debes aceptar el Aviso de Privacidad para continuar.";consent.scrollIntoView({behavior:"smooth",block:"center"});return;}
-      window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(r.texto),"_blank");
+
+    function validateStep(stepEl){
+      var bad=[];
+      stepEl.querySelectorAll("[data-req]").forEach(function(el){
+        if(el.tagName==="INPUT"||el.tagName==="TEXTAREA"||el.tagName==="SELECT"){
+          if(!el.value.trim())bad.push(el.closest(".field"));
+        }else if(el.classList.contains("opts")){
+          if(!el.querySelector("input:checked"))bad.push(el.closest(".field"));
+        }
+      });
+      return bad;
+    }
+
+    function collectState(){
+      var state={};
+      form.querySelectorAll("[data-f]").forEach(function(el){
+        var f=el.getAttribute("data-f");
+        if(el.classList.contains("opts")){
+          var multi=el.hasAttribute("data-multi");
+          var checked=[].slice.call(el.querySelectorAll("input:checked")).map(function(i){return i.value;});
+          state[f]=multi?checked:(checked[0]||"");
+        }else{
+          state[f]=el.value.trim();
+        }
+      });
+      return state;
+    }
+
+    function buildMsg(lead){
+      var L=["*NUEVO DIAGNÓSTICO — REYVO AUTOMATION*","────────────────"];
+      function add(label,val){if(!val||(Array.isArray(val)&&!val.length))return;L.push("*"+label+":*");L.push(Array.isArray(val)?val.join(", "):val);L.push("");}
+      add("Nombre",lead.nombre);add("Negocio",lead.negocio);add("Giro",lead.giro);add("Ciudad",lead.ciudad);
+      add("WhatsApp",lead.whatsapp);add("Email",lead.email);add("Sitio/Instagram",lead.web);
+      add("Canales de captación",lead.canales);add("Prospectos/mes",lead.volumenProspectos);add("Responde actualmente",lead.responsableAtencion);
+      add("Problemas",lead.problemas);add("Quiere automatizar",lead.automatizacionDeseada);add("Tiempo dedicado",lead.tiempoEmpleado);
+      add("Descripción",lead.descripcion);add("Prefiere contacto por",lead.canalPreferido);
+      return L.join("\n").trim();
+    }
+
+    // NOTA: aún no hay backend/n8n conectado. saveLead() guarda el diagnóstico en
+    // localStorage (solo visible en este navegador) para que /panel.html tenga datos
+    // de prueba. Cuando exista un webhook real, reemplaza saveLead() por un
+    // fetch(webhookURL,{method:"POST",body:JSON.stringify(lead)}) — la forma del
+    // objeto "lead" ya está lista para enviarse tal cual.
+    function saveLead(lead){
+      var KEY="reyvo_leads",list=[];
+      try{list=JSON.parse(localStorage.getItem(KEY)||"[]");}catch(e){}
+      list.push(lead);
+      try{localStorage.setItem(KEY,JSON.stringify(list));}catch(e){}
+    }
+
+    render();
+
+    nextBtn.addEventListener("click",function(){
+      var bad=validateStep(steps[cur-1]);
+      if(bad.length){bad.forEach(function(f){f&&f.classList.add("bad");});errEl.textContent="Falta completar algún campo obligatorio.";bad[0]&&bad[0].scrollIntoView({behavior:"smooth",block:"center"});return;}
+      if(cur<TOTAL)cur++;render();
     });
-    consent.addEventListener("change",function(){err.textContent="";consent.closest(".field").classList.remove("bad");});
-    form.addEventListener("input",function(){err.textContent="";form.querySelectorAll(".field.bad").forEach(function(f){f.classList.remove("bad");});});
-  },"formAuto");
+    backBtn.addEventListener("click",function(){if(cur>1)cur--;render();});
+    form.addEventListener("input",function(e){var f=e.target.closest&&e.target.closest(".field");if(f)f.classList.remove("bad");errEl.textContent="";});
+    form.addEventListener("change",function(e){var f=e.target.closest&&e.target.closest(".field");if(f)f.classList.remove("bad");errEl.textContent="";});
+
+    submitBtn.addEventListener("click",function(){
+      var bad=validateStep(steps[cur-1]);
+      var consent=document.getElementById("consentDiag");
+      if(!consent.checked)bad.push(consent.closest(".field"));
+      if(bad.length){bad.forEach(function(f){f&&f.classList.add("bad");});errEl.textContent="Falta completar algún campo obligatorio.";bad[0]&&bad[0].scrollIntoView({behavior:"smooth",block:"center"});return;}
+
+      var state=collectState();
+      var lead={
+        id:"lead_"+Date.now(),
+        fecha:new Date().toISOString(),
+        nombre:state.nombre||"",negocio:state.negocio||"",whatsapp:state.whatsapp||"",email:state.email||"",
+        ciudad:state.ciudad||"",giro:state.giro||"",web:state.web||"",
+        canales:Array.isArray(state.canales)?state.canales:[],
+        volumenProspectos:state.volumen||"",responsableAtencion:state.responsable||"",
+        problemas:Array.isArray(state.problemas)?state.problemas:[],
+        automatizacionDeseada:Array.isArray(state.objetivo)?state.objetivo:[],
+        tiempoEmpleado:state.tiempo||"",descripcion:state.descripcion||"",canalPreferido:state.canalPref||"",
+        estado:"Diagnóstico recibido"
+      };
+      saveLead(lead);
+
+      document.getElementById("diagSummary").innerHTML=
+        "<b>Negocio:</b> "+esc(lead.negocio)+(lead.giro?" ("+esc(lead.giro)+")":"")+"<br>"+
+        "<b>Problema principal:</b> "+esc(lead.problemas[0]||"—")+"<br>"+
+        "<b>Quiere automatizar:</b> "+esc(lead.automatizacionDeseada.join(", ")||"—")+"<br>"+
+        "<b>Contacto preferido:</b> "+esc(lead.canalPreferido||"—");
+      document.getElementById("diagWaBtn").href="https://wa.me/"+WA+"?text="+encodeURIComponent(buildMsg(lead));
+
+      progressEl.hidden=true;form.hidden=true;resultEl.hidden=false;
+      resultEl.scrollIntoView({behavior:"smooth",block:"start"});
+    });
+
+    document.getElementById("diagRestart").addEventListener("click",function(){
+      form.reset();cur=1;render();
+      resultEl.hidden=true;progressEl.hidden=false;form.hidden=false;
+      document.getElementById("diagIntro").scrollIntoView({behavior:"smooth",block:"start"});
+    });
+  },"diag");
 
   safe(function(){
     var hh=document.getElementById("heroH");
